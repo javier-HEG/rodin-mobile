@@ -1,0 +1,3 @@
+[submodule "tools/rodin-client"]
+	path = tools/rodin-client
+	url = git@bitbucket.org:belmontej_heg/rodin-client.git
