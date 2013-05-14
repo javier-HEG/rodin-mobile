@@ -31,6 +31,9 @@ include_once(CONFIG . 'base.inc.php');
 include_once(RODINCLIENT . 'bootstrap.php');
 $rodinSession = new RodinSession();
 
+// - Include interface messaging methods
+include_once(CONTROL . 'message.php');
+
 // - Call the user session management script
 //   (it should redirect if needed)
 include_once(CONTROL . 'userlogin.php');
@@ -41,6 +44,7 @@ if (!$rodinSession->isUserLoggedIn()) {
 	include_once(VIEW . 'authentication.php');
 } else {
 	// If logged in present the normal page
+	define('PAGE_TITLE', 'RODIN Mobile');
 	include_once(VIEW . 'frame.php');
 }
 

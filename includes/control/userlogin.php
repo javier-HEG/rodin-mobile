@@ -7,16 +7,18 @@
  */
 
 if ($_POST['action'] == 'login') {
-	if ($rodinSession->newUserLogin($_POST['username'], sha1($_POST['password']))) {
-		$_SESSION['message'] = 'Should have logged in';
+	if ($rodinSession->userLoginAttempt($_POST['username'], sha1($_POST['password']))) {
+		setInterfaceMessage(MESSAGE_KIND_INFO, 'Welcome ' . $rodinSession->getUserRealName());
 		header('Location: index.php');
 	} else {
-		$_SESSION['message'] = 'False username/password pair';
+		setInterfaceMessage(MESSAGE_KIND_ERROR, 'Wrong username/password pair, this is your ' . $rodinSession->getUserLoginAttempts() . ' attempt');
 	}
 }
 
 if ($_GET['action'] == 'logout') {
-	$rodinSession->userLogout();
-	break;
+	if ($rodinSession->isUserLoggedIn())
+		$rodinSession->userLogout();
+	// TODO How to deal with this probable attack?
 }
 
+?>
