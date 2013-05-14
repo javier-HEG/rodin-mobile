@@ -28,7 +28,7 @@ function consumeInterfaceMessage() {
 	}
 }
 
-function cssMessageTypeClass($messageType) {
+function messageTypeCssClass($messageType) {
 	switch ($messageType) {
 		case MESSAGE_KIND_ERROR:
 			return 'rodin-message-error';
