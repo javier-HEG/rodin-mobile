@@ -1,0 +1,58 @@
+body {
+	background-color: yellowgreen;
+}
+
+.rodin-header {
+	width: 100%;
+	background-color: black;
+	padding: 6px 0px;
+}
+
+.rodin-title {
+	font-size: 2em;
+	font-weight: bold;
+	color: orange;
+}
+
+.rodin-user {
+	color: lightgrey;
+	font-style: italic;
+}
+
+.rodin-message {
+	width: 100%;
+	padding: 3px 0px;
+}
+
+.rodin-message-error {
+	background-color: lightpink;
+}
+
+.rodin-message-info {
+	background-color: lightcyan;
+}
+
+/*
+ * Styles overiding HTML5 Boilerplate's
+ */
+
+/*
+ * Styles overiding Skeleton
+ */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+	width: 100%;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+	width: 100%;
+}

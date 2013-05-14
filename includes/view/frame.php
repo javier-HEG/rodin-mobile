@@ -8,14 +8,17 @@
 	<body>
 		<?php
 
+		include_once('rodinheader.inc.php');
+
 		include_once('message.inc.php');
 
 		?>
 
 		<div class="container">
-			<div class="sixteen columns">
-				<p><?php echo var_export($_SESSION); ?></p>
-				<a href='index.php?action=logout'>Logout</a>
+			<div class="sixteen column">
+				<div class="one-third column">
+					<a href='index.php?action=logout'>Logout</a>
+				</div>
 			</div>
 		</div>
 
