@@ -28,7 +28,7 @@ include_once(CONFIG . 'base.inc.php');
 
 // Application logic
 // - Start the client
-include_once(RODINCLIENT . 'bootstrap.php');
+include_once(TOOLS . 'rodin-client/RodinSession.php');
 $rodinSession = new RodinSession();
 
 // - Include interface messaging methods
