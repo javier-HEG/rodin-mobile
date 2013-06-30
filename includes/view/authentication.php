@@ -32,7 +32,7 @@
 				} else {
 
 					?>
-					<h3>Login page</h3>
+					<h1>Login page</h1>
 					<form method = "post">
 						<label for = "username">Username</label>
 						<input type = "text" name = "username" />
@@ -56,19 +56,8 @@
 
 		<script type="text/javascript">
 			MBP.preventZoom();
+			MBP.hideUrlBarOnLoad();
+			MBP.scaleFix();
 		</script>
-
-		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-		<!--
-		<script>
-			var _gaq = [["_setAccount", "UA-XXXXX-X"], ["_trackPageview"]];
-			(function(d, t) {
-				var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-				g.async = 1;
-				g.src = ("https:" == location.protocol ? "//ssl" : "//www") + ".google-analytics.com/ga.js";
-				s.parentNode.insertBefore(g, s)
-			}(document, "script"));
-		</script>
-		-->
 	</body>
 </html>

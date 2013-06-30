@@ -14,10 +14,29 @@
 
 		?>
 
-		<div class="container">
-			<div class="sixteen column">
-				<div class="one-third column">
-					<a href='index.php?action=logout'>Logout</a>
+		<!-- The search bar -->
+		<div class="rodin-content" style="background-color: tan;">
+			<div class="container">
+				<!--<div class="one-third column">-->
+				<form method = "post" style="margin-bottom: 0px;">
+					<input type = "text" name = "query" style="margin-bottom: 0px;" />
+					<input type = "hidden" name = "action" value = "globalSearch" />
+				</form>
+				<!--</div>-->
+			</div>
+		</div>
+
+		<!-- Where results show -->
+		<div class="rodin-content">
+			<div class="container">
+				<div class="rodin-result">
+					<h1>Title</h1>
+					<p class="authors">Authors</p>
+					<p class="summary">Short-form of content</p>
+					<div class="sources">
+						<img src="<?php echo(FAMFAMFAM); ?>anchor.png" />
+						<img src="<?php echo(FAMFAMFAM); ?>coins.png" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -25,17 +44,10 @@
 		<script src="js/vendor/zepto.min.js"></script>
 		<script src="js/helper.js"></script>
 
-		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-		<!--
-		<script>
-			var _gaq = [["_setAccount", "UA-XXXXX-X"], ["_trackPageview"]];
-			(function(d, t) {
-				var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-				g.async = 1;
-				g.src = ("https:" == location.protocol ? "//ssl" : "//www") + ".google-analytics.com/ga.js";
-				s.parentNode.insertBefore(g, s)
-			}(document, "script"));
+		<script type="text/javascript">
+			MBP.preventZoom();
+			MBP.hideUrlBarOnLoad();
+			MBP.scaleFix();
 		</script>
-		-->
 	</body>
 </html>
