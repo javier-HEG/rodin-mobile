@@ -74,6 +74,11 @@ body {
 	padding: 6px 0px;
 }
 
+/* Universe label */
+.universe-options {
+	width: 100%;
+	background-color: orange;
+}
 
 /*
  * Styles overiding Skeleton

@@ -33,6 +33,12 @@ if ($rodinSession->isUserLoggedIn()) {
 		</div>
 	</div>
 
+	<div class="universe-options">
+		<div class="container">
+			<span id="header-universe-name"><?php echo $rodinSession->getUniverseName(); ?></span>
+		</div>
+	</div>
+
 	<?php
 
 }
