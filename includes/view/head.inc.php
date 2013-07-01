@@ -33,4 +33,15 @@
 
 	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 
+	<!-- Load current model -->
+	<script type="text/javascript" src="js/model/User.js"></script>
+	<script type="text/javascript" src="js/model/Universe.js"></script>
+	<script type="text/javascript" src="js/model/Publisher.js"></script>
+	<script type = "text/javascript">
+		var user = new User("<?php echo $rodinSession->getUserName(); ?>");
+		user.setRealName("<?php echo $rodinSession->getUserRealName(); ?>");
+
+		var universe = new Universe("<?php echo $rodinSession->getUniverseId(); ?>");
+		universe.setName("<?php echo $rodinSession->getUniverseName(); ?>");
+	</script>
 </head>
