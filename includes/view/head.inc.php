@@ -31,13 +31,18 @@
 
 	<link rel="stylesheet" href="css/rodin.css"/>
 
-	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+	<!-- Libraries -->
+	<script type="text/javascript" src="js/vendor/modernizr-2.6.2.min.js"></script>
+	<script type="text/javascript" src="js/vendor/zepto.min.js"></script>
+	<script type="text/javascript" src="js/helper.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 
 	<!-- Load current model -->
 	<script type="text/javascript" src="js/model/User.js"></script>
 	<script type="text/javascript" src="js/model/Universe.js"></script>
+	<script type="text/javascript" src="js/model/Search.js"></script>
 	<script type="text/javascript" src="js/model/Publisher.js"></script>
-	<script type = "text/javascript">
+	<script type="text/javascript">
 		var user = new User("<?php echo $rodinSession->getUserName(); ?>");
 		user.setRealName("<?php echo $rodinSession->getUserRealName(); ?>");
 

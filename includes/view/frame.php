@@ -18,10 +18,15 @@
 		<div class="rodin-content" style="background-color: tan;">
 			<div class="container">
 				<!--<div class="one-third column">-->
-				<form method = "post" style="margin-bottom: 0px;">
-					<input type = "text" name = "query" style="margin-bottom: 0px;" />
-					<input type = "hidden" name = "action" value = "globalSearch" />
+				<form style="margin-bottom: 0px;" id="globalSearchForm" onsubmit="return false;">
+					<input id="globalSearchQuery" type="text" style="margin-bottom: 0px;" />
 				</form>
+				<script>
+					$('#globalSearchForm').on('submit', function() {
+						startGlobalSearch();
+						return false;
+					});
+				</script>
 				<!--</div>-->
 			</div>
 		</div>
@@ -40,9 +45,6 @@
 				</div>
 			</div>
 		</div>
-
-		<script src="js/vendor/zepto.min.js"></script>
-		<script src="js/helper.js"></script>
 
 		<script type="text/javascript">
 			MBP.preventZoom();

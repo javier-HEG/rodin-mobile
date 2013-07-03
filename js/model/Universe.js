@@ -10,4 +10,8 @@ function Universe(id) {
 		return this.name;
 	};
 
+	this.toJSON = function() {
+		return {id: this.id};
+	};
+
 }
