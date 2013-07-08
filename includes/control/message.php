@@ -1,50 +1,31 @@
 <?php
 
-define('SESSION_MESSAGE', 'message');
-define('SESSION_MESSAGE_TYPE', 'messagetype');
-define('MESSAGE_KIND_INFO', 0);
-define('MESSAGE_KIND_ERROR', 1);
+define('SESSION_MESSAGES', 'message');
+define('MESSAGE_KIND_ERROR', 0);
+define('MESSAGE_KIND_DEBUG', 1);
+define('MESSAGE_KIND_INFO', 2);
 
-function isInterfaceMessageSet() {
-	return isset($_SESSION[SESSION_MESSAGE]);
+function isInterfaceMessageInitialized() {
+	return isset($_SESSION[SESSION_MESSAGES]);
 }
 
 function setInterfaceMessage($messageType, $message) {
-	$_SESSION[SESSION_MESSAGE] = $message;
-	$_SESSION[SESSION_MESSAGE_TYPE] = $messageType;
+	if (isInterfaceMessageInitialized()) {
+		$_SESSION[SESSION_MESSAGES][] = array($messageType, $message);
+	} else {
+		$_SESSION[SESSION_MESSAGES] = array(array($messageType, $message));
+	}
 }
 
 function consumeInterfaceMessage() {
-	if (isset($_SESSION[SESSION_MESSAGE])) {
-		$message = $_SESSION[SESSION_MESSAGE];
-		$messageType = $_SESSION[SESSION_MESSAGE_TYPE];
-
-		unset($_SESSION[SESSION_MESSAGE]);
-		unset($_SESSION[SESSION_MESSAGE_TYPE]);
-
-		return array($messageType, $message);
+	if (isInterfaceMessageInitialized()) {
+		return array_pop($_SESSION[SESSION_MESSAGES]);
 	} else {
 		return false;
 	}
-}
 
-function messageTypeCssClass($messageType) {
-	switch ($messageType) {
-		case MESSAGE_KIND_ERROR:
-			return 'rodin-message-error';
-		case MESSAGE_KIND_INFO:
-		default :
-			return 'rodin-message-info';
-	}
-}
-
-function messageTypeTimer($messageType) {
-	switch ($messageType) {
-		case MESSAGE_KIND_ERROR:
-			return 5000;
-		case MESSAGE_KIND_INFO:
-		default :
-			return 2000;
+	if (count($_SESSION[SESSION_MESSAGES]) == 0) {
+		unset($_SESSION[SESSION_MESSAGES]);
 	}
 }
 
