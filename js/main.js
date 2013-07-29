@@ -107,3 +107,20 @@ $(function() {
 		});
 	}
 });
+
+/*
+ * Mmenu activation
+ */
+//	The menu on the left
+$(function() {
+	$('nav#menu-left').mmenu();
+});
+
+
+//	The menu on the right
+$(function() {
+	$('nav#menu-right').mmenu({
+		position: 'right'
+	});
+});
+

@@ -247,3 +247,30 @@ input[type="button"] {
 form {
 	/*margin-bottom: 0px;*/
 }
+
+/* Mmenu styles */
+
+#header a,
+.header a
+{
+	background: center center no-repeat transparent;
+	background-image: url(../img/famfamfam/control_eject.png);
+	
+	display: block;
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	top: 0;
+	left: 10px;
+}
+#header a.friends,
+.header a.friends
+{
+	background-image: url(../img/famfamfam/control_equalizer.png);
+}
+#header a.right,
+.header a.right
+{
+	left: auto;
+	right: 10px;
+}

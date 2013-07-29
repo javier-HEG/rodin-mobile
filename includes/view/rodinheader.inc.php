@@ -31,9 +31,39 @@
 		</div>
 
 		<div class="universe-options">
-			<div class="container">
+			<div class="container header">
+				<a href="#menu-left"></a>
 				<span id="header-universe-name"><?php echo $rodinSession->getUniverseName(); ?></span>
+				<a href="#menu-right" class="friends right"></a>
 			</div>
+
+			<nav id="menu-left">
+				<ul>
+					<li class="Label">Universe selection</li>
+					<li class="Selected"><a href="#">Test</a></li>
+					<li><a href="#">Economy</a></li>
+				</ul>
+			</nav>
+
+			<nav id="menu-right">
+				<ul>
+					<li class="Label">Universe configuration</li>
+					<li>
+						<span>Datasources</span>
+						<ul>
+							<li><a href="#">Swissbib</a></li>
+							<li><a href="#">ArXiv</a></li>
+						</ul>
+					</li>
+					<li>
+						<span>LOD</span>
+						<ul>
+							<li><a href="#">Source A</a></li>
+							<li><a href="#">Source B</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
 
 			<?php
 

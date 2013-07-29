@@ -21,16 +21,18 @@
 	<meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
 	<meta name="msapplication-TileColor" content="#222222">
 
+	<!-- CSS -->
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/atmosphere.css">
-
-	<!-- Skeleton -->
+	<!-- + Skeleton -->
 	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/base.css"/>
 	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/skeleton.css"/>
 	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/layout.css"/>
+	<!-- + Mmenu -->
+	<link rel="stylesheet" href="css/mmenu.css"/>
 
-	<!-- Media Queries -->
+	<!-- Media query dependent CSS -->
 	<link  rel="stylesheet" href="css/mobile-nav.css">
 	<?php
 
@@ -48,6 +50,7 @@
 
 	<script type="text/javascript" src="js/vendor/modernizr-2.6.2.min.js"></script>
 	<script type="text/javascript" src="js/vendor/jquery.hoverIntent.js"></script>
+	<script type="text/javascript" src="js/vendor/jquery.mmenu.min.js"></script>
 	<script type="text/javascript" src="js/vendor/overthrow.js"></script>
 	<script type="text/javascript" src="js/helper.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
