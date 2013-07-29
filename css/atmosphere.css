@@ -1,0 +1,43 @@
+/* Basic Styling of the Body */
+body {
+	background-color: cornsilk;
+	margin: 0 auto;
+	color: black;
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+	position: relative;
+	overflow: auto;
+	max-width: 1300px;
+}
+
+a:link,
+a:visited {
+	color: #666;
+	text-decoration: underline;
+}
+a:hover,
+a:active {
+	color: #a67b45;
+	text-decoration: none;
+	outline: none;
+}
+a:active {
+	color: #ff6000;
+}
+
+/* Rodin basic colors and fonts */
+
+.rodin-message-error {
+	background-color: lightpink;
+}
+
+.rodin-message-info {
+	background-color: lightcyan;
+}
+
+/* Universe label color */
+
+.universe-options {
+	background-color: orange;
+	color: black;
+}

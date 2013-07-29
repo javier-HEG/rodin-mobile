@@ -23,21 +23,36 @@
 
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/atmosphere.css">
 
 	<!-- Skeleton -->
 	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/base.css"/>
 	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/skeleton.css"/>
 	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/layout.css"/>
 
-	<link rel="stylesheet" href="css/rodin.css"/>
+	<!-- Media Queries -->
+	<link  rel="stylesheet" href="css/mobile-nav.css">
+	<?php
+
+//	TODO Add media queries when stable
+//	<link  rel="stylesheet" href="css/mobile-nav.css" media="screen and (min-width: 320px) and (max-width: 1024px)">
+//	<link  rel="stylesheet" href="css/smartphone.css" media="screen and (min-width:320px) and (max-width:480px)">
+//	<link  rel="stylesheet" href="css/tablet.css" media="screen and (min-width: 481px) and (max-width: 767px)">
+//	<link  rel="stylesheet" href="css/ipad.css" media="screen and (min-width: 768px) and (max-width: 1024px)">
+//	<link  rel="stylesheet" href="css/desktop.css" media="screen and (min-width: 1025px)">
+
+	?>
 
 	<!-- Libraries -->
+	<script type="text/javascript" src="js/vendor/jquery-1.7.2.min.js"></script>
+
 	<script type="text/javascript" src="js/vendor/modernizr-2.6.2.min.js"></script>
-	<script type="text/javascript" src="js/vendor/zepto.min.js"></script>
+	<script type="text/javascript" src="js/vendor/jquery.hoverIntent.js"></script>
+	<script type="text/javascript" src="js/vendor/overthrow.js"></script>
 	<script type="text/javascript" src="js/helper.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 
-	<!-- Load current model -->
+	<!-- Model representation in Javascript -->
 	<script type="text/javascript" src="js/model/User.js"></script>
 	<script type="text/javascript" src="js/model/Universe.js"></script>
 	<script type="text/javascript" src="js/model/Search.js"></script>
