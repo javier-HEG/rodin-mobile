@@ -9,9 +9,7 @@ define('VIEW', INCLUDES . 'view' . DIRECTORY_SEPARATOR);
 define('CONTROL', INCLUDES . 'control' . DIRECTORY_SEPARATOR);
 
 define('TOOLS', 'tools' . DIRECTORY_SEPARATOR);
-define('APPFRAMEWORK', TOOLS . 'appframework' . DIRECTORY_SEPARATOR);
 define('RODINCLIENT', TOOLS . 'rodin-client' . DIRECTORY_SEPARATOR);
-define('SKELETON', TOOLS . 'skeleton' . DIRECTORY_SEPARATOR);
 
 define('IMAGES', 'img' . DIRECTORY_SEPARATOR);
 define('FAMFAMFAM', IMAGES . 'famfamfam' . DIRECTORY_SEPARATOR);

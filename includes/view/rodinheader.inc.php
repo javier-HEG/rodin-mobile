@@ -1,12 +1,12 @@
-<header role="banner" class="clearfix">
-	<div class="container">
-		<h1 id="rodin-title" class="four column">RODIN</h1>
+<?php
 
-		<?php
+if ($rodinSession->isUserLoggedIn()) {
 
-		if ($rodinSession->isUserLoggedIn()) {
+	?>
 
-			?>
+	<header role="banner" class="clearfix">
+		<div class="container">
+			<h1 id="rodin-title" class="four column">RODIN</h1>
 
 			<nav>
 				<a data-toggle="collapse" class="btn btn-navbar">
@@ -29,47 +29,64 @@
 				</section>
 			</nav>
 		</div>
+	</header>
 
-		<div class="universe-options">
-			<div class="container header">
-				<a href="#menu-left"></a>
-				<span id="header-universe-name"><?php echo $rodinSession->getUniverseName(); ?></span>
-				<a href="#menu-right" class="friends right"></a>
-			</div>
+	<div class="universe-options">
+		<div class="container header">
+			<a href="#menu-left"></a>
+			<span id="header-universe-name"><?php echo $rodinSession->getUniverseName(); ?></span>
+			<a href="#menu-right" class="friends right"></a>
+		</div>
 
-			<nav id="menu-left">
-				<ul>
-					<li class="Label">Universe selection</li>
-					<li class="Selected"><a href="#">Test</a></li>
-					<li><a href="#">Economy</a></li>
-				</ul>
-			</nav>
+		<nav id="menu-left">
+			<ul>
+				<li class="Label">Universe configuration</li>
+				<li>
+					<span>Settings</span>
+					<ul>
+						<li>Name: <input type="text" size="10" /></li>
+					</ul>
+				</li>
+				<li>
+					<span>Datasources</span>
+					<ul>
+						<li><a href="#">Swissbib</a></li>
+						<li><a href="#">ArXiv</a></li>
+					</ul>
+				</li>
+				<li>
+					<span>LOD</span>
+					<ul>
+						<li><a href="#">Source A</a></li>
+						<li><a href="#">Source B</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
 
-			<nav id="menu-right">
-				<ul>
-					<li class="Label">Universe configuration</li>
-					<li>
-						<span>Datasources</span>
-						<ul>
-							<li><a href="#">Swissbib</a></li>
-							<li><a href="#">ArXiv</a></li>
-						</ul>
-					</li>
-					<li>
-						<span>LOD</span>
-						<ul>
-							<li><a href="#">Source A</a></li>
-							<li><a href="#">Source B</a></li>
-						</ul>
-					</li>
-				</ul>
-			</nav>
-
-			<?php
-
-		}
-
-		?>
+		<nav id="menu-right">
+			<ul>
+				<li class="Label">Universe selection</li>
+				<li class="Selected"><a href="#">Test</a></li>
+				<li><a href="#">Economy</a></li>
+			</ul>
+		</nav>
 	</div>
 
-</header>
+	<?php
+
+} else {
+
+	?>
+
+	<header role="banner" class="clearfix">
+		<div class="container">
+			<h1 id="rodin-title" class="four column">RODIN</h1>
+		</div>
+	</header>
+
+	<?php
+
+}
+
+?>
