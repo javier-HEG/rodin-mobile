@@ -20,6 +20,17 @@ function Broker() {
 	};
 
 	/**
+	 * When remote get is successful it returns the data.
+	 * @param {type} data
+	 * @param {type} status
+	 * @param {type} xhr
+	 * @returns {void}
+	 */
+	this.onGetSuccess = function(data, status, xhr) {
+		this.onSuccessCall.apply(this.onSuccessContext, [data]);
+	};
+
+	/**
 	 * Makes a rest call using JSON data
 	 * @param {type} method
 	 * @param {type} resourceName
@@ -27,7 +38,7 @@ function Broker() {
 	 * @param {function} onSuccess a function receiving parameters compatible with the request
 	 * @returns {Array} [data, location]
 	 */
-	this.sendRequest = function(method, resourceName, jsonData, onSuccessCall, onSuccessContext) {
+	this.makeRequest = function(method, resource, jsonData, onSuccessCall, onSuccessContext) {
 		this.onSuccessContext = onSuccessContext;
 		this.onSuccessCall = onSuccessCall;
 
@@ -36,14 +47,18 @@ function Broker() {
 		// Default request values
 		var requestInfo = {
 			type: method,
-			url: rodinResources + resourceName,
+			url: (resource.indexOf(rodinResources) == -1 ? rodinResources + resource : resource),
 			xhrFields: {withCredentials: true},
 			contentType: "application/json",
-			context: self
+			dataType: "json",
+			context: self,
+			error: function() {
+				alert('Error');
+			}
 		};
 
+		// Add data if not null
 		if (jsonData !== null) {
-			requestInfo.dataType = "json";
 			requestInfo.data = jsonData;
 		}
 
@@ -53,10 +68,11 @@ function Broker() {
 			requestInfo.success = function(data, status, xhr) {
 				this.onPostSuccess(data, status, xhr);
 			};
-			requestInfo.error = function() {
-				alert('Error');
+			var request = $.ajax(requestInfo);
+		} else if (method === 'GET') {
+			requestInfo.success = function(data, status, xhr) {
+				this.onGetSuccess(data, status, xhr);
 			};
-
 			var request = $.ajax(requestInfo);
 		}
 	};
