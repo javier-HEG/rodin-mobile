@@ -1,0 +1,311 @@
+/*
+ * Styles overiding Skeleton - tools/skeleton/stylesheets
+ */
+h1 {
+    font-size: 24px;
+    line-height: 24px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+	width: 100%;
+	padding-left: 0px;
+	padding-right: 0px;
+	/*margin-bottom: 0px;*/
+}
+
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+	width: 100%;
+	margin-bottom: 4px;
+}
+
+form {
+	/*margin-bottom: 0px;*/
+}
+
+
+/*
+ * Stylsheet for the button activating the jQuery extension
+ * jquery.dropdown.js in js/main.js
+ */
+header nav {
+	display: block;
+	/*position: fixed;*/
+	top: 0;
+	left: 0;
+	zoom: 1;
+	/*height: 40px;*/
+	text-align: center;
+}
+
+nav .btn-navbar {
+	z-index: 5;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	cursor: pointer;
+}
+
+nav .active,
+nav .btn-navbar:active {
+	border-bottom: 1px solid orange;
+}
+
+nav .btn-navbar .icon-user {
+	display: block;
+	width: 18px;
+	height: 18px;
+	background: url(../img/mimiGlyphs/13-inverted.png) no-repeat;
+}
+
+/*
+ * Stylsheet for the menu activated by the jQuery extension
+ * jquery.dropdown.js in js/main.js
+ */
+section#menu {
+	z-index: 5;
+	position: absolute;
+	top: 30px;
+	width: 100%;
+	display: none;
+	background: orange;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+section#menu header {
+	z-index: 5;
+	padding: 6px 0px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+ul#menu {
+	z-index: 5;
+	display: block;
+	margin-bottom: 0px;
+
+	font-size: 15px !important;
+	overflow-x: hidden;
+	-ms-overflow-x: hidden;
+}
+
+ul#menu li {
+	z-index: 5;
+	display: block;
+	height: 40px;
+	width: 100%;
+
+	border: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	
+	margin-bottom: 0px;
+
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+ul#menu li:after {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    content: "";
+    display: block;
+    width: 100%;
+}
+
+ul#menu li:last-child {
+	margin-bottom: 4px;
+}
+
+ul#menu li.hasChildren {
+	height: auto !important;
+}
+
+ul#menu li.hasChildren ul {
+	display: none;
+	margin: 0 !important;
+	padding: 0 10px !important;
+}
+
+ul#menu li.hasChildren ul li {
+	background: none;
+}
+
+ul#menu li a {
+	display: block;
+	text-decoration: none;
+	padding: 12px 10px;
+	font-weight: normal;
+}
+
+ul#menu li a span {
+	display: block;
+}
+
+ul#menu li a:link,
+ul#menu li a:visited {
+	color: black;
+	text-decoration: none;
+	outline: none;
+}
+
+ul#menu li a:hover,
+ul#menu li a:active {
+	text-decoration: none;
+	outline: none;
+	background: rgba(0, 0, 0, 0.2);
+}
+
+ul#menu li.hasChildren a > span {
+	background: url(../img/sprite.png);
+	background-position: right -97px !important;
+	background-repeat: no-repeat;
+}
+
+ul#menu li.hasChildren a:hover > span,
+ul#menu li.hasChildren.hover > a span {
+	background-position: right -138px !important;
+}
+
+/*
+ * Styles overriding the Mmenu styles - mmenu.css
+ * (sliding lateral menus)
+ */
+.mm-menu {
+	background-color: orange;
+}
+
+#header a,
+.header a
+{
+	background: center center no-repeat transparent;
+	background-image: url(../img/mimiGlyphs/19.png);
+	
+	display: block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 0;
+	left: 0px;
+}
+#header a.right,
+.header a.right
+{
+	left: auto;
+	right: 0px;
+}
+#header a.friends,
+.header a.friends
+{
+	background-image: url(../img/mimiGlyphs/46.png);
+}
+
+.mm-menu a {
+	color: #666666;
+}
+
+.mm-menu > ul {
+	padding: 0px;
+}
+
+.mm-menu li.mm-label {
+	color: black;
+    font-size: 12px;
+    text-shadow: none;
+    font-size: 16px;
+    padding: 6px 0;
+    line-height: auto;
+}
+
+.mm-menu li, .mm-menu li > a, .mm-menu li > span {
+	color: black;
+	text-shadow: none;	
+}
+
+.mm-menu a.mm-subopen + span {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mm-menu a.mm-subopen:hover + span {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.mm-menu li.mm-selected {
+	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54.png);
+}
+
+/*
+ * Using the touch scrolling on capable devices,
+ * styles used by js/vendor/overthrow.js
+ */
+.overthrow-enabled .overthrow {
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+/*
+ * Styles for Rodin specific content
+ */
+header[role="banner"] {
+	width: 100%;
+	background-color: black;
+	padding: 6px 0px;
+	display: block;
+}
+
+header h1#rodin-title {
+	height: 28px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2em;
+	font-weight: bold;
+	color: orange;
+}
+
+.rodin-message {
+	width: 100%;
+	padding: 3px 0px;
+}
+
+.rodin-content {
+	width: 100%;
+	padding: 2px 0px;
+}
+
+.rodin-result {
+	border: 1px solid gray;
+	border-radius: 6px;
+	padding: 4px;
+}
+
+.rodin-result h1 {
+	font-size: 20px;
+	margin: 0px;
+}
+
+.rodin-result p {
+	margin: 0px;
+}
+
+.rodin-result .sources {
+	text-align: right;
+	padding: 0px 2px;
+}
+
+.rodin-result .sources img {
+	border: 1px solid burlywood;
+	padding: 2px;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0px;
+}
+.universe-options {
+	width: 100%;
+}
+

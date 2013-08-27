@@ -13,36 +13,54 @@
 	<link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png">
 	<link rel="shortcut icon" href="img/touch/apple-touch-icon.png">
 
-	<link rel="apple-touch-icon" href="<?php echo SKELETON; ?>images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo SKELETON; ?>images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo SKELETON; ?>images/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" href="tools/skeleton/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="tools/skeleton/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="tools/skeleton/images/apple-touch-icon-114x114.png">
 
 	<!-- Tile icon for Win8 (144x144 + tile color) -->
 	<meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
 	<meta name="msapplication-TileColor" content="#222222">
 
+	<!-- Logo font -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
+
+	<!-- CSS -->
+	<!-- + Skeleton -->
+	<link rel="stylesheet" href="tools/skeleton/stylesheets/base.css"/>
+	<link rel="stylesheet" href="tools/skeleton/stylesheets/skeleton.css"/>
+	<link rel="stylesheet" href="tools/skeleton/stylesheets/layout.css"/>
+	<!-- + Mmenu -->
+	<link rel="stylesheet" href="css/mmenu.css"/>
+	<!-- + HTML5BP -->
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/main.css">
-
-	<!-- Skeleton -->
-	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/base.css"/>
-	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/skeleton.css"/>
-	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/layout.css"/>
-
-	<link rel="stylesheet" href="css/rodin.css"/>
+	<!-- + Responsive (ours) -->
+	<link rel="stylesheet" href="css/atmosphere.css">
+	<!--   - Media query dependent CSS -->
+	<link  rel="stylesheet" href="css/mobile-nav.css">
+	<!--   - More media queries (to add when design is stable) -->
+	<!-- <link  rel="stylesheet" href="css/mobile-nav.css" media="screen and (min-width: 320px) and (max-width: 1024px)">
+	<link  rel="stylesheet" href="css/smartphone.css" media="screen and (min-width:320px) and (max-width:480px)">
+	<link  rel="stylesheet" href="css/tablet.css" media="screen and (min-width: 481px) and (max-width: 767px)">
+	<link  rel="stylesheet" href="css/ipad.css" media="screen and (min-width: 768px) and (max-width: 1024px)">
+	<link  rel="stylesheet" href="css/desktop.css" media="screen and (min-width: 1025px)"> -->
 
 	<!-- Libraries -->
-	<script type="text/javascript" src="js/vendor/modernizr-2.6.2.min.js"></script>
-	<script type="text/javascript" src="js/vendor/zepto.min.js"></script>
-	<script type="text/javascript" src="js/helper.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+	<script src="js/vendor/jquery-1.7.2.min.js"></script>
 
-	<!-- Load current model -->
-	<script type="text/javascript" src="js/model/User.js"></script>
-	<script type="text/javascript" src="js/model/Universe.js"></script>
-	<script type="text/javascript" src="js/model/Search.js"></script>
-	<script type="text/javascript" src="js/model/Publisher.js"></script>
-	<script type="text/javascript">
+	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="js/vendor/jquery.hoverIntent.js"></script>
+	<script src="js/vendor/jquery.mmenu.js"></script>
+	<script src="js/vendor/overthrow.js"></script>
+	<script src="js/helper.js"></script>
+	<script src="js/main.js"></script>
+
+	<!-- Model representation in Javascript -->
+	<script src="js/model/User.js"></script>
+	<script src="js/model/Universe.js"></script>
+	<script src="js/model/Search.js"></script>
+	<script src="js/model/Publisher.js"></script>
+	<script>
 		var user = new User("<?php echo $rodinSession->getUserName(); ?>");
 		user.setRealName("<?php echo $rodinSession->getUserRealName(); ?>");
 
