@@ -54,9 +54,9 @@
 	<script src="js/vendor/overthrow.js"></script>
 	<script src="js/helper.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/broker.js"></script>
-
-	<!-- Model representation in Javascript -->
+	<!-- Broker class -->	
+	<script src="js/Broker.js"></script>
+	<!-- Model classes -->
 	<script src="js/model/User.js"></script>
 	<script src="js/model/Universe.js"></script>
 	<script src="js/model/Search.js"></script>
