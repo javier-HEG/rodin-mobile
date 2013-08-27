@@ -1,3 +1,7 @@
+/**
+ * Conceptualizes searches, of every kind
+ * @param {type} query description
+ */
 function Search(query) {
 	this.query = query;
 	this.resourceUrl = '';
@@ -5,39 +9,14 @@ function Search(query) {
 
 	var self = this;
 
-	// - AJAX Create the search on server
-	$.ajax({
-		type: 'POST',
-		url: rodinResources + 'search',
-		data: JSON.stringify({query: this.query, universe: universe.toJSON()}),
-		xhrFields: {
-			withCredentials: true
-		},
-		contentType: 'application/json',
-		dataType: 'json',
-		context: self,
-		success: function(data, status, xhr) {
-			this.onPostSuccess(data, status, xhr);
-		},
-		error: function(xhr, type) {
-			alert('Error creating Search on Server!');
-		}
-	});
-
-	this.onPostSuccess = function(data, status, xhr) {
-		this.resourceUrl = xhr.getResponseHeader("Location");
-		this.updateStatus();
-	};
-
 	/**
 	 * Will GET the search from server and update its status
 	 * until the search is done.
 	 * @returns {void}
 	 */
 	this.updateStatus = function() {
-		$('#globalSearchQuery').val('Updating status');
+		$("#globalSearchQuery").val("Updating status").prop("disabled", true);
 
-		// - AJAX Create the search on server
 		$.ajax({
 			type: 'GET',
 			url: this.resourceUrl,
@@ -56,7 +35,11 @@ function Search(query) {
 		this.updates -= 1;
 
 		if (this.updates >= 0) {
-			setTimeout(this.updateStatus(), 100);
+			setTimeout(function() {
+				self.updateStatus();
+			}, 100);
+		} else {
+			$("#globalSearchQuery").prop("disabled", false);
 		}
 	};
 
@@ -68,21 +51,19 @@ function Search(query) {
 		return this.query;
 	};
 
-}
-
-function Result() {
-	this.title = '';
-	this.authors = array();
-
-	this.setTitle = function(title) {
-		this.title = title;
+	/**
+	 * When remote post is successful it returns the location
+	 * of the new resource.
+	 * @returns {void}
+	 */
+	this.saveLocation = function(location) {
+		this.resourceUrl = location;
+		this.updateStatus();
 	};
 
-	this.getTitle = function() {
-		return title;
-	};
-}
+	// Code that runs when the prototype is clonned
 
-function callOnPostSuccess(search, data, status, xhr) {
-	search.onPostSuccess(data, status, xhr);
+	var broker = new Broker();
+	var jsonData = JSON.stringify({query: this.query, universe: universe.toJSON()});
+	broker.sendRequest("POST", "search", jsonData, this.saveLocation, this);
 }

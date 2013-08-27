@@ -2,6 +2,7 @@
  * Personalized scripts are to be copied and modified directly in this file
  */
 
+// Temporally keeping this variable until the broker is ready to take on all AJAX calls
 var rodinResources = 'http://localhost:8080/rodin_server/resources/';
 
 /**

@@ -54,6 +54,7 @@
 	<script src="js/vendor/overthrow.js"></script>
 	<script src="js/helper.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/broker.js"></script>
 
 	<!-- Model representation in Javascript -->
 	<script src="js/model/User.js"></script>
