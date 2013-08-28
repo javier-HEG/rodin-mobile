@@ -10,13 +10,12 @@ function Search(query) {
 	var self = this;
 	var broker = new Broker();
 
-	this.checkIfDone = function(data) {
+	this.checkIfDone = function(data, status, xhr) {
 		var shouldStop = data.status === 'DONE';
 
 		this.updates -= 1;
 
 		if (shouldStop || this.updates < 0) {
-			$("#globalSearchQuery").val("DONE");
 			$("#globalSearchQuery").prop("disabled", false);
 		} else {
 			setTimeout(function() {
@@ -36,9 +35,9 @@ function Search(query) {
 	 * Saves the answer got from the Broker
 	 * @returns {void}
 	 */
-	this.saveLocation = function(location) {
-		this.resourceUrl = location;
-		$("#globalSearchQuery").val("Searching ...").prop("disabled", true);
+	this.saveLocation = function(data, status, xhr) {
+		this.resourceUrl = xhr.getResponseHeader("Location");
+		$("#globalSearchQuery").prop("disabled", true);
 		this.updateStatus();
 	};
 

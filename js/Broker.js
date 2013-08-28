@@ -7,42 +7,20 @@ function Broker() {
 	this.onSuccessContext = null;
 	this.onSuccessCall = null;
 
-	/**
-	 * When remote post is successful it returns the location
-	 * of the new resource.
-	 * @param {type} data
-	 * @param {type} status
-	 * @param {type} xhr
-	 * @returns {void}
-	 */
-	this.onPostSuccess = function(data, status, xhr) {
-		this.onSuccessCall.apply(this.onSuccessContext, [xhr.getResponseHeader("Location")]);
-	};
+	var self = this;
 
 	/**
-	 * When remote get is successful it returns the data.
-	 * @param {type} data
-	 * @param {type} status
-	 * @param {type} xhr
-	 * @returns {void}
-	 */
-	this.onGetSuccess = function(data, status, xhr) {
-		this.onSuccessCall.apply(this.onSuccessContext, [data]);
-	};
-
-	/**
-	 * Makes a rest call using JSON data
-	 * @param {type} method
-	 * @param {type} resourceName
-	 * @param {type} jsonData stringified version of the data
-	 * @param {function} onSuccess a function receiving parameters compatible with the request
+	 * Makes a REST call to the resources on the server
+	 * @param {type} method POST, GET, etc.
+	 * @param {type} resource is either the name of the resource or a full URL
+	 * @param {type} jsonData stringified version of the JSON data to pass
+	 * @param {function} onSuccessCall the function to call on success
+	 * @param {type} onSuccessContext the context on which the onSuccessCall should be called
 	 * @returns {Array} [data, location]
 	 */
 	this.makeRequest = function(method, resource, jsonData, onSuccessCall, onSuccessContext) {
 		this.onSuccessContext = onSuccessContext;
 		this.onSuccessCall = onSuccessCall;
-
-		var self = this;
 
 		// Default request values
 		var requestInfo = {
@@ -51,7 +29,8 @@ function Broker() {
 			xhrFields: {withCredentials: true},
 			contentType: "application/json",
 			dataType: "json",
-			context: self,
+			context: onSuccessContext,
+			success: onSuccessCall,
 			error: function() {
 				alert('Error');
 			}
@@ -62,19 +41,6 @@ function Broker() {
 			requestInfo.data = jsonData;
 		}
 
-		// If the goal is to create a resource
-		// we would like to get the new resource URL
-		if (method === 'POST') {
-			requestInfo.success = function(data, status, xhr) {
-				this.onPostSuccess(data, status, xhr);
-			};
-			var request = $.ajax(requestInfo);
-		} else if (method === 'GET') {
-			requestInfo.success = function(data, status, xhr) {
-				this.onGetSuccess(data, status, xhr);
-			};
-			var request = $.ajax(requestInfo);
-		}
+		var request = $.ajax(requestInfo);
 	};
 }
-
