@@ -1,13 +1,8 @@
 /**
- * Mobiles broker class
+ * Javascript broker
  */
 function Broker() {
-	this.rodinResources = "http://localhost:8080/rodin_server/resources/";
-
-	this.onSuccessContext = null;
-	this.onSuccessCall = null;
-
-	var self = this;
+	var rodinResources = "http://localhost:8080/rodin_server/resources/";
 
 	/**
 	 * Makes a REST call to the resources on the server
@@ -19,13 +14,10 @@ function Broker() {
 	 * @returns {Array} [data, location]
 	 */
 	this.makeRequest = function(method, resource, jsonData, onSuccessCall, onSuccessContext) {
-		this.onSuccessContext = onSuccessContext;
-		this.onSuccessCall = onSuccessCall;
-
 		// Default request values
 		var requestInfo = {
 			type: method,
-			url: (resource.indexOf(rodinResources) == -1 ? rodinResources + resource : resource),
+			url: (resource.indexOf(rodinResources) === -1 ? rodinResources + resource : resource),
 			xhrFields: {withCredentials: true},
 			contentType: "application/json",
 			dataType: "json",
@@ -41,6 +33,6 @@ function Broker() {
 			requestInfo.data = jsonData;
 		}
 
-		var request = $.ajax(requestInfo);
+		$.ajax(requestInfo);
 	};
 }
