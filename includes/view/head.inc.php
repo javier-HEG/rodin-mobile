@@ -7,19 +7,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="cleartype" content="on">
 
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png">
-	<link rel="shortcut icon" href="img/touch/apple-touch-icon.png">
-
-	<link rel="apple-touch-icon" href="tools/skeleton/images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="tools/skeleton/images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="tools/skeleton/images/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/icons/rodin-144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/icons/rodin-114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/icons/rodin-72.png" />
+	<link rel="apple-touch-icon-precomposed" href="img/icons/rodin-57.png" />
+	<link rel="shortcut icon" type="image/png" href="img/icons/rodin-16.png" />
 
 	<!-- Tile icon for Win8 (144x144 + tile color) -->
-	<meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
-	<meta name="msapplication-TileColor" content="#222222">
+	<meta name="msapplication-TileImage" content="img/icons/rodin-144.png">
+	<meta name="msapplication-TileColor" content="#000000">
 
 	<!-- Logo font -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
