@@ -43,24 +43,44 @@
 
 	<!-- Libraries -->
 	<script src="js/vendor/jquery-1.7.2.min.js"></script>
-
 	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 	<script src="js/vendor/jquery.hoverIntent.js"></script>
-	<script src="js/vendor/jquery.mmenu.js"></script>
-	<script src="js/vendor/overthrow.js"></script>
-	<script src="js/helper.js"></script>
-	<script src="js/main.js"></script>
 
-	<!-- Model representation in Javascript -->
-	<script src="js/model/User.js"></script>
-	<script src="js/model/Universe.js"></script>
-	<script src="js/model/Search.js"></script>
-	<script src="js/model/Publisher.js"></script>
-	<script>
-		var user = new User("<?php echo $rodinSession->getUserName(); ?>");
-		user.setRealName("<?php echo $rodinSession->getUserRealName(); ?>");
+	<?php
 
-		var universe = new Universe("<?php echo $rodinSession->getUniverseId(); ?>");
-		universe.setName("<?php echo $rodinSession->getUniverseName(); ?>");
-	</script>
+	if ($rodinSession->isUserLoggedIn()) {
+
+		?>
+		<script src="js/vendor/jquery.mmenu.js"></script>
+		<script src="js/vendor/overthrow.js"></script>
+		<script src="js/helper.js"></script>
+		<script src="js/main.js"></script>
+		<!-- Broker class -->
+		<script src="js/Broker.js"></script>
+		<!-- View class -->
+		<script src="js/view/ObserverPattern.js"></script>
+		<script src="js/view/UserObserver.js"></script>
+		<!-- Model classes -->
+		<script src="js/model/User.js"></script>
+		<script src="js/model/Universe.js"></script>
+		<script src="js/model/Search.js"></script>
+		<script src="js/model/Publisher.js"></script>
+		<!-- Model instantiation -->
+		<script>
+			var user = new User("<?php echo $rodinSession->getUserName(); ?>");
+			user.setRealName("<?php echo $rodinSession->getUserRealName(); ?>");
+
+			// Add universe observer to user
+			var observer = new UserObserver();
+			user.registerObserver(observer);
+
+			// TODO move this to the observer
+			var universe = new Universe("<?php echo $rodinSession->getUniverseId(); ?>");
+			universe.setName("<?php echo $rodinSession->getUniverseName(); ?>");
+		</script>
+		<?php
+
+	}
+
+	?>
 </head>

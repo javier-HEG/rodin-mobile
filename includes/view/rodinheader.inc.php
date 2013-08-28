@@ -64,13 +64,7 @@ if ($rodinSession->isUserLoggedIn()) {
 			</ul>
 		</nav>
 
-		<nav id="menu-right">
-			<ul>
-				<li class="Label">Universe selection</li>
-				<li class="Selected"><a href="#">Test</a></li>
-				<li><a href="#">Economy</a></li>
-			</ul>
-		</nav>
+		<nav id="menu-right"></nav>
 	</div>
 
 	<?php
