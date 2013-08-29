@@ -24,7 +24,7 @@ function Broker() {
 			context: onSuccessContext,
 			success: onSuccessCall,
 			error: function() {
-				alert('Error');
+				alert('Error: ' + resource);
 			}
 		};
 

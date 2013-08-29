@@ -1,14 +1,18 @@
 function Universe(id) {
-	this.id = id;
-	this.name = '';
+	var id = id;
+	var name = '';
 
-	this.setName = function(name) {
-		this.name = name;
+	this.setName = function(newName) {
+		name = newName;
 	};
 
 	this.getName = function() {
-		return this.name;
+		return name;
 	};
+
+	this.getId = function() {
+		return id;
+	}
 
 	this.toJSON = function() {
 		return {id: this.id};

@@ -34,7 +34,7 @@ if ($rodinSession->isUserLoggedIn()) {
 	<div class="universe-options">
 		<div class="container header">
 			<a href="#menu-left"></a>
-			<span id="header-universe-name"><?php echo $rodinSession->getUniverseName(); ?></span>
+			<span id="header-universe-name">(No universe)</span>
 			<a href="#menu-right" class="friends right"></a>
 		</div>
 
@@ -57,7 +57,7 @@ if ($rodinSession->isUserLoggedIn()) {
 				<li>
 					<span>LOD</span>
 					<ul>
-						<li><a href="#">Source A</a></li>
+						<li class="Selected"><a href="#">Source A</a></li>
 						<li><a href="#">Source B</a></li>
 					</ul>
 				</li>

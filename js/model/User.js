@@ -7,6 +7,8 @@ User.prototype.constructor = User;
 function User(username) {
 	var realname = '';
 	var universes = [];
+	var currentUniverseId = null;
+	var currentUniverse = null;
 
 	var broker = new Broker();
 
@@ -26,7 +28,35 @@ function User(username) {
 		return universes;
 	};
 
-	this.initUniversesCallBack = function(data, status, xhr) {
+	this.getCurrentUniverse = function() {
+		return currentUniverse;
+	};
+
+	/**
+	 * Since no predefined order exists between loading user details
+	 * and the user universes, this method is called by both to ensure
+	 * that the current universe is loaded.
+	 */
+	function tryToSetCurrentUniverse() {
+		if (currentUniverseId !== null && universes.length > 0) {
+			for (var i = 0; i < universes.length; i++)
+				if (universes[i].getId() === currentUniverseId)
+					currentUniverse = universes[i];
+		}
+	}
+
+	this.initUserDetailsCallback = function(data, status, xhr) {
+		realname = data.name;
+
+		if (data.hasOwnProperty('universeid'))
+			currentUniverseId = data.universeid;
+
+		tryToSetCurrentUniverse();
+
+		this.notifyObservers();
+	};
+
+	this.initUniversesCallback = function(data, status, xhr) {
 		for (var i = 0; i < data.length; i++) {
 			var universe = new Universe(data[i].id);
 			universe.setName(data[i].name);
@@ -34,13 +64,19 @@ function User(username) {
 			universes.push(universe);
 		}
 
+		tryToSetCurrentUniverse();
+
 		this.notifyObservers();
 	};
 
 	this.init = function() {
+		// Load user-data
+		var url = "user/" + this.getUserName();
+		broker.makeRequest("GET", url, null, this.initUserDetailsCallback, this);
+
 		// Load universes
-		var url = "universe/query?userId=" + this.getUserName();
-		broker.makeRequest("GET", url, null, this.initUniversesCallBack, this);
+		url = "universe/query?userId=" + this.getUserName();
+		broker.makeRequest("GET", url, null, this.initUniversesCallback, this);
 	};
 
 	// Launch initialization
