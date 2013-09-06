@@ -10,20 +10,23 @@ function Observable() {
 	this.registerObserver = function(observer) {
 		// TODO Check the observer for notify() method
 		observers.push(observer);
-	}
+	};
 
 	this.notifyObservers = function() {
 		for (var i = 0; i < observers.length; i++) {
 			observers[i].notify();
-		};
-	}
+		}
+		;
+	};
 }
 
 /**
  * Defatul observer prototype
  */
-function Observer() {}
-Observer.prototype.notify = function() {};
+function Observer() {
+}
+Observer.prototype.notify = function() {
+};
 
 ////////////////////////
 // OBSERVER CLASSES
@@ -31,12 +34,14 @@ Observer.prototype.notify = function() {};
 /**
  * Tracking changes in the universe list, it only displays
  * something if the list of universes is not empty AND if
- * a universe is selected
+ * a universe is selected (both are checked because they
+ * are asynchronous)
  */
 UniverseListObserver.prototype = new Observer();
 UniverseListObserver.prototype.constructor = UniverseListObserver;
 
-function UniverseListObserver() {}
+function UniverseListObserver() {
+}
 
 UniverseListObserver.prototype.notify = function() {
 	var universes = user.getUniverses();
@@ -51,12 +56,38 @@ UniverseListObserver.prototype.notify = function() {
 			var universeItem = $('<a href="#">' + universes[i].getName() + "</a>");
 
 			if (selected.getId() === universes[i].getId()) {
-				$("#header-universe-name").text(universes[i].getName());
-				$("#menu-right ul").append($('<li class="mm-selected"></li>').append(universeItem)); 
-			} else 
-				$("#menu-right ul").append($("<li></li>").append(universeItem)); 
-		};
+				$("#menu-right ul").append($('<li class="mm-selected"></li>').append(universeItem));
+			} else {
+				var element = $('<li></li>');
+				element.addClass("mm-unselected");
+				element.click(function() {
+					user.setCurrentUniverse($.data(element, "universeId"));
+					$('#menu-right').trigger('close');
+				});
+
+				$.data(element, 'universeId', universes[i].getId());
+
+				$("#menu-right ul").append(element.append(universeItem));
+			}
+		}
 	}
 
 	// FIXME Only having a current universe should enable searches
+};
+
+/**
+ * Tracking changes to what should be displayed about the current
+ * universe
+ */
+CurrentUniverseObserver.prototype = new Observer();
+CurrentUniverseObserver.prototype.constructor = CurrentUniverseObserver;
+
+function CurrentUniverseObserver() {
 }
+
+CurrentUniverseObserver.prototype.notify = function() {
+	var selected = user.getCurrentUniverse();
+
+	if (selected != null)
+		$("#header-universe-name").text(selected.getName());
+};

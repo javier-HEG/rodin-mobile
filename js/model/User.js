@@ -34,10 +34,10 @@ function User(username) {
 
 	/**
 	 * Since no predefined order exists between loading user details
-	 * and the user universes, this method is called by both to ensure
-	 * that the current universe is loaded.
+	 * and the user universes, this method is called in both cases
+	 * hoping that a universe id is set and the universes are loaded.
 	 */
-	function tryToSetCurrentUniverse() {
+	function propagateCurrentUniverseId() {
 		if (currentUniverseId !== null && universes.length > 0) {
 			for (var i = 0; i < universes.length; i++)
 				if (universes[i].getId() === currentUniverseId)
@@ -51,8 +51,7 @@ function User(username) {
 		if (data.hasOwnProperty('universeid'))
 			currentUniverseId = data.universeid;
 
-		tryToSetCurrentUniverse();
-
+		propagateCurrentUniverseId();
 		this.notifyObservers();
 	};
 
@@ -60,12 +59,16 @@ function User(username) {
 		for (var i = 0; i < data.length; i++) {
 			var universe = new Universe(data[i].id);
 			universe.setName(data[i].name);
-
 			universes.push(universe);
 		}
 
-		tryToSetCurrentUniverse();
+		propagateCurrentUniverseId();
+		this.notifyObservers();
+	};
 
+	this.setCurrentUniverse = function(universeId) {
+		currentUniverseId = universeId;
+		propagateCurrentUniverseId();
 		this.notifyObservers();
 	};
 

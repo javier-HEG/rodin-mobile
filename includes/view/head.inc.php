@@ -71,7 +71,10 @@
 
 			// Add universe observer to user
 			var universeListObserver = new UniverseListObserver();
+			var currentUniverseObserver = new CurrentUniverseObserver();
+			
 			user.registerObserver(universeListObserver);
+			user.registerObserver(currentUniverseObserver);
 		</script>
 		<?php
 

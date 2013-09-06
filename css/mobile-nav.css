@@ -237,7 +237,11 @@ ul#menu li.hasChildren.hover > a span {
 }
 
 .mm-menu li.mm-selected {
-	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54.png);
+	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54-full.png);
+}
+
+.mm-menu li.mm-unselected {
+	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54-empty.png);
 }
 
 /*
