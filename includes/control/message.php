@@ -1,9 +1,11 @@
 <?php
 
 define('SESSION_MESSAGES', 'message');
-define('MESSAGE_KIND_ERROR', 0);
-define('MESSAGE_KIND_DEBUG', 1);
-define('MESSAGE_KIND_INFO', 2);
+
+// This constants correspond to those of the MessageManager JS prototype
+define('MESSAGE_KIND_ERROR', 'error');
+define('MESSAGE_KIND_DEBUG', 'debug');
+define('MESSAGE_KIND_INFO', 'info');
 
 function isInterfaceMessageInitialized() {
 	return isset($_SESSION[SESSION_MESSAGES]);

@@ -45,6 +45,8 @@
 	<script src="js/vendor/jquery-1.7.2.min.js"></script>
 	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 	<script src="js/vendor/jquery.hoverIntent.js"></script>
+	<!-- Messages -->
+	<script src="js/view/Messages.js"></script>
 
 	<?php
 
@@ -72,7 +74,7 @@
 			// Add universe observer to user
 			var universeListObserver = new UniverseListObserver();
 			var currentUniverseObserver = new CurrentUniverseObserver();
-			
+
 			user.registerObserver(universeListObserver);
 			user.registerObserver(currentUniverseObserver);
 		</script>

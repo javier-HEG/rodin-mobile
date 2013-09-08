@@ -62,6 +62,10 @@ UniverseListObserver.prototype.notify = function() {
 				element.addClass("mm-unselected");
 				element.click(function() {
 					user.setCurrentUniverse($.data(element, "universeId"));
+
+					messageManager.addMessage("Changed current universe", MessageManager.prototype.INFO_MSG);
+					messageManager.rollMessages();
+
 					$('#menu-right').trigger('close');
 				});
 

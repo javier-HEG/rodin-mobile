@@ -105,7 +105,7 @@ ul#menu li {
 
 	border: none;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	
+
 	margin-bottom: 0px;
 
 	background-color: rgba(0, 0, 0, 0.05);
@@ -186,7 +186,7 @@ ul#menu li.hasChildren.hover > a span {
 {
 	background: center center no-repeat transparent;
 	background-image: url(../img/mimiGlyphs/19.png);
-	
+
 	display: block;
 	width: 20px;
 	height: 20px;
@@ -225,7 +225,7 @@ ul#menu li.hasChildren.hover > a span {
 
 .mm-menu li, .mm-menu li > a, .mm-menu li > span {
 	color: black;
-	text-shadow: none;	
+	text-shadow: none;
 }
 
 .mm-menu a.mm-subopen + span {
@@ -274,6 +274,18 @@ header h1#rodin-title {
 .rodin-message {
 	width: 100%;
 	padding: 3px 0px;
+}
+
+.rodin-message-error {
+	background-color: pink;
+}
+
+.rodin-message-info {
+	background-color: lightgreen;
+}
+
+.rodin-message-debug {
+	background-color: lightsteelblue;
 }
 
 .rodin-content {

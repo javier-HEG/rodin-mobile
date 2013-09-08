@@ -34,7 +34,7 @@ if ($rodinSession->isUserLoggedIn()) {
 	<div class="universe-options">
 		<div class="container header">
 			<a href="#menu-left"></a>
-			<span id="header-universe-name">(No universe)</span>
+			<span id="header-universe-name">&nbsp;</span>
 			<a href="#menu-right" class="friends right"></a>
 		</div>
 
@@ -84,3 +84,11 @@ if ($rodinSession->isUserLoggedIn()) {
 }
 
 ?>
+
+<div id="interface-messages" class="rodin-message">
+	<div class="container">
+		<div class="column" id="message-container">
+
+		</div>
+	</div>
+</div>
