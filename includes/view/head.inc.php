@@ -64,6 +64,7 @@
 		<!-- Model classes -->
 		<script src="js/model/User.js"></script>
 		<script src="js/model/Universe.js"></script>
+		<script src="js/model/Source.js"></script>
 		<script src="js/model/Search.js"></script>
 		<script src="js/model/Publisher.js"></script>
 		<!-- Model instantiation -->

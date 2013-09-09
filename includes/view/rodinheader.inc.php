@@ -43,23 +43,20 @@ if ($rodinSession->isUserLoggedIn()) {
 				<li class="Label">Universe configuration</li>
 				<li>
 					<span>Settings</span>
-					<ul>
-						<li>Name: <input type="text" size="10" /></li>
+					<ul id="settings-ul">
+						<li>
+							<label>Name</label>
+							<input id="universe-name-setting" type="text" value=""/>
+						</li>
 					</ul>
 				</li>
 				<li>
 					<span>Datasources</span>
-					<ul>
-						<li><a href="#">Swissbib</a></li>
-						<li><a href="#">ArXiv</a></li>
-					</ul>
+					<ul id="doc-sources-ul"></ul>
 				</li>
 				<li>
 					<span>LOD</span>
-					<ul>
-						<li class="Selected"><a href="#">Source A</a></li>
-						<li><a href="#">Source B</a></li>
-					</ul>
+					<ul id="lod-sources-ul"></ul>
 				</li>
 			</ul>
 		</nav>
@@ -87,8 +84,6 @@ if ($rodinSession->isUserLoggedIn()) {
 
 <div id="interface-messages" class="rodin-message">
 	<div class="container">
-		<div class="column" id="message-container">
-
-		</div>
+		<div class="column" id="message-container"></div>
 	</div>
 </div>

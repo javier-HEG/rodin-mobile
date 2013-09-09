@@ -92,6 +92,42 @@ function CurrentUniverseObserver() {
 CurrentUniverseObserver.prototype.notify = function() {
 	var selected = user.getCurrentUniverse();
 
-	if (selected != null)
+	if (selected !== null) {
+		// Set the universe name in the GUI
 		$("#header-universe-name").text(selected.getName());
+		$("#universe-name-setting").val(selected.getName());
+
+		// Prepare the sources selection menus
+		// - Empty both lists
+		$('#doc-sources-ul li:not(.mm-subtitle)').remove();
+		$('#lod-sources-ul li:not(.mm-subtitle)').remove();
+		// - Parse the list of available sources
+		var allSources = user.getAvailableSources();
+		if (allSources.length > 0) {
+			var selectedDocumentSources = selected.getSources(Source.prototype.DOC_SOURCE_TYPE);
+			var selectedLodSources = selected.getSources(Source.prototype.LOD_SOURCE_TYPE);
+
+			var docSourcesList = $("#doc-sources-ul");
+			var lodSourcesList = $("#lod-sources-ul");
+			for (var i = 0; i < allSources.length; i++) {
+				var docSourceItem = $('<a href="#">' + allSources[i].name + "</a>");
+				var lodSourceItem = $('<a href="#">' + allSources[i].name + "</a>");
+
+				// Add to document sources if available
+				if (allSources[i].isDocumentSource) {
+					if (selectedDocumentSources.indexOf(allSources[i].name) !== -1)
+						docSourcesList.append($('<li class="mm-selected"></li>').append(docSourceItem));
+					else
+						docSourcesList.append($('<li class="mm-unselected"></li>').append(docSourceItem));
+				}
+				// Add to LOD sources if available
+				if (allSources[i].isLodSource) {
+					if (selectedLodSources.indexOf(allSources[i].name) !== -1)
+						lodSourcesList.append($('<li class="mm-selected"></li>').append(lodSourceItem));
+					else
+						lodSourcesList.append($('<li class="mm-unselected"></li>').append(lodSourceItem));
+				}
+			}
+		}
+	}
 };

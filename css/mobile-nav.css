@@ -181,6 +181,10 @@ ul#menu li.hasChildren.hover > a span {
 	background-color: orange;
 }
 
+.mm-menu * {
+	text-shadow: none;
+}
+
 #header a,
 .header a
 {
@@ -226,7 +230,6 @@ ul#menu li.hasChildren.hover > a span {
 
 .mm-menu li, .mm-menu li > a, .mm-menu li > span {
 	color: black;
-	text-shadow: none;
 }
 
 .mm-menu a.mm-subopen:after, .mm-menu a.mm-subclose:before {
@@ -257,6 +260,30 @@ ul#menu li.hasChildren.hover > a span {
 
 .mm-menu li.mm-unselected {
 	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54-empty.png);
+}
+
+.mm-menu li label {
+	background-color: rgba(1, 1, 1, 0.2);
+	margin-bottom: 6px;
+}
+
+.mm-menu li input {
+	background: orange no-repeat 100% 50% url(../img/mimiGlyphs/39.png);
+	color: black;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 90%;
+	border: none;
+	font-size: 16px;
+}
+
+.mm-menu li input:focus {
+	color: black;
+	background: orange none;
+	border: none;
+	border-bottom: 1px solid black;
+	box-shadow: none;
 }
 
 /*

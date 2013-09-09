@@ -6,11 +6,16 @@ User.prototype.constructor = User;
 
 function User(username) {
 	var realname = '';
+
 	var universes = [];
 	var currentUniverseId = null;
 	var currentUniverse = null;
 
+	var availableSources = [];
+	
 	var broker = new Broker();
+
+	var self = this;
 
 	this.getUserName = function() {
 		return username;
@@ -32,17 +37,18 @@ function User(username) {
 		return currentUniverse;
 	};
 
+	this.getAvailableSources = function() {
+		return availableSources;
+	};
+
 	/**
 	 * Since no predefined order exists between loading user details
-	 * and the user universes, this method is called in both cases
-	 * hoping that a universe id is set and the universes are loaded.
+	 * and the user universes, this method synchs setting the current
+	 * universe instance.
 	 */
 	function propagateCurrentUniverseId() {
-		if (currentUniverseId !== null && universes.length > 0) {
-			for (var i = 0; i < universes.length; i++)
-				if (universes[i].getId() === currentUniverseId)
-					currentUniverse = universes[i];
-		}
+		if (currentUniverseId !== null && universes.length > 0)
+			self.setCurrentUniverse(currentUniverseId);
 	}
 
 	this.initUserDetailsCallback = function(data, status, xhr) {
@@ -66,10 +72,26 @@ function User(username) {
 		this.notifyObservers();
 	};
 
+	this.initAvailableSources = function(data, status, xhr) {
+		for (var i = 0; i < data.sources.length; i++) {
+			var source = new Source(data.sources[i].name);
+			availableSources.unshift(source);
+		}
+
+		this.notifyObservers();
+	}
+
 	this.setCurrentUniverse = function(universeId) {
 		currentUniverseId = universeId;
-		propagateCurrentUniverseId();
-		this.notifyObservers();
+
+		for (var i = 0; i < universes.length; i++)
+			if (universes[i].getId() === currentUniverseId)
+				currentUniverse = universes[i];
+
+		if (currentUniverse.wasInitialized())
+			this.notifyObservers();		
+		else
+			currentUniverse.init();
 	};
 
 	this.init = function() {
@@ -80,6 +102,11 @@ function User(username) {
 		// Load universes
 		url = "universe/query?userId=" + this.getUserName();
 		broker.makeRequest("GET", url, null, this.initUniversesCallback, this);
+
+		// Load available sources
+		url = "source";
+		broker.makeRequest("GET", url, null, this.initAvailableSources, this);
+
 	};
 
 	// Launch initialization
