@@ -53,7 +53,7 @@ UniverseListObserver.prototype.notify = function() {
 		$("#menu-right ul").append($('<li class="mm-label">Universe selection</li>'));
 
 		for (var i = 0; i < universes.length; i++) {
-			var universeItem = $('<a href="#">' + universes[i].getName() + "</a>");
+			var universeItem = $('<span>' + universes[i].getName() + "</span>");
 
 			if (selected.getId() === universes[i].getId()) {
 				$("#menu-right ul").append($('<li class="mm-selected"></li>').append(universeItem));
@@ -61,7 +61,7 @@ UniverseListObserver.prototype.notify = function() {
 				var element = $('<li></li>');
 				element.addClass("mm-unselected");
 				element.click(function() {
-					user.setCurrentUniverse($.data(element, "universeId"));
+					user.setCurrentUniverseId($.data(element, "universeId"));
 
 					messageManager.addMessage("Changed current universe", MessageManager.prototype.INFO_MSG);
 					messageManager.rollMessages();
@@ -72,6 +72,7 @@ UniverseListObserver.prototype.notify = function() {
 				$.data(element, 'universeId', universes[i].getId());
 
 				$("#menu-right ul").append(element.append(universeItem));
+				universeItem.css('cursor', 'pointer');
 			}
 		}
 	}

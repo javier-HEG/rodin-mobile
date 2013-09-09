@@ -13,6 +13,7 @@ function User(username) {
 
 	var availableSources = [];
 	
+	var jsonRepresentation = null;
 	var broker = new Broker();
 
 	var self = this;
@@ -37,9 +38,32 @@ function User(username) {
 		return currentUniverse;
 	};
 
+	this.setCurrentUniverseId = function(universeId) {
+		currentUniverseId = universeId;
+
+		for (var i = 0; i < universes.length; i++)
+			if (universes[i].getId() === currentUniverseId)
+				currentUniverse = universes[i];
+
+		if (currentUniverse.wasInitialized())
+			this.notifyObservers();		
+		else
+			currentUniverse.init();
+
+		// Save change in server
+		if (jsonRepresentation.universeid !== currentUniverseId) {
+			jsonRepresentation.universeid = currentUniverseId;
+			saveUserInServer();
+		}
+	};
+
 	this.getAvailableSources = function() {
 		return availableSources;
 	};
+
+	function saveUserInServer() {
+		broker.makeRequest("PUT", "user", JSON.stringify(jsonRepresentation), null, this);
+	}
 
 	/**
 	 * Since no predefined order exists between loading user details
@@ -48,10 +72,11 @@ function User(username) {
 	 */
 	function propagateCurrentUniverseId() {
 		if (currentUniverseId !== null && universes.length > 0)
-			self.setCurrentUniverse(currentUniverseId);
+			self.setCurrentUniverseId(currentUniverseId);
 	}
 
 	this.initUserDetailsCallback = function(data, status, xhr) {
+		jsonRepresentation = data;
 		realname = data.name;
 
 		if (data.hasOwnProperty('universeid'))
@@ -63,8 +88,7 @@ function User(username) {
 
 	this.initUniversesCallback = function(data, status, xhr) {
 		for (var i = 0; i < data.length; i++) {
-			var universe = new Universe(data[i].id);
-			universe.setName(data[i].name);
+			var universe = new Universe(data[i]);
 			universes.push(universe);
 		}
 
@@ -80,19 +104,6 @@ function User(username) {
 
 		this.notifyObservers();
 	}
-
-	this.setCurrentUniverse = function(universeId) {
-		currentUniverseId = universeId;
-
-		for (var i = 0; i < universes.length; i++)
-			if (universes[i].getId() === currentUniverseId)
-				currentUniverse = universes[i];
-
-		if (currentUniverse.wasInitialized())
-			this.notifyObservers();		
-		else
-			currentUniverse.init();
-	};
 
 	this.init = function() {
 		// Load user-data

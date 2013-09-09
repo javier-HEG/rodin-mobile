@@ -1,6 +1,8 @@
-function Universe(id) {
-	var id = id;
-	var name = '';
+function Universe(data) {
+	var jsonRepresentation = data;
+	
+	var id = jsonRepresentation.id;
+	var name = jsonRepresentation.name;
 
 	var initialized = false;
 
@@ -11,6 +13,13 @@ function Universe(id) {
 
 	this.setName = function(newName) {
 		name = newName;
+
+		user.notifyObservers();
+
+		if (jsonRepresentation.name !== newName) {
+			jsonRepresentation.name = newName;
+			saveUniverseInServer();
+		}
 	};
 
 	this.getName = function() {
@@ -30,6 +39,10 @@ function Universe(id) {
 		}
 	}
 
+	function saveUniverseInServer() {
+		broker.makeRequest("PUT", "universe", JSON.stringify(jsonRepresentation), null, this);
+	}
+
 	this.wasInitialized = function() {
 		return initialized;
 	}
@@ -38,8 +51,8 @@ function Universe(id) {
 	 * Returns the most basic JSON version of the universe,
 	 * used to launch a search
 	 */
-	this.toJSON = function() {
-		return {id: this.id};
+	this.toMiniJson = function() {
+		return {id: jsonRepresentation.id};
 	};
 
 	/**
@@ -70,5 +83,4 @@ function Universe(id) {
 		var url = "sourceinstance/universe/" + this.getId();
 		broker.makeRequest("GET", url, null, this.initUniverseSourcesCallback, this);
 	}
-
 }

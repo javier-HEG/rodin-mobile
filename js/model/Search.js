@@ -42,6 +42,6 @@ function Search(query) {
 	};
 
 	// Code that runs when the prototype is clonned
-	var jsonData = JSON.stringify({query: this.query, universe: universe.toJSON()});
+	var jsonData = JSON.stringify({query: this.query, universe: universe.toMiniJson()});
 	broker.makeRequest("POST", "search", jsonData, this.saveLocation, this);
 }

@@ -26,11 +26,6 @@ input[type="button"] {
 	margin-bottom: 4px;
 }
 
-form {
-	/*margin-bottom: 0px;*/
-}
-
-
 /*
  * Stylsheet for the button activating the jQuery extension
  * jquery.dropdown.js in js/main.js
@@ -254,6 +249,14 @@ ul#menu li.hasChildren.hover > a span {
 	background-color: rgba(0, 0, 0, 0.2);
 }
 
+.mm-menu li {
+	border-bottom-width: 0px;
+}
+
+.mm-menu li.mm-subtitle:after {
+	border-bottom-width: 0px;	
+}
+
 .mm-menu li.mm-selected {
 	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54-full.png);
 }
@@ -267,6 +270,10 @@ ul#menu li.hasChildren.hover > a span {
 	margin-bottom: 6px;
 }
 
+.mm-menu form {
+	margin-bottom: 6px;
+}
+
 .mm-menu li input {
 	background: orange no-repeat 100% 50% url(../img/mimiGlyphs/39.png);
 	color: black;
@@ -276,13 +283,15 @@ ul#menu li.hasChildren.hover > a span {
 	width: 90%;
 	border: none;
 	font-size: 16px;
+	position: relative;
+	bottom: 6px;
 }
 
 .mm-menu li input:focus {
 	color: black;
 	background: orange none;
 	border: none;
-	border-bottom: 1px solid black;
+	border-bottom: 1px dashed black;
 	box-shadow: none;
 }
 
@@ -316,6 +325,10 @@ header h1#rodin-title {
 .rodin-message {
 	width: 100%;
 	padding: 3px 0px;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	z-index: 10;
 }
 
 .rodin-message-error {

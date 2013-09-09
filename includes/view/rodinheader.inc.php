@@ -4,6 +4,12 @@ if ($rodinSession->isUserLoggedIn()) {
 
 	?>
 
+	<div id="interface-messages" class="rodin-message">
+		<div class="container">
+			<div class="column" id="message-container"></div>
+		</div>
+	</div>
+
 	<header role="banner" class="clearfix">
 		<div class="container">
 			<h1 id="rodin-title" class="four column">RODIN</h1>
@@ -46,7 +52,9 @@ if ($rodinSession->isUserLoggedIn()) {
 					<ul id="settings-ul">
 						<li>
 							<label>Name</label>
-							<input id="universe-name-setting" type="text" value=""/>
+							<form id="universe-settings">
+								<input id="universe-name-setting" type="text" />
+							</form>
 						</li>
 					</ul>
 				</li>
@@ -60,6 +68,15 @@ if ($rodinSession->isUserLoggedIn()) {
 				</li>
 			</ul>
 		</nav>
+		<script>
+							$(function() {
+								$("#universe-settings").submit(function() {
+									user.getCurrentUniverse().setName($("#universe-name-setting").val());
+									$("#universe-name-setting").blur();
+									return false;
+								});
+							});
+		</script>
 
 		<nav id="menu-right"></nav>
 	</div>
@@ -81,9 +98,3 @@ if ($rodinSession->isUserLoggedIn()) {
 }
 
 ?>
-
-<div id="interface-messages" class="rodin-message">
-	<div class="container">
-		<div class="column" id="message-container"></div>
-	</div>
-</div>
