@@ -215,17 +215,32 @@ ul#menu li.hasChildren.hover > a span {
 }
 
 .mm-menu li.mm-label {
-	color: black;
+	background-color: #000000;
+    color: #FFA500;
     font-size: 12px;
     text-shadow: none;
     font-size: 16px;
-    padding: 6px 0;
+    padding: 7px 0;
     line-height: auto;
 }
 
 .mm-menu li, .mm-menu li > a, .mm-menu li > span {
 	color: black;
 	text-shadow: none;
+}
+
+.mm-menu a.mm-subopen:after, .mm-menu a.mm-subclose:before {
+    border-color: inherit;
+}
+
+.mm-menu a.mm-subclose {
+	text-transform: uppercase;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
+    color: orange;
+}
+
+.mm-menu li > a {
+	padding-right: 32px;
 }
 
 .mm-menu a.mm-subopen + span {
