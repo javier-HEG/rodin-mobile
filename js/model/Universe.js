@@ -51,7 +51,6 @@ function Universe(data) {
 			if (sourceList[i].name === sourcename)
 				return sourceList[i].id;
 		}
-		;
 
 		return -1;
 	};
@@ -74,17 +73,34 @@ function Universe(data) {
 	};
 
 	this.propagateNewSelectionInfo = function(data, status, xhr) {
-		var instanceId = data.id;
-		var selectedSource = data.sourceName;
+		var source = new SourceInstance(data);
+		var type = '';
 
-		var type = data.type === Source.prototype.DOC_SOURCE_TYPE ? 'doc' : 'lod';
+		switch (data.type) {
+			case Source.prototype.DOC_SOURCE_TYPE:
+				documentSources.push(source);
+				type = 'doc';
+				break;
+			case Source.prototype.LOD_SOURCE_TYPE:
+				lodSources.push(source);
+				type = 'lod';
+				break;
+		}
 
-		currentUniverseObserver.formatAsSelected($('#' + type + '-' + selectedSource), instanceId);
+		currentUniverseObserver.formatAsSelected($('#' + type + '-' + source.name), source.id);
 	};
 
 	this.unselectSource = function(instanceId) {
 		var url = "sourceinstance/" + instanceId;
 		broker.makeRequest("DELETE", url, null, this.propagateUnselection, this);
+
+		for (var i = 0; i < documentSources.length; i++)
+			if (documentSources[i].id === instanceId)
+				documentSources.splice(i, 1);
+
+		for (var i = 0; i < lodSources.length; i++)
+			if (lodSources[i].id === instanceId)
+				lodSources.splice(i, 1);
 	};
 
 	function saveUniverseInServer() {

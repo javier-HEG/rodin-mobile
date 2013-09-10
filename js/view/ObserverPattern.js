@@ -117,7 +117,7 @@ CurrentUniverseObserver.prototype.notify = function() {
 			if ($(this).parent().attr("id") === "doc-sources-ul") {
 				selectSource(this, Source.prototype.DOC_SOURCE_TYPE);
 			} else if ($(this).parent().attr("id") === "lod-sources-ul") {
-				selectSource(this, Source.prototype.LOC_SOURCE_TYPE);
+				selectSource(this, Source.prototype.LOD_SOURCE_TYPE);
 			}
 		});
 	};
