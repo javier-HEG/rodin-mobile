@@ -92,6 +92,44 @@ function CurrentUniverseObserver() {
 
 CurrentUniverseObserver.prototype.notify = function() {
 	var selected = user.getCurrentUniverse();
+	var self = this;
+
+	this.formatAsSelected = function(element, instanceId) {
+		$.data(element, "instanceId", instanceId);
+
+		element.removeClass("mm-unselected");
+		element.addClass("mm-selected");
+
+		element.unbind('click');
+		element.click(function() {
+			unselectSource(element);
+		});
+	};
+
+	this.formatAsUnselected = function(element) {
+		$.removeData(element, "instanceId");
+
+		element.removeClass("mm-selected");
+		element.addClass("mm-unselected");
+
+		element.unbind('click');
+		element.click(function() {
+			if ($(this).parent().attr("id") === "doc-sources-ul") {
+				selectSource(this, Source.prototype.DOC_SOURCE_TYPE);
+			} else if ($(this).parent().attr("id") === "lod-sources-ul") {
+				selectSource(this, Source.prototype.LOC_SOURCE_TYPE);
+			}
+		});
+	};
+
+	function selectSource(element, type) {
+		user.getCurrentUniverse().selectSource(element, type);
+	}
+
+	function unselectSource(element) {
+		user.getCurrentUniverse().unselectSource($.data(element, "instanceId"));
+		self.formatAsUnselected(element);
+	}
 
 	if (selected !== null) {
 		// Set the universe name in the GUI
@@ -105,28 +143,44 @@ CurrentUniverseObserver.prototype.notify = function() {
 		// - Parse the list of available sources
 		var allSources = user.getAvailableSources();
 		if (allSources.length > 0) {
-			var selectedDocumentSources = selected.getSources(Source.prototype.DOC_SOURCE_TYPE);
-			var selectedLodSources = selected.getSources(Source.prototype.LOD_SOURCE_TYPE);
-
 			var docSourcesList = $("#doc-sources-ul");
 			var lodSourcesList = $("#lod-sources-ul");
+
 			for (var i = 0; i < allSources.length; i++) {
-				var docSourceItem = $('<a href="#">' + allSources[i].name + "</a>");
-				var lodSourceItem = $('<a href="#">' + allSources[i].name + "</a>");
+				var sourceName = allSources[i].name;
 
 				// Add to document sources if available
 				if (allSources[i].isDocumentSource) {
-					if (selectedDocumentSources.indexOf(allSources[i].name) !== -1)
-						docSourcesList.append($('<li class="mm-selected"></li>').append(docSourceItem));
-					else
-						docSourcesList.append($('<li class="mm-unselected"></li>').append(docSourceItem));
+					var docSourceItem = $('<span>' + sourceName + "</span>");
+					var element = $('<li id="doc-' + sourceName + '"></li>').append(docSourceItem);
+
+					var sourceType = Source.prototype.DOC_SOURCE_TYPE;
+
+					var sourceInstanceId = selected.getSourceInstanceId(sourceName, sourceType);
+					if (sourceInstanceId !== -1) {
+						this.formatAsSelected(element, sourceInstanceId);
+					} else {
+						this.formatAsUnselected(element);
+					}
+
+					docSourcesList.append(element);
 				}
+
 				// Add to LOD sources if available
 				if (allSources[i].isLodSource) {
-					if (selectedLodSources.indexOf(allSources[i].name) !== -1)
-						lodSourcesList.append($('<li class="mm-selected"></li>').append(lodSourceItem));
-					else
-						lodSourcesList.append($('<li class="mm-unselected"></li>').append(lodSourceItem));
+					var lodSourceItem = $('<span>' + sourceName + "</span>");
+					var element = $('<li id="lod-' + sourceName + '"></li>').append(lodSourceItem);
+
+					var sourceType = Source.prototype.LOD_SOURCE_TYPE;
+
+					var sourceInstanceId = selected.getSourceInstanceId(sourceName, sourceType);
+					if (sourceInstanceId !== -1) {
+						this.formatAsSelected(element, sourceInstanceId);
+					} else {
+						this.formatAsUnselected(element);
+					}
+
+					lodSourcesList.append(element);
 				}
 			}
 		}
