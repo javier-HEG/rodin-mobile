@@ -7,6 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="cleartype" content="on">
 
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/icons/rodin-144.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/icons/rodin-114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/icons/rodin-72.png" />
@@ -33,11 +35,10 @@
 	<!-- + Responsive (ours) -->
 	<link rel="stylesheet" href="css/atmosphere.css">
 	<!--   - Media query dependent CSS -->
-	<link  rel="stylesheet" href="css/mobile-nav.css">
 	<!--   - More media queries (to add when design is stable) -->
-	<!-- <link  rel="stylesheet" href="css/mobile-nav.css" media="screen and (min-width: 320px) and (max-width: 1024px)">
+	<link  rel="stylesheet" href="css/mobile-nav.css" media="screen and (min-width: 320px) and (max-width: 1024px)">
 	<link  rel="stylesheet" href="css/smartphone.css" media="screen and (min-width:320px) and (max-width:480px)">
-	<link  rel="stylesheet" href="css/tablet.css" media="screen and (min-width: 481px) and (max-width: 767px)">
+	<!-- <link  rel="stylesheet" href="css/tablet.css" media="screen and (min-width: 481px) and (max-width: 767px)">
 	<link  rel="stylesheet" href="css/ipad.css" media="screen and (min-width: 768px) and (max-width: 1024px)">
 	<link  rel="stylesheet" href="css/desktop.css" media="screen and (min-width: 1025px)"> -->
 
@@ -45,8 +46,18 @@
 	<script src="js/vendor/jquery-1.7.2.min.js"></script>
 	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 	<script src="js/vendor/jquery.hoverIntent.js"></script>
-	<!-- Messages -->
+	<script src="js/helper.js"></script>
+	<!-- Messages and MBP Fixes -->
 	<script src="js/view/Messages.js"></script>
+	<script>
+		$(function() {
+			messageManager.rollMessages();
+		});
+
+		MBP.hideUrlBarOnLoad();
+		MBP.preventZoom();
+		MBP.scaleFix();		
+	</script>
 
 	<?php
 
@@ -55,7 +66,6 @@
 		?>
 		<script src="js/vendor/jquery.mmenu.js"></script>
 		<script src="js/vendor/overthrow.js"></script>
-		<script src="js/helper.js"></script>
 		<script src="js/main.js"></script>
 		<!-- Broker class -->
 		<script src="js/Broker.js"></script>

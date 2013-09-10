@@ -47,17 +47,6 @@
 					</div>
 				</div>
 			</div>
-
-			<script>
-				MBP.preventZoom();
-				MBP.hideUrlBarOnLoad();
-				MBP.scaleFix();
-
-				$(function() {
-					messageManager.rollMessages();
-				});
-			</script>
-
 		</div>
 	</body>
 </html>

@@ -50,18 +50,5 @@
 				?>
 			</div>
 		</div>
-
-		<script src = "js/vendor/zepto.min.js"></script>
-		<script src="js/helper.js"></script>
-
-		<script>
-			MBP.preventZoom();
-			MBP.hideUrlBarOnLoad();
-			MBP.scaleFix();
-
-			$(function() {
-				messageManager.rollMessages();
-			});
-		</script>
 	</body>
 </html>
