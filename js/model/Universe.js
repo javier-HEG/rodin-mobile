@@ -147,7 +147,7 @@ function Universe(data) {
 	 * Requests universe details from server, for now sources only
 	 */
 	this.init = function() {
-		var url = "sourceinstance/universe/" + this.getId();
+		var url = "sourceinstance/query?universeId=" + this.getId();
 		broker.makeRequest("GET", url, null, this.initUniverseSourcesCallback, this);
 	};
 }
