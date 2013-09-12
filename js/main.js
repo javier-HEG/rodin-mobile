@@ -2,9 +2,6 @@
  * Personalized scripts are to be copied and modified directly in this file
  */
 
-// Temporally keeping this variable until the broker is ready to take on all AJAX calls
-var rodinResources = 'http://localhost:8080/rodin_server/resources/';
-
 /**
  * Starts a global search after the user has entered one
  * @returns {void}
@@ -112,16 +109,11 @@ $(function() {
 /*
  * Mmenu activation
  */
-//	The menu on the left
 $(function() {
+	//	The menu on the left
 	$('nav#menu-left').mmenu();
-});
-
-
-//	The menu on the right
-$(function() {
+	//	The menu on the right
 	$('nav#menu-right').mmenu({
 		position: 'right'
 	});
 });
-

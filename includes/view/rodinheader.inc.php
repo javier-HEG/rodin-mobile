@@ -69,16 +69,54 @@ if ($rodinSession->isUserLoggedIn()) {
 			</ul>
 		</nav>
 		<script>
-							$(function() {
-								$("#universe-settings").submit(function() {
-									user.getCurrentUniverse().setName($("#universe-name-setting").val());
-									$("#universe-name-setting").blur();
-									return false;
-								});
-							});
+			$(function() {
+				$("#universe-settings").submit(function() {
+					user.getCurrentUniverse().setName($("#universe-name-setting").val());
+					$("#universe-name-setting").blur();
+					return false;
+				});
+			});
 		</script>
 
-		<nav id="menu-right"></nav>
+		<nav id="menu-right">
+			<ul>
+				<li class="Label">User options</li>
+				<li class="label">Name</li>
+				<li>
+					<form id="user-name">
+						<input id="user-name-input" type="text" />
+					</form>
+				</li>
+				<li class="label">Password</li>
+				<li>
+					<span>Change password</span>
+					<ul>
+						<li class="label">Old password</li>
+						<li>
+							<input id="old-password-input" type="password" />
+						</li>
+						<li class="label">New password</li>
+						<li>
+							<input id="new-password1-input" type="password" />
+							<input id="new-password2-input" type="password" />
+						</li>
+						<li class="label">Action</li>
+						<li>
+							<input id="new-password-save" type="button" value="Save" />
+							<input type="button" value="Cancel" />
+						</li>
+					</ul>
+				</li>
+				<li class="label">Language</li>
+				<li>
+					<span style="height: 40px;">
+						<input class="language" type="button" value = "En" disabled="true"/>
+						<input class="language" type="button" value = "Fr" />
+						<input class="language" type="button" value = "De" />
+					</span>
+				</li>
+			</ul>
+		</nav>		
 	</div>
 
 	<?php

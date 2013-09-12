@@ -2,8 +2,8 @@
  * Styles overiding Skeleton - tools/skeleton/stylesheets
  */
 h1 {
-    font-size: 24px;
-    line-height: 24px;
+	font-size: 24px;
+	line-height: 24px;
 }
 
 input[type="text"],
@@ -108,10 +108,10 @@ ul#menu li {
 
 ul#menu li:after {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-    bottom: 0;
-    content: "";
-    display: block;
-    width: 100%;
+	bottom: 0;
+	content: "";
+	display: block;
+	width: 100%;
 }
 
 ul#menu li:last-child {
@@ -215,26 +215,26 @@ ul#menu li.hasChildren.hover > a span {
 
 .mm-menu li.mm-label {
 	background-color: #000000;
-    color: #FFA500;
-    font-size: 12px;
-    text-shadow: none;
-    font-size: 16px;
-    padding: 7px 0;
-    line-height: auto;
+	color: #FFA500;
+	font-size: 12px;
+	text-shadow: none;
+	font-size: 16px;
+	padding: 7px 0;
 }
 
 .mm-menu li, .mm-menu li > a, .mm-menu li > span {
 	color: black;
+	text-indent: 0px;
 }
 
 .mm-menu a.mm-subopen:after, .mm-menu a.mm-subclose:before {
-    border-color: inherit;
+	border-color: inherit;
 }
 
 .mm-menu a.mm-subclose {
 	text-transform: uppercase;
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
-    color: orange;
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
+	color: orange;
 }
 
 .mm-menu li > a {
@@ -242,11 +242,12 @@ ul#menu li.hasChildren.hover > a span {
 }
 
 .mm-menu a.mm-subopen + span {
-	background-color: rgba(0, 0, 0, 0.05);
+	/* background-color: rgba(0, 0, 0, 0.05); */
 }
 
 .mm-menu a.mm-subopen:hover + span {
-	background-color: rgba(0, 0, 0, 0.2);
+	/* background-color: rgba(0, 0, 0, 0.2); */
+	background-color: rgba(0, 0, 0, 0.05);
 }
 
 .mm-menu li {
@@ -254,7 +255,7 @@ ul#menu li.hasChildren.hover > a span {
 }
 
 .mm-menu li.mm-subtitle:after {
-	border-bottom-width: 0px;	
+	border-bottom-width: 0px;
 }
 
 .mm-menu li.mm-selected {
@@ -265,16 +266,17 @@ ul#menu li.hasChildren.hover > a span {
 	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54-empty.png);
 }
 
-.mm-menu li label {
+.mm-menu li.label {
 	background-color: rgba(1, 1, 1, 0.2);
-	margin-bottom: 6px;
+	padding: 2px 0px;
 }
 
 .mm-menu form {
-	margin-bottom: 6px;
+	height: 40px;
+	margin-bottom: 0;
 }
 
-.mm-menu li input {
+.mm-menu li input[type="text"] {
 	background: orange no-repeat 100% 50% url(../img/mimiGlyphs/39.png);
 	color: black;
 	margin-left: auto;
@@ -284,7 +286,34 @@ ul#menu li.hasChildren.hover > a span {
 	border: none;
 	font-size: 16px;
 	position: relative;
-	bottom: 6px;
+}
+
+.mm-menu li input[type="button"] {
+	width: 50%;
+}
+
+.mm-menu li input.language[type="button"] {
+	vertical-align: middle;
+	border-radius: 6px;
+	border: 1px solid rgba(0,0,0,0.5);
+	background: rgba(255,255,255,0.50);
+	text-shadow: none;
+	width: 30%;
+	color: black;
+}
+
+.mm-menu li input.language[type="button"]:hover {
+	background: rgba(255,255,255,0.75);
+}
+
+.mm-menu li input.language[type="button"]:disabled {
+	background: rgba(0, 0, 0, 0.2);
+	color: rgba(0, 0, 0, 0.5);
+	border: none;
+}
+
+.mm-menu li input.language[type="button"]:disabled:hover {
+	background: rgba(0, 0, 0, 0.2);
 }
 
 .mm-menu li input:focus {
