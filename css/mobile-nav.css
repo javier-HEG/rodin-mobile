@@ -241,6 +241,14 @@ ul#menu li.hasChildren.hover > a span {
 	padding-right: 32px;
 }
 
+.mm-menu li span {
+	height: 40px;
+}
+
+.mm-menu li.hasChildren span {
+	padding-left: 32px;
+}
+
 .mm-menu a.mm-subopen + span {
 	/* background-color: rgba(0, 0, 0, 0.05); */
 }
@@ -253,6 +261,7 @@ ul#menu li.hasChildren.hover > a span {
 .mm-menu li {
 	height: 40px;
 	border-bottom-width: 0px;
+	line-height: 40px;
 }
 
 .mm-menu li.mm-subtitle {
@@ -274,7 +283,8 @@ ul#menu li.hasChildren.hover > a span {
 .mm-menu li.label {
 	height: auto;
 	background-color: rgba(1, 1, 1, 0.2);
-	padding: 2px 0px;
+	line-height: 16px;
+    padding: 2px 0 4px;
 }
 
 .mm-menu form {

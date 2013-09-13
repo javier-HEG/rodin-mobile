@@ -46,26 +46,50 @@ if ($rodinSession->isUserLoggedIn()) {
 
 		<nav id="menu-left">
 			<ul>
-				<li class="Label">Universe configuration</li>
+				<li class="Label">Universe options</li>
+				<li class="label">Universe selection</li>
+				<li class="mm-unselected">Universe test 1</li>
+				<li class="mm-selected">Universe test 2</li>
+				<li class="label">Configure current universe</li>
 				<li>
-					<span>Settings</span>
+					<span id="current-universe-label">Universe name</span>
 					<ul id="settings-ul">
+						<li class="label">Name</li>
 						<li>
-							<label>Name</label>
 							<form id="universe-settings">
-								<input id="universe-name-setting" type="text" />
+								<input id="universe-name-setting" type="text" value="Default" />
 							</form>
+						</li>
+						<li class="label">Sources</li>
+						<li>
+							<span>Datasources</span>
+							<ul id="doc-sources-ul"></ul>
+						</li>
+						<li>
+							<span>LOD</span>
+							<ul id="lod-sources-ul"></ul>
 						</li>
 					</ul>
 				</li>
+				<li class="label">Add new</li>
 				<li>
-					<span>Datasources</span>
-					<ul id="doc-sources-ul"></ul>
-				</li>
-				<li>
-					<span>LOD</span>
-					<ul id="lod-sources-ul"></ul>
-				</li>
+					<span>Create universe</span>
+					<ul id="new-universe-ul">
+						<li class="label">Name</li>
+						<li>
+							<form id="new-universe-form">
+								<input id="new-universe-name" type="text" value="Default" />
+							</form>
+						</li>
+						<li class="label">Action</li>
+						<li>
+							<span style="height: 40px;">
+								<input class="action" type="button" value="Cancel" />
+								<input class="action" type="button" value="Save" />
+							</span>
+						</li>
+					</ul>
+				</li>			
 			</ul>
 		</nav>
 		<script>
