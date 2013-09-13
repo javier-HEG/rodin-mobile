@@ -96,14 +96,16 @@ if ($rodinSession->isUserLoggedIn()) {
 							<input id="old-password-input" type="password" />
 						</li>
 						<li class="label">New password</li>
-						<li>
+						<li style="height: auto; padding-bottom: 4px">
 							<input id="new-password1-input" type="password" />
 							<input id="new-password2-input" type="password" />
 						</li>
 						<li class="label">Action</li>
 						<li>
-							<input id="new-password-save" type="button" value="Save" />
-							<input type="button" value="Cancel" />
+							<span style="height: 40px;">
+								<input class="action" type="button" value="Cancel" />
+								<input class="action" type="button" value="Save" />
+							</span>
 						</li>
 					</ul>
 				</li>
