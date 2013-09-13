@@ -45,7 +45,8 @@
 	<!-- Libraries -->
 	<script src="js/vendor/jquery-1.7.2.min.js"></script>
 	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
-	<script src="js/vendor/jquery.hoverIntent.js"></script>
+	<!-- Can be used to improve the hovering in touch devices -->
+	<!-- <script src="js/vendor/jquery.hoverIntent.js"></script> -->
 	<script src="js/helper.js"></script>
 	<!-- Messages and MBP Fixes -->
 	<script src="js/view/Messages.js"></script>
