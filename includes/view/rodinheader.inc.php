@@ -26,10 +26,10 @@ if ($rodinSession->isUserLoggedIn()) {
 		<nav id="menu-left">
 			<ul>
 				<li class="Label">Universe options</li>
-				<li class="label">Universe selection</li>
+				<li id="universe-selection-label" class="label">Universe selection</li>
 				<li class="mm-unselected">Universe test 1</li>
 				<li class="mm-selected">Universe test 2</li>
-				<li class="label">Configure current universe</li>
+				<li id="config-current-universe-label" class="label">Configure current universe</li>
 				<li>
 					<span id="current-universe-label">Universe name</span>
 					<ul id="settings-ul">

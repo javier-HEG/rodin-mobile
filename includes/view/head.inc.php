@@ -80,15 +80,18 @@
 		<script src="js/model/Publisher.js"></script>
 		<!-- Model instantiation -->
 		<script>
-			var user = new User("<?php echo $rodinSession->getUserName(); ?>");
-			user.setRealName("<?php echo $rodinSession->getUserRealName(); ?>");
-
-			// Add universe observer to user
+			var user = null;
 			var universeListObserver = new UniverseListObserver();
 			var currentUniverseObserver = new CurrentUniverseObserver();
 
-			// user.registerObserver(universeListObserver);
-			// user.registerObserver(currentUniverseObserver);
+			$(function() {
+				user = new User("<?php echo $rodinSession->getUserName(); ?>");
+				user.setRealName("<?php echo $rodinSession->getUserRealName(); ?>");
+
+				// Add universe observer to user
+				user.registerObserver(universeListObserver);
+				user.registerObserver(currentUniverseObserver);
+			});
 		</script>
 		<?php
 

@@ -27,40 +27,6 @@ input[type="button"] {
 }
 
 /*
- * Stylsheet for the button activating the jQuery extension
- * jquery.dropdown.js in js/main.js
- */
-header nav {
-	display: block;
-	/*position: fixed;*/
-	top: 0;
-	left: 0;
-	zoom: 1;
-	/*height: 40px;*/
-	text-align: center;
-}
-
-nav .btn-navbar {
-	z-index: 5;
-	position: absolute;
-	right: 0px;
-	top: 0px;
-	cursor: pointer;
-}
-
-nav .active,
-nav .btn-navbar:active {
-	border-bottom: 1px solid orange;
-}
-
-nav .btn-navbar .icon-user {
-	display: block;
-	width: 18px;
-	height: 18px;
-	background: url(../img/mimiGlyphs/13-inverted.png) no-repeat;
-}
-
-/*
  * Styles overriding the Mmenu styles - mmenu.css
  * (sliding lateral menus)
  */
@@ -162,10 +128,12 @@ nav .btn-navbar .icon-user {
 
 .mm-menu li.mm-selected {
 	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54-full.png);
+	cursor: pointer;
 }
 
 .mm-menu li.mm-unselected {
 	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54-empty.png);
+	cursor: pointer;
 }
 
 .mm-menu li.label {

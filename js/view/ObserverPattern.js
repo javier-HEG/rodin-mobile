@@ -41,6 +41,28 @@ UniverseListObserver.prototype = new Observer();
 UniverseListObserver.prototype.constructor = UniverseListObserver;
 
 function UniverseListObserver() {
+	var self = this;
+
+	this.formatUniverseAsSelected = function(element) {
+		element.removeClass("mm-unselected");
+		element.addClass("mm-selected");
+
+		element.unbind('click');
+		element.css('cursor', 'default');
+	};
+
+	this.formatUniverseAsUnselected = function(element) {
+		element.removeClass("mm-selected");
+		element.addClass("mm-unselected");
+
+		element.unbind('click');
+		element.click(function() {
+			user.setCurrentUniverseId($.data(element, "universeId"));
+			self.formatUniverseAsSelected(element);
+		});
+
+		element.css('cursor', 'pointer');
+	};
 }
 
 UniverseListObserver.prototype.notify = function() {
@@ -48,32 +70,19 @@ UniverseListObserver.prototype.notify = function() {
 	var selected = user.getCurrentUniverse();
 
 	if (universes.length > 0 && selected !== null) {
-		$("#menu-right").empty();
-		$("#menu-right").append($("<ul></ul>"));
-		$("#menu-right ul").append($('<li class="mm-label">Universe selection</li>'));
+		$("#universe-selection-label").nextUntil("#config-current-universe-label").remove();
 
 		for (var i = 0; i < universes.length; i++) {
-			var universeItem = $('<span>' + universes[i].getName() + "</span>");
+			var universeItem = $('<li>' + universes[i].getName() + "</li>");
+			$.data(universeItem, 'universeId', universes[i].getId());
 
 			if (selected.getId() === universes[i].getId()) {
-				$("#menu-right ul").append($('<li class="mm-selected"></li>').append(universeItem));
+				this.formatUniverseAsSelected(universeItem);
 			} else {
-				var element = $('<li></li>');
-				element.addClass("mm-unselected");
-				element.click(function() {
-					user.setCurrentUniverseId($.data(element, "universeId"));
-
-					messageManager.addMessage("Changed current universe", MessageManager.prototype.INFO_MSG);
-					messageManager.rollMessages();
-
-					$('#menu-right').trigger('close');
-				});
-
-				$.data(element, 'universeId', universes[i].getId());
-
-				$("#menu-right ul").append(element.append(universeItem));
-				universeItem.css('cursor', 'pointer');
+				this.formatUniverseAsUnselected(universeItem);
 			}
+
+			universeItem.insertAfter($("#universe-selection-label"));
 		}
 	}
 
@@ -88,10 +97,6 @@ CurrentUniverseObserver.prototype = new Observer();
 CurrentUniverseObserver.prototype.constructor = CurrentUniverseObserver;
 
 function CurrentUniverseObserver() {
-}
-
-CurrentUniverseObserver.prototype.notify = function() {
-	var selected = user.getCurrentUniverse();
 	var self = this;
 
 	this.formatAsSelected = function(element, instanceId) {
@@ -130,10 +135,18 @@ CurrentUniverseObserver.prototype.notify = function() {
 		user.getCurrentUniverse().unselectSource($.data(element, "instanceId"));
 		self.formatAsUnselected(element);
 	}
+}
+
+CurrentUniverseObserver.prototype.notify = function() {
+	var selected = null;
+
+	if (selected === null && user !== null)
+		selected = user.getCurrentUniverse();
 
 	if (selected !== null) {
 		// Set the universe name in the GUI
 		$("#header-universe-name").text(selected.getName());
+		$("#current-universe-label").text(selected.getName());
 		$("#universe-name-setting").val(selected.getName());
 
 		// Prepare the sources selection menus
