@@ -25,11 +25,25 @@ function Observable() {
  */
 function Observer() {
 }
+
 Observer.prototype.notify = function() {
 };
 
 ////////////////////////
 // OBSERVER CLASSES
+
+/**
+ * Tracks changes to the user, used at least once at start
+ */
+UserObserver.prototype = new Observer();
+UserObserver.prototype.constructor = UserObserver;
+
+function UserObserver() {
+}
+
+UserObserver.prototype.notify = function() {
+	$("#user-name-input").val(user.getRealName());
+};
 
 /**
  * Tracking changes in the universe list, it only displays

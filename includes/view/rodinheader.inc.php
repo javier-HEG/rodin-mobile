@@ -86,7 +86,7 @@ if ($rodinSession->isUserLoggedIn()) {
 				<li class="Label">User options</li>
 				<li class="label">Name</li>
 				<li>
-					<form id="user-name">
+					<form id="user-name-setting">
 						<input id="user-name-input" type="text" />
 					</form>
 				</li>
@@ -115,13 +115,22 @@ if ($rodinSession->isUserLoggedIn()) {
 				<li class="label">Language</li>
 				<li>
 					<span style="height: 40px;">
-						<input class="language" type="button" value = "En" disabled="true"/>
+						<input class="language" type="button" value = "En" disabled="disabled" />
 						<input class="language" type="button" value = "Fr" />
 						<input class="language" type="button" value = "De" />
 					</span>
 				</li>
 			</ul>
-		</nav>		
+		</nav>
+		<script>
+			$(function() {
+				$("#user-name-setting").submit(function() {
+					user.setRealName($("#user-name-input").val());
+					$("#user-name-input").blur();
+					return false;
+				});
+			});
+		</script>	
 	</div>
 
 	<?php

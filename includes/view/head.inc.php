@@ -83,12 +83,13 @@
 			var user = null;
 			var universeListObserver = new UniverseListObserver();
 			var currentUniverseObserver = new CurrentUniverseObserver();
+			var userObserver = new UserObserver();
 
 			$(function() {
 				user = new User("<?php echo $rodinSession->getUserName(); ?>");
-				user.setRealName("<?php echo $rodinSession->getUserRealName(); ?>");
-
+				
 				// Add universe observer to user
+				user.registerObserver(userObserver);
 				user.registerObserver(universeListObserver);
 				user.registerObserver(currentUniverseObserver);
 			});
