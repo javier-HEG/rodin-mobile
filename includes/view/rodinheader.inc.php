@@ -120,6 +120,10 @@ if ($rodinSession->isUserLoggedIn()) {
 						<input class="language" type="button" value = "De" />
 					</span>
 				</li>
+				<li class="label">Session</li>
+				<li>
+					<input class="action" style="width: 90%;" type="button" onclick="window.location.href = 'index.php?action=logout';" value="Logout" />
+				</li>
 			</ul>
 		</nav>
 		<script>
