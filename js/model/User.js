@@ -28,6 +28,14 @@ function User(username) {
 
 	this.setRealName = function(aRealName) {
 		realname = aRealName;
+
+		// Save change in server
+		if (jsonRepresentation.name !== aRealName) {
+			jsonRepresentation.name = aRealName;
+			saveUserInServer();
+		}
+
+		this.notifyObservers();
 	};
 
 	this.getUniverses = function() {
