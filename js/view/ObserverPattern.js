@@ -84,7 +84,7 @@ UniverseListObserver.prototype.notify = function() {
 	var selected = user.getCurrentUniverse();
 
 	if (universes.length > 0 && selected !== null) {
-		$("#universe-selection-label").nextUntil("#config-current-universe-label").remove();
+		$("#universe-selection-label").nextUntil("#create-universe-option").remove();
 
 		for (var i = 0; i < universes.length; i++) {
 			var universeItem = $('<li>' + universes[i].getName() + "</li>");
@@ -166,7 +166,7 @@ CurrentUniverseObserver.prototype.notify = function() {
 	if (selected !== null) {
 		// Set the universe name in the GUI
 		$("#header-universe-name").text(selected.getName());
-		$("#current-universe-label").text(selected.getName());
+		$("#current-universe-label").text('Configure "' + selected.getName() + '"');
 		$("#universe-name-setting").val(selected.getName());
 
 		// Prepare the sources selection menus

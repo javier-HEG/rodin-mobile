@@ -26,12 +26,10 @@ if ($rodinSession->isUserLoggedIn()) {
 		<nav id="menu-left">
 			<ul>
 				<li class="Label">Universe options</li>
-				<li id="universe-selection-label" class="label">Universe selection</li>
-				<li class="mm-unselected">Universe test 1</li>
-				<li class="mm-selected">Universe test 2</li>
-				<li id="config-current-universe-label" class="label">Configure current universe</li>
+				<!-- Current universe options -->
+				<li id="config-current-universe-label" class="label">About current universe</li>
 				<li>
-					<span id="current-universe-label">Universe name</span>
+					<span id="current-universe-label">Current universe</span>
 					<ul id="settings-ul">
 						<li class="label">Name</li>
 						<li>
@@ -49,13 +47,30 @@ if ($rodinSession->isUserLoggedIn()) {
 							<ul id="the-sources-ul"></ul>
 						</li>
 						<li>
-							<span>LOD</span>
+							<span>LODs</span>
 							<ul id="lod-sources-ul"></ul>
 						</li>
 					</ul>
 				</li>
-				<li class="label">Add new</li>
 				<li>
+					<span>Remove universe</span>
+					<ul>
+						<li class="label">Warning</li>
+						<li class="text">
+							<p>Are you sure you want to remove the current universe?</p>
+						</li>
+						<li class="label">Action</li>
+						<li>
+							<span style="height: 40px;">
+								<input class="action" type="button" value="Cancel" />
+								<input class="action" type="button" value="Remove" />
+							</span>
+						</li>
+					</ul>
+				</li>
+				<!-- Universe selection options -->
+				<li id="universe-selection-label" class="label">Universe selection</li>
+				<li id="create-universe-option">
 					<span>Create universe</span>
 					<ul id="new-universe-ul">
 						<li class="label">Name</li>
@@ -72,7 +87,7 @@ if ($rodinSession->isUserLoggedIn()) {
 							</span>
 						</li>
 					</ul>
-				</li>			
+				</li>
 			</ul>
 		</nav>
 		<script>

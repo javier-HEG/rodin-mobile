@@ -104,11 +104,10 @@ input[type="button"] {
 }
 
 .mm-menu a.mm-subopen + span {
-	/* background-color: rgba(0, 0, 0, 0.05); */
+	padding-left: 45px;
 }
 
 .mm-menu a.mm-subopen:hover + span {
-	/* background-color: rgba(0, 0, 0, 0.2); */
 	background-color: rgba(0, 0, 0, 0.05);
 }
 
@@ -127,12 +126,12 @@ input[type="button"] {
 }
 
 .mm-menu li.mm-selected {
-	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54-full.png);
+	background: transparent no-repeat 97% 50% url(../img/mimiGlyphs/54-full.png);
 	cursor: pointer;
 }
 
 .mm-menu li.mm-unselected {
-	background: transparent no-repeat 95% 50% url(../img/mimiGlyphs/54-empty.png);
+	background: transparent no-repeat 97% 50% url(../img/mimiGlyphs/54-empty.png);
 	cursor: pointer;
 }
 
@@ -141,6 +140,17 @@ input[type="button"] {
 	background-color: rgba(1, 1, 1, 0.2);
 	line-height: 16px;
     padding: 2px 0 4px;
+}
+
+.mm-menu li.text {
+	white-space: normal;
+	line-height: 16px;
+	height: auto;
+}
+
+.mm-menu li.text p {
+	padding: 4px;
+	margin-bottom: 0px;
 }
 
 .mm-menu form {
