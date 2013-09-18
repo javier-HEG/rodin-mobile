@@ -133,10 +133,16 @@ function CurrentUniverseObserver() {
 
 		element.unbind('click');
 		element.click(function() {
-			if ($(this).parent().attr("id") === "doc-sources-ul") {
-				selectSource(this, Source.prototype.DOC_SOURCE_TYPE);
-			} else if ($(this).parent().attr("id") === "lod-sources-ul") {
-				selectSource(this, Source.prototype.LOD_SOURCE_TYPE);
+			switch ($(this).parent().attr("id")) {
+				case "doc-sources-ul":
+					selectSource(this, Source.prototype.DOC_SOURCE_TYPE);
+					break;
+				case "the-sources-ul":
+					selectSource(this, Source.prototype.THESAURUS_SOURCE_TYPE);
+					break;
+				case "lod-sources-ul":
+					selectSource(this, Source.prototype.LOD_SOURCE_TYPE);
+					break;
 			}
 		});
 	};
@@ -166,11 +172,13 @@ CurrentUniverseObserver.prototype.notify = function() {
 		// Prepare the sources selection menus
 		// - Empty both lists
 		$('#doc-sources-ul li:not(.mm-subtitle)').remove();
+		$('#the-sources-ul li:not(.mm-subtitle)').remove();
 		$('#lod-sources-ul li:not(.mm-subtitle)').remove();
 		// - Parse the list of available sources
 		var allSources = user.getAvailableSources();
 		if (allSources.length > 0) {
 			var docSourcesList = $("#doc-sources-ul");
+			var theSourcesList = $("#the-sources-ul");
 			var lodSourcesList = $("#lod-sources-ul");
 
 			for (var i = 0; i < allSources.length; i++) {
@@ -191,6 +199,23 @@ CurrentUniverseObserver.prototype.notify = function() {
 					}
 
 					docSourcesList.append(element);
+				}
+
+				// Add to Thesauri sources if available
+				if (allSources[i].isThesaurusSource) {
+					var theSourceItem = $('<span>' + sourceName + "</span>");
+					var element = $('<li id="the-' + sourceName + '"></li>').append(theSourceItem);
+
+					var sourceType = Source.prototype.THESAURUS_SOURCE_TYPE;
+
+					var sourceInstanceId = selected.getSourceInstanceId(sourceName, sourceType);
+					if (sourceInstanceId !== -1) {
+						this.formatAsSelected(element, sourceInstanceId);
+					} else {
+						this.formatAsUnselected(element);
+					}
+
+					theSourcesList.append(element);
 				}
 
 				// Add to LOD sources if available

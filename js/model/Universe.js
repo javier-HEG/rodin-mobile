@@ -7,6 +7,7 @@ function Universe(data) {
 	var initialized = false;
 
 	var documentSources = [];
+	var thesaurusSources = [];
 	var lodSources = [];
 
 	var broker = new Broker();
@@ -34,6 +35,8 @@ function Universe(data) {
 		switch (type) {
 			case Source.prototype.DOC_SOURCE_TYPE:
 				return documentSources;
+			case Source.prototype.THESAURUS_SOURCE_TYPE:
+				return thesaurusSources;
 			case Source.prototype.LOD_SOURCE_TYPE:
 				return lodSources;
 		}
@@ -42,10 +45,17 @@ function Universe(data) {
 	this.getSourceInstanceId = function(sourcename, type) {
 		var sourceList = null;
 
-		if (type === Source.prototype.DOC_SOURCE_TYPE)
-			sourceList = documentSources;
-		else
-			sourceList = lodSources;
+		switch (type) {
+			case Source.prototype.DOC_SOURCE_TYPE:
+				sourceList = documentSources;
+				break;
+			case Source.prototype.THESAURUS_SOURCE_TYPE:
+				sourceList = thesaurusSources;
+				break;
+			case Source.prototype.LOD_SOURCE_TYPE:
+				sourceList = lodSources;
+				break;
+		}
 
 		for (var i = 0; i < sourceList.length; i++) {
 			if (sourceList[i].name === sourcename)
@@ -81,6 +91,10 @@ function Universe(data) {
 				documentSources.push(source);
 				type = 'doc';
 				break;
+			case Source.prototype.THESAURUS_SOURCE_TYPE:
+				thesaurusSources.push(source);
+				type = 'the';
+				break;
 			case Source.prototype.LOD_SOURCE_TYPE:
 				lodSources.push(source);
 				type = 'lod';
@@ -95,6 +109,10 @@ function Universe(data) {
 		broker.makeRequest("DELETE", url, null, this.propagateUnselection, this);
 
 		for (var i = 0; i < documentSources.length; i++)
+			if (documentSources[i].id === instanceId)
+				documentSources.splice(i, 1);
+
+		for (var i = 0; i < thesaurusSources.length; i++)
 			if (documentSources[i].id === instanceId)
 				documentSources.splice(i, 1);
 
@@ -131,6 +149,9 @@ function Universe(data) {
 			switch (data[i].type) {
 				case Source.prototype.DOC_SOURCE_TYPE:
 					documentSources.unshift(new SourceInstance(data[i]));
+					break;
+				case Source.prototype.THESAURUS_SOURCE_TYPE:
+					thesaurusSources.unshift(new SourceInstance(data[i]));
 					break;
 				case Source.prototype.LOD_SOURCE_TYPE:
 					lodSources.unshift(new SourceInstance(data[i]));

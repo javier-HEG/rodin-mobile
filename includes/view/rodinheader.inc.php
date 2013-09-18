@@ -45,6 +45,10 @@ if ($rodinSession->isUserLoggedIn()) {
 							<ul id="doc-sources-ul"></ul>
 						</li>
 						<li>
+							<span>Thesauri</span>
+							<ul id="the-sources-ul"></ul>
+						</li>
+						<li>
 							<span>LOD</span>
 							<ul id="lod-sources-ul"></ul>
 						</li>
