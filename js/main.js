@@ -7,7 +7,7 @@
  * @returns {void}
  */
 function startGlobalSearch() {
-	globalSearch = new Search($('#globalSearchQuery').val());
+	globalSearch = new Search($('#global-search-query').val());
 
 	// - Create the JS search object
 	//   + Attach an observer

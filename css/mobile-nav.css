@@ -248,6 +248,104 @@ header h1#rodin-title {
 	background-color: lightsteelblue;
 }
 
+/* Rodin search bar */
+#global-search-query {
+	border: none;
+	box-shadow: none;
+	border-radius: 8px;
+	width: 75%;
+	display: inline;
+	margin: 1px 0 3px;
+	font-size: 16px;
+    padding: 4px 0;
+}
+
+#global-search-form {
+	margin-bottom: 0px;
+	line-height: 26px;
+    vertical-align: top;
+}
+
+#global-search-form button {
+	margin-bottom: 4px;
+    vertical-align: bottom;
+	background-color: rgba(255,255,255,0.25);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	border: 1px solid rgba(255,255,255,0.5);
+	height: 26px;
+	width: 6%;
+}
+
+button#global-search-button {
+	background-color: rgba(255,255,255,0.4);
+	background-image: url(../img/mimiGlyphs/7.png);
+	border-radius: 8px;
+}
+
+button#global-search-button.refresh {
+	background-image: url(../img/mimiGlyphs/45.png);
+}
+
+#search-history {
+	display: inline;
+}
+
+#history-back {
+	background-color: rgba(255,255,0,0.4);
+	background-image: url(../img/mimiGlyphs/15.png);
+	border-radius: 8px 0px 0px 8px;
+}
+
+#history-forward {
+	background-image: url(../img/mimiGlyphs/16.png);
+	border-radius: 0px 8px 8px 0px;
+}
+
+
+/* Rodin subject expansion */
+#rodin-expansion {
+	background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
+#rodin-expansion header {
+	background: transparent no-repeat 99% 40% url(../img/mimiGlyphs/44.png);
+	margin: 6px 6px 0px;
+	cursor: pointer;
+}
+
+#rodin-expansion ul {
+	margin: 2px;
+}
+
+#rodin-expansion li {
+	border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px 6px 6px 6px;
+    float: left;
+    line-height: 14px;
+    margin: 3px 3px 1px 1px;
+    padding: 4px;
+}
+
+#rodin-expansion li.selected {
+	border: 2px solid orange;
+	margin: 2px 2px 0px 0px;
+}
+
+/* When Rodin subject expansion is closed */
+#rodin-expansion.closed header {
+	background-image: url(../img/mimiGlyphs/43.png);
+	margin-bottom: 6px;
+}
+
+#rodin-expansion.closed ul {
+	display: none;
+}
+
+/* Rodin Results */
 .rodin-content {
 	width: 100%;
 	padding: 2px 0px;
