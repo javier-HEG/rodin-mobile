@@ -106,7 +106,7 @@ function User(username) {
 
 	this.initAvailableSources = function(data, status, xhr) {
 		for (var i = 0; i < data.sources.length; i++) {
-			var source = new Source(data.sources[i].name);
+			var source = new Source(data.sources[i]);
 			availableSources.unshift(source);
 		}
 
@@ -123,7 +123,7 @@ function User(username) {
 		broker.makeRequest("GET", url, null, this.initUniversesCallback, this);
 
 		// Load available sources
-		url = "source";
+		url = "source/query?username=" + this.getUserName();
 		broker.makeRequest("GET", url, null, this.initAvailableSources, this);
 
 	};

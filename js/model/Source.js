@@ -1,11 +1,12 @@
 /**
  * Abstract sources
  */
-function Source(givenName) {
-	this.name = givenName;
-	this.isDocumentSource = true;
-	this.isThesaurusSource = true;
-	this.isLodSource = true;
+function Source(data) {
+	this.name = data.name;
+
+	this.isDocumentSource = data.isDocumentSource;
+	this.isThesaurusSource = data.isThesaurusSource;
+	this.isLodSource = data.isLODSource;
 }
 
 // Map to the source types in server
