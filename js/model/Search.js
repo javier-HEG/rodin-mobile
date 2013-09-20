@@ -2,10 +2,9 @@
  * Conceptualizes searches, of every kind
  * @param {type} query description
  */
-function Search(query) {
-	this.query = query;
-	this.resourceUrl = '';
-	this.updates = 5;
+function Search(query, type) {
+	var resourceUrl = '';
+	var updates = 5;
 
 	var self = this;
 	var broker = new Broker();
@@ -42,6 +41,12 @@ function Search(query) {
 	};
 
 	// Code that runs when the prototype is clonned
-	var jsonData = JSON.stringify({query: this.query, universe: universe.toMiniJson()});
+	var jsonData = JSON.stringify({query: query, type: type, universe: user.getCurrentUniverse().toMiniJson()});
 	broker.makeRequest("POST", "search", jsonData, this.saveLocation, this);
 }
+
+// Map to the source types in server enumeration
+// GLOBAL, SINGLE_DATASOURCE, SUBJECT_EXPANSION, DOCUMENT_EXPANSION
+Search.prototype.GLOBAL_TYPE = 0;
+Search.prototype.SUBJECT_EXPANSION_TYPE = 2;
+Search.prototype.DOCUMENT_EXPANSION_TYPE = 3;
