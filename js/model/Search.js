@@ -1,10 +1,17 @@
 /**
- * Conceptualizes searches, of every kind
- * @param {type} query description
+ * Search class, observable
+ * Conceptualizes searches, of all kinds
  */
+
+Search.prototype = new Observable();
+Search.prototype.constructor = Search;
+
 function Search(query, type) {
-	var resourceUrl = '';
-	var updates = 5;
+	var searchId = null;
+	var resourceUrl = null;
+	var safe = 5;
+
+	var results = [];
 
 	var self = this;
 	var broker = new Broker();
@@ -12,10 +19,10 @@ function Search(query, type) {
 	this.checkIfDone = function(data, status, xhr) {
 		var shouldStop = data.status === 'DONE';
 
-		this.updates -= 1;
+		this.safe -= 1;
 
-		if (shouldStop || this.updates < 0) {
-			$("#globalSearchQuery").prop("disabled", false);
+		if (shouldStop || this.safe < 0) {
+			broker.makeRequest("GET", "result/query?searchId=" + searchId, null, this.saveResultsCallBack, this);
 		} else {
 			setTimeout(function() {
 				self.updateStatus();
@@ -23,26 +30,57 @@ function Search(query, type) {
 		}
 	}
 
+	this.saveResultsCallBack = function(data, status, xhr) {
+		switch (type) {
+			case Search.prototype.SUBJECT_EXPANSION_TYPE:
+				if (query !== "test2") {
+					results.push("Primero");
+					results.push("Segundo");
+				}
+			break;
+		}
+
+		this.notifyObservers();
+	}
+
+	this.getResults = function() {
+		return results;
+	}
+
+	this.getSearchId = function() {
+		return searchId;
+	}
+
 	/**
 	 * Makes sequencial calls to the server to check the status of the query
 	 */
 	this.updateStatus = function() {
-		broker.makeRequest("GET", this.resourceUrl, null, this.checkIfDone, this);
+		broker.makeRequest("GET", resourceUrl, null, this.checkIfDone, this);
 	};
 
 	/**
-	 * Saves the answer got from the Broker
+	 * Saves the answer received from the Broker when creating the search
 	 * @returns {void}
 	 */
-	this.saveLocation = function(data, status, xhr) {
-		this.resourceUrl = xhr.getResponseHeader("Location");
-		$("#globalSearchQuery").prop("disabled", true);
+	this.saveLocationCallback = function(data, status, xhr) {
+		resourceUrl = xhr.getResponseHeader("Location");
+		searchId = resourceUrl.split('/').pop();
+
 		this.updateStatus();
 	};
 
-	// Code that runs when the prototype is clonned
-	var jsonData = JSON.stringify({query: query, type: type, universe: user.getCurrentUniverse().toMiniJson()});
-	broker.makeRequest("POST", "search", jsonData, this.saveLocation, this);
+	this.launch = function() {
+		switch (type) {
+			case Search.prototype.SUBJECT_EXPANSION_TYPE:
+				user.newSubjectExpansionSearch(this);
+			break;
+		}
+
+		this.notifyObservers();
+
+		var jsonData = JSON.stringify({query: query, type: type, universe: user.getCurrentUniverse().toMiniJson()});
+		broker.makeRequest("POST", "search", jsonData, this.saveLocationCallback, this);
+	}
 }
 
 // Map to the source types in server enumeration

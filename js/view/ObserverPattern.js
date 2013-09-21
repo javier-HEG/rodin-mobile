@@ -238,3 +238,67 @@ CurrentUniverseObserver.prototype.notify = function() {
 		}
 	}
 };
+
+/**
+ * Tracks the the subject expasion terms, it is responsible of showing/hiding 
+ * the terms list panel. Also, together with the global search it is responsible
+ * of enabling or disabling the search field (also something that the user
+ * observer do)
+ */
+SubjectExpansionObserver.prototype = new Observer();
+SubjectExpansionObserver.prototype.constructor = SubjectExpansionObserver;
+
+function SubjectExpansionObserver() {
+	this.currentSearchId = null;
+
+	var self = this;
+
+	this.setNewTerms = function(terms) {
+		if (terms.length === 0) {
+			$("#rodin-expansion header").text("No related terms found");
+			$("#rodin-expansion").addClass("closed");
+
+			setTimeout(function() {
+				$("#rodin-expansion").hide("slow");
+			}, 2000);
+		} else {
+			$("#rodin-expansion ul li").remove();
+			for (var i = 0; i < terms.length; i++) {
+				var item = $("<li>" + terms[i] + "</li>");
+				item.bind("click", function() {
+					$(this).toggleClass("selected");
+					self.notify();
+				});
+				$("#rodin-expansion ul:first").append(item);
+			};
+
+			if (terms.length > 1) {
+				$("#rodin-expansion header").text(terms.length + " related terms found");
+			} else {
+				$("#rodin-expansion header").text("1 related term found");
+			}
+
+			$("#rodin-expansion").show();
+		}
+	};
+}
+
+SubjectExpansionObserver.prototype.notify = function() {
+	console.log("SubjectExpansionObserver was notified");
+
+	var lastSearch = user.getLastSubjectExpansionSearch();
+	var lastSearchId = lastSearch.getSearchId();
+	
+	if (lastSearch !== null && lastSearchId !== null) {
+		if (this.currentSearchId === lastSearchId) {
+			if ($("#rodin-expansion ul li.selected").length > 0) {
+				$("#global-search-button").addClass("refresh");
+			} else {
+				$("#global-search-button").removeClass("refresh");
+			}
+		} else {
+			this.currentSearchId = lastSearchId;
+			this.setNewTerms(lastSearch.getResults());
+		}
+	}
+}

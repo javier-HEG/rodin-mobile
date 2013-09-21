@@ -67,7 +67,6 @@
 		?>
 		<script src="js/vendor/jquery.mmenu.js"></script>
 		<script src="js/vendor/overthrow.js"></script>
-		<script src="js/main.js"></script>
 		<!-- Broker class -->
 		<script src="js/Broker.js"></script>
 		<!-- View class -->
@@ -78,13 +77,10 @@
 		<script src="js/model/Source.js"></script>
 		<script src="js/model/Search.js"></script>
 		<script src="js/model/Publisher.js"></script>
-		<!-- Model instantiation -->
+		<!-- Our script and the observers' instantiation -->
+		<script src="js/main.js"></script>
+		<!-- And our model instantiation -->
 		<script>
-			var user = null;
-			var universeListObserver = new UniverseListObserver();
-			var currentUniverseObserver = new CurrentUniverseObserver();
-			var userObserver = new UserObserver();
-
 			$(function() {
 				user = new User("<?php echo $rodinSession->getUserName(); ?>");
 				
@@ -94,6 +90,7 @@
 				user.registerObserver(currentUniverseObserver);
 			});
 		</script>
+		
 		<?php
 
 	}

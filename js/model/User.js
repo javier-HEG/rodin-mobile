@@ -18,6 +18,20 @@ function User(username) {
 
 	var self = this;
 
+	var lastSubjectExpansion = [];
+
+	this.newSubjectExpansionSearch = function(searchObject) {
+		lastSubjectExpansion.push(searchObject);
+	}
+
+	this.getLastSubjectExpansionSearch = function() {
+		if (lastSubjectExpansion.length == 0) {
+			return null;
+		} else {
+			return lastSubjectExpansion[lastSubjectExpansion.length-1];
+		}
+	}
+
 	this.getUserName = function() {
 		return username;
 	};

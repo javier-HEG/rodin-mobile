@@ -36,8 +36,8 @@
 						</script>
 					</div>
 
-					<div id="rodin-expansion" class="one-third column closed">
-						<header>17 Related terms found</header>
+					<div id="rodin-expansion" class="one-third column closed" style="display:none">
+						<header></header>
 						<ul class="clearfix">
 							<li class="selected">Information</li>
 							<li>Excess</li>

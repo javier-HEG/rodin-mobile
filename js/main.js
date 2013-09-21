@@ -1,3 +1,11 @@
+var user = null;
+
+var universeListObserver = new UniverseListObserver();
+var currentUniverseObserver = new CurrentUniverseObserver();
+var userObserver = new UserObserver();
+
+var subjectExpansionObserver = new SubjectExpansionObserver();
+
 /*
  * Personalized scripts are to be copied and modified directly in this file
  */
@@ -7,14 +15,18 @@
  * @returns {void}
  */
 function startGlobalSearch() {
-	// globalSearch = new Search($('#global-search-query').val(), Search.prototype.SUBJECT_EXPANSION_TYPE);
-	globalSearch = new Search($('#global-search-query').val(), Search.prototype.GLOBAL_TYPE);
-
 	// - Create the JS search object
+	var subjectExpansionSearch = new Search($('#global-search-query').val(), Search.prototype.SUBJECT_EXPANSION_TYPE);
 	//   + Attach an observer
-	//   + Launch an update in the object
-	// - The observer should update the view when search object changes status
-	//   + If DONE then get & show results
+	subjectExpansionSearch.registerObserver(subjectExpansionObserver);
+	//   + Launch the search
+	subjectExpansionSearch.launch();
+	
+
+	// Basic old searches  
+	// globalSearch = new Search($('#global-search-query').val(), Search.prototype.SUBJECT_EXPANSION_TYPE);
+	// globalSearch = new Search($('#global-search-query').val(), Search.prototype.GLOBAL_TYPE);
+
 }
 
 /*
