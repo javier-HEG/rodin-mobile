@@ -144,13 +144,18 @@ input[type="button"] {
 }
 
 .mm-menu li.mm-selected {
-	background: transparent no-repeat 97% 50% url(../img/mimiGlyphs/54-full.png);
+	background: rgba(0, 0, 0, 0.08) no-repeat 97% 50% url(../img/mimiGlyphs/54-full.png);
+	font-weight: bolder;
 	cursor: pointer;
 }
 
 .mm-menu li.mm-unselected {
 	background: transparent no-repeat 97% 50% url(../img/mimiGlyphs/54-empty.png);
 	cursor: pointer;
+}
+
+.mm-menu li.mm-selected > span {
+    background: none;
 }
 
 .mm-menu li.label {
@@ -259,10 +264,6 @@ header h1#rodin-title {
 .rodin-message {
 	width: 100%;
 	padding: 3px 0px;
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	z-index: 10;
 }
 
 .rodin-message-error {

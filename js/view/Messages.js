@@ -9,6 +9,8 @@ function MessageManager() {
 
 	var messageList = [];
 
+	var displayDebug = false;
+
 	function getTimeout(messageKind) {
 		switch (messageKind) {
 			case MessageManager.prototype.ERROR_MSG:
@@ -44,17 +46,18 @@ function MessageManager() {
 		if (messageList.length > 0) {
 			messageObject = messageList.pop();
 
-			$('#message-container').html(messageObject.message);
-			$('#interface-messages').removeClass();
-			$('#interface-messages').addClass('rodin-message ' + getCssClass(messageObject.kind));
-			$('#interface-messages').show();
+			if (messageObject.kind !== MessageManager.prototype.DEBUG_MSG || displayDebug) {
+				$('#message-container').html(messageObject.message);
+				$('#interface-messages').removeClass();
+				$('#interface-messages').addClass('rodin-message ' + getCssClass(messageObject.kind));
+				$('#interface-messages').show();
 
-			currentlyRolling = true;
-
-			setTimeout("MessageManager().rollMessages()", getTimeout(messageObject.kind));
+				setTimeout("MessageManager().rollMessages()", getTimeout(messageObject.kind));
+			} else {
+				this.rollMessages();
+			}
 		} else {
-			$('#interface-messages').hide();
-			currentlyRolling = false;
+			$('#interface-messages').slideUp("slow");
 		}
 	};
 }

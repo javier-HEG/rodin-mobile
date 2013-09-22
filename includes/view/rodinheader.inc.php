@@ -4,9 +4,9 @@ if ($rodinSession->isUserLoggedIn()) {
 
 	?>
 
-	<div id="interface-messages" class="rodin-message">
+	<div id="interface-messages" class="rodin-message" style="display:none">
 		<div class="container">
-			<div class="column" id="message-container"></div>
+			<div class="sixteen columns" id="message-container"></div>
 		</div>
 	</div>
 
