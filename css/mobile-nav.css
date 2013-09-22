@@ -281,10 +281,10 @@ header h1#rodin-title {
 #global-search-query {
 	border: none;
 	box-shadow: none;
-	border-radius: 8px;
+	border-radius: 8px 0px 0px 8px;
 	width: 75%;
 	display: inline;
-	margin: 1px 0 3px;
+	margin: 1px -5px 3px 5px;
 	font-size: 16px;
     padding: 4px 0;
     text-align: center;
@@ -298,19 +298,23 @@ header h1#rodin-title {
 
 #global-search-form button {
 	margin-bottom: 4px;
-    vertical-align: bottom;
+    vertical-align: middle;
 	background-color: rgba(255,255,255,0.25);
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	border: 1px solid rgba(255,255,255,0.5);
-	height: 26px;
-	width: 6%;
+	height: 29px;
+	width: 7%;
 }
 
 button#global-search-button {
 	background-color: rgba(255,255,255,0.4);
 	background-image: url(../img/mimiGlyphs/7.png);
-	border-radius: 8px;
+	border-radius: 0 8px 8px 0;
+}
+
+button#global-search-button:disabled {
+	background-image: url(../img/mimiGlyphs/7-disabled.png);
 }
 
 button#global-search-button.refresh {
@@ -327,11 +331,18 @@ button#global-search-button.refresh {
 	border-radius: 8px 0px 0px 8px;
 }
 
+#history-back:disabled {
+	background-image: url(../img/mimiGlyphs/15-disabled.png);
+}
+
 #history-forward {
 	background-image: url(../img/mimiGlyphs/16.png);
 	border-radius: 0px 8px 8px 0px;
 }
 
+#history-forward:disabled {
+	background-image: url(../img/mimiGlyphs/16-disabled.png);
+}
 
 /* Rodin subject expansion */
 #rodin-expansion-header {
@@ -351,6 +362,7 @@ button#global-search-button.refresh {
 	background-color: rgba(0, 0, 0, 0.08);
 	border-radius: 0px 0px 8px 8px;
 	margin-bottom: 2px;
+	font-size: 14px;
 }
 
 #rodin-expansion-terms ul {
@@ -362,6 +374,7 @@ button#global-search-button.refresh {
     border-radius: 6px 6px 6px 6px;
     float: left;
     line-height: 14px;
+    text-align: left;
     margin: 3px 3px 1px 1px;
     padding: 4px;
 }
@@ -409,7 +422,7 @@ button#global-search-button.refresh {
 .rodin-result h1 {
 	font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-size: 18px;
-	line-height: 18px;
+	line-height: 20px;
 	margin: 0px;
 	margin-bottom: 10px;
 }
@@ -417,7 +430,7 @@ button#global-search-button.refresh {
 .rodin-result p {
 	font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-size: 14px;
-	line-height: 14px;
+	line-height: 16px;
 	margin: 0px;
 	margin-bottom: 10px;
 }

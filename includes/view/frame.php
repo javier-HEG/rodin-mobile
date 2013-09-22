@@ -22,18 +22,21 @@
 			<div class="full-width" style="background-color: tan;">
 				<div class="container">
 					<div class="ten columns">
-						<form id="global-search-form" onsubmit="return false;">
+						<form id="global-search-form">
 							<div id="search-history">
-								<button id="history-back" disabled="disabled" />
-								<button id="history-forward" disabled="disabled" />
+								<button id="history-back" />
+								<button id="history-forward" />
 							</div>
 							<input id="global-search-query" type="text" />
-							<button id="global-search-button" />
+							<button id="global-search-button" type="submit" />
 						</form>
 						<script>
-							$('#global-search-form').on('submit', function() {
-								startGlobalSearch();
-								return false;
+							$(function(){
+								$("#global-search-form").submit(function(event) {
+									event.preventDefault();
+									startGlobalSearch();
+									return false;
+								});
 							});
 						</script>
 					</div>
