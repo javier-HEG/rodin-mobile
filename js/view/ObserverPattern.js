@@ -256,17 +256,17 @@ function SubjectExpansionObserver() {
 			$("#rodin-expansion-count").text("No related terms found");
 			
 			setTimeout(function() {
-				$("#rodin-expansion").addClass("unavailable");
+				$("#rodin-expansion-header").addClass("unavailable");
 			}, 2000);
 		} else {
-			$("#rodin-expansion ul li").remove();
+			$("#rodin-expansion-terms ul li").remove();
 			for (var i = 0; i < terms.length; i++) {
 				var item = $("<li>" + terms[i] + "</li>");
 				item.bind("click", function() {
 					$(this).toggleClass("selected");
 					self.notify();
 				});
-				$("#rodin-expansion ul:first").append(item);
+				$("#rodin-expansion-terms ul:first").append(item);
 			}
 			;
 
@@ -276,7 +276,7 @@ function SubjectExpansionObserver() {
 				$("#rodin-expansion-count").text("1 related term");
 			}
 
-			$("#rodin-expansion").removeClass("unavailable");
+			$("#rodin-expansion-header").removeClass("unavailable");
 		}
 	};
 }
@@ -288,14 +288,15 @@ SubjectExpansionObserver.prototype.notify = function() {
 
 	if (lastSearch !== null) {
 		if (lastSearch.getSearchId() === null) {
-			$("#rodin-expansion").addClass("closed");
-			$("#rodin-expansion-count").text("Searching ...");
+			$("#rodin-expansion-header").removeClass("unavailable");
+			$("#rodin-expansion-header").addClass("closed");
+			$("#rodin-expansion-count").text("Searching related terms ...");
 		} else {
 			var lastSearchId = lastSearch.getSearchId();
 
 			if (this.currentSearchId === lastSearchId) {
-				if ($("#rodin-expansion ul li.selected").length > 0) {
-					$("#rodin-expansion-selection").text(" (" + $("#rodin-expansion ul li.selected").length + " selected)");
+				if ($("#rodin-expansion-terms ul li.selected").length > 0) {
+					$("#rodin-expansion-selection").text("(" + $("#rodin-expansion-terms ul li.selected").length + " selected)");
 					$("#global-search-button").addClass("refresh");
 				} else {
 					$("#rodin-expansion-selection").text("");

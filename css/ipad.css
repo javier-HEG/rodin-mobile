@@ -8,6 +8,10 @@
 }
 
 /* Do not hide the subject expansion */
-#rodin-expansion.unavailable {
+#rodin-expansion-header.unavailable {
 	display: block;
+}
+
+#rodin-expansion-terms {
+	border-radius: 8px 0px 8px 8px;
 }

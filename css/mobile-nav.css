@@ -74,7 +74,7 @@ input[type="button"] {
 	left: auto;
 	right: 10px;
 	background-image: url(../img/mimiGlyphs/13-inverted.png);
-	top: -36px;
+	top: -28px;
 }
 
 .mm-menu a {
@@ -253,6 +253,7 @@ header h1#rodin-title {
 	font-size: 2em;
 	font-weight: bold;
 	color: orange;
+	margin: 0px;
 }
 
 .rodin-message {
@@ -333,24 +334,30 @@ button#global-search-button.refresh {
 
 
 /* Rodin subject expansion */
-#rodin-expansion {
-	background-color: rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    text-align: left;
-    font-size: 14px;
-}
-
-#rodin-expansion header {
-	background: transparent no-repeat 99% 40% url(../img/mimiGlyphs/44.png);
-	margin: 6px 6px 0px;
+#rodin-expansion-header {
+    background: rgba(0, 0, 0, 0.16) no-repeat 98% 40% url(../img/mimiGlyphs/44.png);
+	border-radius: 8px 8px 0px 0px;
+	text-align: left;
+    font-size: 16px;
 	cursor: pointer;
+	padding: 5px 0px;
 }
 
-#rodin-expansion ul {
+#rodin-expansion-header span {
+	padding: 6px;
+}
+
+#rodin-expansion-terms {
+	background-color: rgba(0, 0, 0, 0.08);
+	border-radius: 0px 0px 8px 8px;
+	margin-bottom: 2px;
+}
+
+#rodin-expansion-terms ul {
 	margin: 2px;
 }
 
-#rodin-expansion li {
+#rodin-expansion-terms ul li {
 	border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 6px 6px 6px 6px;
     float: left;
@@ -359,29 +366,28 @@ button#global-search-button.refresh {
     padding: 4px;
 }
 
-#rodin-expansion li.selected {
+#rodin-expansion-terms li.selected {
 	border: 2px solid orange;
 	margin: 2px 2px 0px 0px;
 }
 
 /* - When Rodin subject expansion is closed */
-#rodin-expansion.closed header {
+#rodin-expansion-header.closed {
 	background-image: url(../img/mimiGlyphs/43.png);
-	margin-bottom: 6px;
+	border-radius: 8px;
+	padding-bottom: 3px;
+	margin-bottom: 2px;
 }
 
-#rodin-expansion.closed ul {
+#rodin-expansion-terms.closed {
 	display: none;
 }
 
 /* - When Rodin suject expansion is unavailable */
-#rodin-expansion.unavailable {
-	display: none;
-}
-
-#rodin-expansion.unavailable header {
+#rodin-expansion-header.unavailable {
 	background-image: none;
 	cursor: default;
+	display: none;
 }
 
 /**

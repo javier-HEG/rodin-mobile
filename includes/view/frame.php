@@ -38,22 +38,24 @@
 						</script>
 					</div>
 
-					<div id="rodin-expansion" class="six columns closed unavailable">
-						<header>
-							<span id="rodin-expansion-count">&nbsp;</span>
-							<span id="rodin-expansion-selection"></span>
-						</header>
-						<ul class="clearfix"></ul>
-						<script>
-							$("#rodin-expansion header").click(function() {
-								if ($("#rodin-expansion").hasClass("unavailable")) {
-									$("#rodin-expansion").addClass("closed");	
-								} else {
-									$("#rodin-expansion").toggleClass("closed");
-								}
-							});
-						</script>
+					<div id="rodin-expansion-header" class="six columns closed unavailable">
+						<span id="rodin-expansion-count">Search refinement space</span>
+						<span id="rodin-expansion-selection"></span>
 					</div>
+					<div id="rodin-expansion-terms" class="sixteen columns closed">
+						<ul class="clearfix"></ul>
+					</div>
+					<script>
+						$("#rodin-expansion-header").click(function() {
+							if ($("#rodin-expansion-header").hasClass("unavailable")) {
+								$("#rodin-expansion-header").addClass("closed");	
+								$("#rodin-expansion-terms").addClass("closed");	
+							} else {
+								$("#rodin-expansion-header").toggleClass("closed");
+								$("#rodin-expansion-terms").toggleClass("closed");
+							}
+						});
+					</script>
 				</div>
 			</div>
 			
