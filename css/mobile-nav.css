@@ -1,3 +1,21 @@
+/**
+ * Styles applied when media="screen and (min-width: 320px) and (max-width: 1024px)"
+ */
+
+#mediateller:after {
+	content: "Mobile Nav (320px - 1024px";
+}
+
+#mediateller {
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	padding: 2px 6px;
+	text-align: right;
+	font-size: 12px;
+	color: rgba(0, 0, 0, 0.1);
+}
+
 /*
  * Styles overiding Skeleton - tools/skeleton/stylesheets
  */
@@ -346,7 +364,7 @@ button#global-search-button.refresh {
 	margin: 2px 2px 0px 0px;
 }
 
-/* When Rodin subject expansion is closed */
+/* - When Rodin subject expansion is closed */
 #rodin-expansion.closed header {
 	background-image: url(../img/mimiGlyphs/43.png);
 	margin-bottom: 6px;
@@ -355,6 +373,17 @@ button#global-search-button.refresh {
 #rodin-expansion.closed ul {
 	display: none;
 }
+
+/* - When Rodin suject expansion is unavailable */
+#rodin-expansion.unavailable {
+	display: none;
+}
+
+#rodin-expansion.unavailable header {
+	background-image: none;
+	cursor: default;
+}
+
 
 /* Rodin Results */
 .rodin-content {

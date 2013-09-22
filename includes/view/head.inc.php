@@ -38,9 +38,9 @@
 	<!--   - More media queries (to add when design is stable) -->
 	<link  rel="stylesheet" href="css/mobile-nav.css" media="screen and (min-width: 320px) and (max-width: 1024px)">
 	<link  rel="stylesheet" href="css/smartphone.css" media="screen and (min-width:320px) and (max-width:480px)">
-	<!-- <link  rel="stylesheet" href="css/tablet.css" media="screen and (min-width: 481px) and (max-width: 767px)">
+	<link  rel="stylesheet" href="css/tablet.css" media="screen and (min-width: 481px) and (max-width: 767px)">
 	<link  rel="stylesheet" href="css/ipad.css" media="screen and (min-width: 768px) and (max-width: 1024px)">
-	<link  rel="stylesheet" href="css/desktop.css" media="screen and (min-width: 1025px)"> -->
+	<!-- <link  rel="stylesheet" href="css/desktop.css" media="screen and (min-width: 1025px)"> -->
 
 	<!-- Libraries -->
 	<script src="js/vendor/jquery-1.7.2.min.js"></script>

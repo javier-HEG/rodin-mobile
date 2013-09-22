@@ -1,0 +1,7 @@
+/**
+ * Styles applied when media="screen and (min-width: 481px) and (max-width: 767px) 
+ */
+
+#mediateller:after {
+	content: "Tablet (481px - 767px)";
+}

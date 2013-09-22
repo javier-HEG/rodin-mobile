@@ -29,22 +29,23 @@
 							<button id="global-search-button" />
 						</form>
 						<script>
-							$('#global-search-form	').on('submit', function() {
+							$('#global-search-form').on('submit', function() {
 								startGlobalSearch();
 								return false;
 							});
 						</script>
 					</div>
 
-					<div id="rodin-expansion" class="one-third column closed" style="display:none">
-						<header></header>
-						<ul class="clearfix">
-							<li class="selected">Information</li>
-							<li>Excess</li>
-						</ul>
+					<div id="rodin-expansion" class="one-third column closed unavailable">
+						<header>&nbsp;</header>
+						<ul class="clearfix"></ul>
 						<script>
-							$("#rodin-expansion header:first").click(function() {
-								$("#rodin-expansion").toggleClass("closed");
+							$("#rodin-expansion header").click(function() {
+								if ($("#rodin-expansion").hasClass("unavailable")) {
+									$("#rodin-expansion").addClass("closed");	
+								} else {
+									$("#rodin-expansion").toggleClass("closed");
+								}
 							});
 						</script>
 					</div>
@@ -52,9 +53,10 @@
 			</div>
 			
 			<!-- Where results show -->
+			<!-- title, abstract, authors, date, url -->
 			<div class="rodin-content">
 				<div class="container">
-					<div class="rodin-result">
+					<div class="rodin-result eight columns">
 						<h1>Title</h1>
 						<p class="authors">Authors</p>
 						<p class="summary">Short-form of content</p>
@@ -65,6 +67,8 @@
 					</div>
 				</div>
 			</div>
+
+			<div id="mediateller">Media: </div>
 		</div>
 	</body>
 </html>

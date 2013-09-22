@@ -259,7 +259,7 @@ function SubjectExpansionObserver() {
 			$("#rodin-expansion").addClass("closed");
 
 			setTimeout(function() {
-				$("#rodin-expansion").hide("slow");
+				$("#rodin-expansion").addClass("unavailable");
 			}, 2000);
 		} else {
 			$("#rodin-expansion ul li").remove();
@@ -278,7 +278,7 @@ function SubjectExpansionObserver() {
 				$("#rodin-expansion header").text("1 related term found");
 			}
 
-			$("#rodin-expansion").show();
+			$("#rodin-expansion").removeClass("unavailable");
 		}
 	};
 }
@@ -287,9 +287,10 @@ SubjectExpansionObserver.prototype.notify = function() {
 	console.log("SubjectExpansionObserver was notified");
 
 	var lastSearch = user.getLastSubjectExpansionSearch();
-	var lastSearchId = lastSearch.getSearchId();
 	
-	if (lastSearch !== null && lastSearchId !== null) {
+	if (lastSearch !== null && lastSearch.getSearchId() !== null) {
+		var lastSearchId = lastSearch.getSearchId();
+
 		if (this.currentSearchId === lastSearchId) {
 			if ($("#rodin-expansion ul li.selected").length > 0) {
 				$("#global-search-button").addClass("refresh");

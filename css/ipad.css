@@ -1,0 +1,13 @@
+/**
+ * Styles applied when:
+ * - media="screen and (min-width: 768px) and (max-width: 1024px)" 
+ */
+
+#mediateller:after {
+	content: "iPad (768px - 1024px)";
+}
+
+/* Do not hide the subject expansion */
+#rodin-expansion.unavailable {
+	display: block;
+}
