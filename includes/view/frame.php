@@ -21,7 +21,7 @@
 			<!-- The search bar -->
 			<div class="full-width" style="background-color: tan;">
 				<div class="container">
-					<div class="two-thirds column">
+					<div class="ten columns">
 						<form id="global-search-form" onsubmit="return false;">
 							<div id="search-history">
 								<button id="history-back" />
@@ -38,8 +38,11 @@
 						</script>
 					</div>
 
-					<div id="rodin-expansion" class="one-third column closed unavailable">
-						<header><span id="rodin-expansion-count">&nbsp;</span><span id="rodin-expansion-selection"></span></header>
+					<div id="rodin-expansion" class="six columns closed unavailable">
+						<header>
+							<span id="rodin-expansion-count">&nbsp;</span>
+							<span id="rodin-expansion-selection"></span>
+						</header>
 						<ul class="clearfix"></ul>
 						<script>
 							$("#rodin-expansion header").click(function() {

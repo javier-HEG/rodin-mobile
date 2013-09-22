@@ -344,7 +344,7 @@ SearchObserver.prototype.notify = function() {
 				$("#rodin-results").append(messageItem);
 			} else {
 				for (var i = 0; i < results.length; i++) {
-					var resultItem = $('<div class="eigth columns"></div>');
+					var resultItem = $('<div class="eight columns"></div>');
 					results[i].displayInDiv(resultItem);
 
 					$("#rodin-results").append(resultItem);

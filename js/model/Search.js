@@ -34,17 +34,18 @@ function Search(query, type) {
 		switch (type) {
 			case Search.prototype.SUBJECT_EXPANSION_TYPE:
 				if (query !== "empty") {
-					results.push("Primero");
-					results.push("Segundo");
+					for (var i = 0; i < data.length; i++) {
+						results = results.concat(data[i].content.split(","));
+					}
+					;
 				}
 				break;
 			case Search.prototype.GLOBAL_TYPE:
 				if (query !== "empty") {
-					var first = new Result(data);
-					var second = new Result(data);
-
-					results.push(first);
-					results.push(second);
+					for (var i = 0; i < data.length; i++) {
+						results.push(new BasicResult(data[i]));
+					}
+					;
 				}
 				break;
 		}
@@ -97,7 +98,7 @@ function Search(query, type) {
 	// FIXME Analyze why if not implemented locally all instances of Search
 	// shared the same observers
 	var observers = [];
-	
+
 	this.registerObserver = function(observer) {
 		// TODO Check the observer for notify() method
 		observers.push(observer);
@@ -119,12 +120,13 @@ Search.prototype.DOCUMENT_EXPANSION_TYPE = 3;
 /**
  * The global search kind of results
  */
-function Result(data) {
-	var title = "The influence of the time delay of information flow on an economy evolution. The stock market analysis";
-	var authors = ["Janusz Miskiewicz"];
-	var abstract = "The decision process requires information about the present state of the system, but in economy acquiring data and processing them is an expensive and time consuming process. Therefore the state of the system is measured and announced at the end of the well defined time intervals. The model of a stock market coupled with an economy is investigated and the role of the length of the time delay of information flow investigated. It is shown that increasing the time delay leads to collective behavior of agents and oscillations of autocorrelations in absolute log-returns.";
-	var date = "20.09.2007";
-	var url = "http://arxiv.org/abs/0709.3264v1";
+function BasicResult(data) {
+	var title = data.title;
+	var authors = data.authors;
+	var summary = data.summary;
+	var content = data.content;
+	var date = new Date(data.pubDate);
+	var url = data.documents[0].sourceLinkURL;
 
 	/**
 	 * Prints itself into the jQuery div parameter
@@ -133,8 +135,23 @@ function Result(data) {
 		var resultDiv = $('<div class="rodin-result"></div>');
 		resultDiv.append($("<h1>" + title + "</h1>"));
 		resultDiv.append($('<p class="authors">' + authors.join(", ") + "</p>"));
-		resultDiv.append($('<p class="abstract">' + abstract + "</p>"));
-		resultDiv.append($('<p class="publication"><span class="date">' + date + '</span> <a target="_blank" href="' + url + '"></a></p>'));
+
+		var summaryP = $('<p class="summary">' + summary + "</p>");
+		summaryP.bind("click", function(){
+			$(this).hide();
+			$(this).siblings("p.content").show();
+		});
+		resultDiv.append(summaryP);
+
+		var contentP = $('<p class="content" style="display: none;">' + content + "</p>");
+		contentP.bind("click", function(){
+			$(this).hide();
+			$(this).siblings("p.summary").show();
+		});
+		resultDiv.append(contentP);
+
+		var dateString = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear();
+		resultDiv.append($('<p class="publication"><span class="date">' + dateString + '</span> <a target="_blank" href="' + url + '"></a></p>'));
 
 		div.append(resultDiv);
 	};

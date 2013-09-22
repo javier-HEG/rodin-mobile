@@ -416,6 +416,12 @@ button#global-search-button.refresh {
 	margin-bottom: 10px;
 }
 
+.rodin-result p.summary,
+.rodin-result p.content {
+	padding: 0px 4px;
+	font-style: italic;
+}
+
 .rodin-result p.authors:before {
     content: "By ";
 }
