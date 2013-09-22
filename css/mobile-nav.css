@@ -65,14 +65,14 @@ input[type="button"] {
 	width: 20px;
 	height: 20px;
 	position: absolute;
-	top: 0;
-	left: 0px;
+	top: 0px;
+	left: 10px;
 }
 
 #header a.user-settings,
 .header a.user-settings {
 	left: auto;
-	right: 0px;
+	right: 10px;
 	background-image: url(../img/mimiGlyphs/13-inverted.png);
 	top: -36px;
 }
@@ -384,26 +384,56 @@ button#global-search-button.refresh {
 	cursor: default;
 }
 
+/**
+ * Rodin results
+ */
 
-/* Rodin Results */
 .rodin-content {
 	width: 100%;
 	padding: 2px 0px;
 }
 
 .rodin-result {
-	border: 1px solid gray;
-	border-radius: 6px;
-	padding: 4px;
+	text-align: left;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	margin-bottom: 6px;
+	padding: 6px;
 }
 
 .rodin-result h1 {
-	font-size: 20px;
+	font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 18px;
+	line-height: 18px;
 	margin: 0px;
+	margin-bottom: 10px;
 }
 
 .rodin-result p {
+	font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 14px;
 	margin: 0px;
+	margin-bottom: 10px;
+}
+
+.rodin-result p.authors:before {
+    content: "By ";
+}
+
+.rodin-result p.publication .date:before {
+    content: "Publication date: ";
+}
+
+.rodin-result p.publication {
+    margin-bottom: 0px;
+}
+
+.rodin-result p.publication a {
+	background-repeat: no-repeat;
+	background-image: url(../img/mimiGlyphs/47.png);
+	float: right;
+	width: 16px;
+	height: 16px;
 }
 
 .rodin-result .sources {

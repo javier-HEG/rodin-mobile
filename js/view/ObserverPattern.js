@@ -255,7 +255,7 @@ function SubjectExpansionObserver() {
 
 	this.setNewTerms = function(terms) {
 		if (terms.length === 0) {
-			$("#rodin-expansion header").text("No related terms found");
+			$("#rodin-expansion-count").text("No related terms found");
 			$("#rodin-expansion").addClass("closed");
 
 			setTimeout(function() {
@@ -273,9 +273,9 @@ function SubjectExpansionObserver() {
 			};
 
 			if (terms.length > 1) {
-				$("#rodin-expansion header").text(terms.length + " related terms found");
+				$("#rodin-expansion-count").text(terms.length + " related terms");
 			} else {
-				$("#rodin-expansion header").text("1 related term found");
+				$("#rodin-expansion-count").text("1 related term");
 			}
 
 			$("#rodin-expansion").removeClass("unavailable");
@@ -293,8 +293,10 @@ SubjectExpansionObserver.prototype.notify = function() {
 
 		if (this.currentSearchId === lastSearchId) {
 			if ($("#rodin-expansion ul li.selected").length > 0) {
+				$("#rodin-expansion-selection").text(" (" + $("#rodin-expansion ul li.selected").length + " selected)");
 				$("#global-search-button").addClass("refresh");
 			} else {
+				$("#rodin-expansion-selection").text("");
 				$("#global-search-button").removeClass("refresh");
 			}
 		} else {

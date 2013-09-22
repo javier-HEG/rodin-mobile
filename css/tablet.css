@@ -5,3 +5,11 @@
 #mediateller:after {
 	content: "Tablet (481px - 767px)";
 }
+
+#header a, .header a {
+	left: 0px;
+}
+
+#header a.user-settings, .header a.user-settings {
+	right: 0px;
+}
