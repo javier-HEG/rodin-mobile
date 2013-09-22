@@ -16,7 +16,6 @@ function Observable() {
 		for (var i = 0; i < observers.length; i++) {
 			observers[i].notify();
 		}
-		;
 	};
 }
 
@@ -240,10 +239,9 @@ CurrentUniverseObserver.prototype.notify = function() {
 };
 
 /**
- * Tracks the the subject expasion terms, it is responsible of showing/hiding 
- * the terms list panel. Also, together with the global search it is responsible
- * of enabling or disabling the search field (also something that the user
- * observer do)
+ * Tracks the subject expasion terms, it is responsible of showing/hiding the terms
+ * list panel. Also, together with the global search it is responsible of enabling
+ * or disabling the search field.
  */
 SubjectExpansionObserver.prototype = new Observer();
 SubjectExpansionObserver.prototype.constructor = SubjectExpansionObserver;
@@ -256,8 +254,7 @@ function SubjectExpansionObserver() {
 	this.setNewTerms = function(terms) {
 		if (terms.length === 0) {
 			$("#rodin-expansion-count").text("No related terms found");
-			$("#rodin-expansion").addClass("closed");
-
+			
 			setTimeout(function() {
 				$("#rodin-expansion").addClass("unavailable");
 			}, 2000);
@@ -270,7 +267,8 @@ function SubjectExpansionObserver() {
 					self.notify();
 				});
 				$("#rodin-expansion ul:first").append(item);
-			};
+			}
+			;
 
 			if (terms.length > 1) {
 				$("#rodin-expansion-count").text(terms.length + " related terms");
@@ -287,21 +285,72 @@ SubjectExpansionObserver.prototype.notify = function() {
 	console.log("SubjectExpansionObserver was notified");
 
 	var lastSearch = user.getLastSubjectExpansionSearch();
-	
-	if (lastSearch !== null && lastSearch.getSearchId() !== null) {
-		var lastSearchId = lastSearch.getSearchId();
 
-		if (this.currentSearchId === lastSearchId) {
-			if ($("#rodin-expansion ul li.selected").length > 0) {
-				$("#rodin-expansion-selection").text(" (" + $("#rodin-expansion ul li.selected").length + " selected)");
-				$("#global-search-button").addClass("refresh");
-			} else {
-				$("#rodin-expansion-selection").text("");
-				$("#global-search-button").removeClass("refresh");
-			}
+	if (lastSearch !== null) {
+		if (lastSearch.getSearchId() === null) {
+			$("#rodin-expansion").addClass("closed");
+			$("#rodin-expansion-count").text("Searching ...");
 		} else {
-			this.currentSearchId = lastSearchId;
-			this.setNewTerms(lastSearch.getResults());
+			var lastSearchId = lastSearch.getSearchId();
+
+			if (this.currentSearchId === lastSearchId) {
+				if ($("#rodin-expansion ul li.selected").length > 0) {
+					$("#rodin-expansion-selection").text(" (" + $("#rodin-expansion ul li.selected").length + " selected)");
+					$("#global-search-button").addClass("refresh");
+				} else {
+					$("#rodin-expansion-selection").text("");
+					$("#global-search-button").removeClass("refresh");
+				}
+			} else {
+				this.currentSearchId = lastSearchId;
+				this.setNewTerms(lastSearch.getResults());
+			}
 		}
 	}
+};
+
+/**
+ * Tracks the search article results, it is responsible of showing the results
+ * when they are ready. Also, together with the subject expansion search, it is
+ * responsible of enabling or disabling the search field.
+ */
+SearchObserver.prototype = new Observer();
+SearchObserver.prototype.constructor = SearchObserver;
+
+function SearchObserver() {
 }
+
+SearchObserver.prototype.notify = function() {
+	console.log("SearchObserver was notified");
+
+	var lastSearch = user.getLastGlobalSearch();
+
+	if (lastSearch !== null) {
+		if (lastSearch.getSearchId() === null) {
+			$("#rodin-results div").remove();
+
+			var messageItem = $('<div class="sixteen columns"></div>');
+			messageItem.append($('<div class="rodin-result">Searching ...</div>'));
+
+			$("#rodin-results").append(messageItem);
+		} else {
+			var results = lastSearch.getResults();
+
+			$("#rodin-results div").remove();
+			if (results.length === 0) {
+				var messageItem = $('<div class="sixteen columns"></div>');
+				messageItem.append($('<div class="rodin-result">No results</div>'));
+
+				$("#rodin-results").append(messageItem);
+			} else {
+				for (var i = 0; i < results.length; i++) {
+					var resultItem = $('<div class="eigth columns"></div>');
+					results[i].displayInDiv(resultItem);
+
+					$("#rodin-results").append(resultItem);
+				}
+			}
+		}
+	}
+};
+

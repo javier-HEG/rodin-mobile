@@ -5,6 +5,7 @@ var currentUniverseObserver = new CurrentUniverseObserver();
 var userObserver = new UserObserver();
 
 var subjectExpansionObserver = new SubjectExpansionObserver();
+var searchObserver = new SearchObserver();
 
 /*
  * Personalized scripts are to be copied and modified directly in this file
@@ -15,18 +16,14 @@ var subjectExpansionObserver = new SubjectExpansionObserver();
  * @returns {void}
  */
 function startGlobalSearch() {
-	// - Create the JS search object
+	// - Create the JS search-objects
 	var subjectExpansionSearch = new Search($('#global-search-query').val(), Search.prototype.SUBJECT_EXPANSION_TYPE);
-	//   + Attach an observer
 	subjectExpansionSearch.registerObserver(subjectExpansionObserver);
-	//   + Launch the search
 	subjectExpansionSearch.launch();
 	
-
-	// Basic old searches  
-	// globalSearch = new Search($('#global-search-query').val(), Search.prototype.SUBJECT_EXPANSION_TYPE);
-	// globalSearch = new Search($('#global-search-query').val(), Search.prototype.GLOBAL_TYPE);
-
+	var globalSearch = new Search($('#global-search-query').val(), Search.prototype.GLOBAL_TYPE);
+	globalSearch.registerObserver(searchObserver);
+	globalSearch.launch();
 }
 
 /*

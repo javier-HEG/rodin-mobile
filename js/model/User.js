@@ -18,17 +18,30 @@ function User(username) {
 
 	var self = this;
 
-	var lastSubjectExpansion = [];
+	var globalSearches = [];
+	var subjectExpansionSearches = [];
 
 	this.newSubjectExpansionSearch = function(searchObject) {
-		lastSubjectExpansion.push(searchObject);
+		subjectExpansionSearches.push(searchObject);
+	}
+
+	this.newGlobalSearch = function(searchObject) {
+		globalSearches.push(searchObject);
 	}
 
 	this.getLastSubjectExpansionSearch = function() {
-		if (lastSubjectExpansion.length == 0) {
+		if (subjectExpansionSearches.length == 0) {
 			return null;
 		} else {
-			return lastSubjectExpansion[lastSubjectExpansion.length-1];
+			return subjectExpansionSearches[subjectExpansionSearches.length-1];
+		}
+	}
+
+	this.getLastGlobalSearch = function() {
+		if (globalSearches.length == 0) {
+			return null;
+		} else {
+			return globalSearches[globalSearches.length-1];
 		}
 	}
 
