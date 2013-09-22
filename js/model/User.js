@@ -92,6 +92,42 @@ function User(username) {
 		}
 	};
 
+	this.removeCurrentUniverse = function() {
+		broker.makeRequest("DELETE", "universe/" + currentUniverseId, null, this.universeRemovedCallBack, this);
+	}
+
+	this.universeRemovedCallBack = function(data, status, xhr) {
+		for (var i = 0; i < universes.length; i++) {
+			if (universes[i].getId() === currentUniverseId) {
+				universes.splice(i, 1);
+			}
+		}
+
+		currentUniverseId = null;
+		currentUniverse = null;
+
+		if (universes.length > 0) {
+			this.setCurrentUniverseId(universes[universes.length - 1].getId());
+		} else {
+			this.notifyObservers();
+		}
+	}
+
+	this.createNewUniverse = function(universeName) {
+		broker.makeRequest("POST", "universe", JSON.stringify({name: universeName, owner: this.toMiniJson()}), this.newUniverseCallback, this);
+	}
+
+	this.newUniverseCallback = function(data, status, xhr) {
+		broker.makeRequest("GET", xhr.getResponseHeader("Location"), null, this.loadNewUniverseCallback, this);
+	}
+
+	this.loadNewUniverseCallback = function(data, status, xhr) {
+		var newUniverse = new Universe(data);
+		universes.push(newUniverse);
+
+		this.setCurrentUniverseId(newUniverse.getId());
+	}
+
 	this.getAvailableSources = function() {
 		return availableSources;
 	};
@@ -109,6 +145,13 @@ function User(username) {
 		if (currentUniverseId !== null && universes.length > 0)
 			self.setCurrentUniverseId(currentUniverseId);
 	}
+
+	/**
+	 * Returns the most basic JSON version of the user
+	 */
+	this.toMiniJson = function() {
+		return {username: jsonRepresentation.username};
+	};
 
 	this.initUserDetailsCallback = function(data, status, xhr) {
 		jsonRepresentation = data;

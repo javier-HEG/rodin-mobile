@@ -53,8 +53,8 @@ if ($rodinSession->isUserLoggedIn()) {
 					</ul>
 				</li>
 				<li>
-					<span>Remove universe</span>
-					<ul>
+					<span id="remove-current-label">Remove universe</span>
+					<ul id="remove-current-ul">
 						<li class="label">Warning</li>
 						<li class="text">
 							<p>Are you sure you want to remove the current universe?</p>
@@ -62,8 +62,8 @@ if ($rodinSession->isUserLoggedIn()) {
 						<li class="label">Action</li>
 						<li>
 							<span style="height: 40px;">
-								<input class="action" type="button" value="Cancel" />
-								<input class="action" type="button" value="Remove" />
+								<input class="action" type="button" value="Cancel" onclick="$('#remove-current-ul').trigger('close');" />
+								<input id="remove-current-button" class="action" type="button" value="Remove" />
 							</span>
 						</li>
 					</ul>
@@ -82,8 +82,8 @@ if ($rodinSession->isUserLoggedIn()) {
 						<li class="label">Action</li>
 						<li>
 							<span style="height: 40px;">
-								<input class="action" type="button" value="Cancel" />
-								<input class="action" type="button" value="Save" />
+								<input class="action" type="button" value="Cancel" onclick="$('#new-universe-ul').trigger('close');" />
+								<input class="action" type="button" value="Save" onclick="$('#new-universe-form').submit();" />
 							</span>
 						</li>
 					</ul>
@@ -92,10 +92,49 @@ if ($rodinSession->isUserLoggedIn()) {
 		</nav>
 		<script>
 			$(function() {
-				$("#universe-settings").submit(function() {
-					user.getCurrentUniverse().setName($("#universe-name-setting").val());
-					$("#universe-name-setting").blur();
+
+				$("#remove-current-button").click(function(event) {
+					event.preventDefault();
+
+					if (confirm("This action cannot be reverted!")) {
+						user.removeCurrentUniverse()
+						$("#remove-current-ul").trigger("close");
+					}
+
 					return false;
+				});
+
+				$("#new-universe-form").submit(function(event) {
+					event.preventDefault();
+
+					if (confirm("Are you sure you want to create a new universe?\n(It will be selected by default)")) {
+						user.createNewUniverse($("#new-universe-name").val());
+						$("#new-universe-ul").trigger("close");
+					}
+
+					return false;
+				});
+				
+
+				$("#universe-settings").submit(function(event) {
+					event.preventDefault();
+
+					user.getCurrentUniverse().setName($("#universe-name-setting").val());
+
+					var form = $("#universe-settings").get(0);
+					if ($.data(form, "bluring")) {
+						$.removeData(form, "bluring");
+					} else {
+						$("#universe-name-setting").blur();
+					}
+
+					return false;
+				});
+
+				$("#universe-name-setting").blur(function() {
+					var form = $("#universe-settings").get(0);
+					$.data(form, "bluring", true);
+					$("#universe-settings").submit();
 				});
 			});
 		</script>
@@ -147,13 +186,28 @@ if ($rodinSession->isUserLoggedIn()) {
 		</nav>
 		<script>
 			$(function() {
-				$("#user-name-setting").submit(function() {
+				$("#user-name-setting").submit(function(event) {
+					event.preventDefault();
+
 					user.setRealName($("#user-name-input").val());
-					$("#user-name-input").blur();
+					
+					var form = $("#user-name-setting").get(0);
+					if ($.data(form, "bluring")) {
+						$.removeData(form, "bluring");
+					} else {
+						$("#user-name-input").blur();
+					}
+
 					return false;
 				});
+
+				$("#user-name-input").blur(function() {
+					var form = $("#user-name-setting").get(0);
+					$.data(form, "bluring", true);
+					$("#user-name-setting").submit();
+				});
 			});
-		</script>	
+		</script>
 	</div>
 
 	<?php

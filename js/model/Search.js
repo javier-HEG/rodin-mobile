@@ -37,7 +37,6 @@ function Search(query, type) {
 					for (var i = 0; i < data.length; i++) {
 						results = results.concat(data[i].content.split(","));
 					}
-					;
 				}
 				break;
 			case Search.prototype.GLOBAL_TYPE:
@@ -45,7 +44,6 @@ function Search(query, type) {
 					for (var i = 0; i < data.length; i++) {
 						results.push(new BasicResult(data[i]));
 					}
-					;
 				}
 				break;
 		}

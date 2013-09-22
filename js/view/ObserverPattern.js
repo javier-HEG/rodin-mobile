@@ -82,9 +82,8 @@ UniverseListObserver.prototype.notify = function() {
 	var universes = user.getUniverses();
 	var selected = user.getCurrentUniverse();
 
+	$("#universe-selection-label").nextUntil("#create-universe-option").remove();
 	if (universes.length > 0 && selected !== null) {
-		$("#universe-selection-label").nextUntil("#create-universe-option").remove();
-
 		for (var i = 0; i < universes.length; i++) {
 			var universeItem = $('<li>' + universes[i].getName() + "</li>");
 			$.data(universeItem, 'universeId', universes[i].getId());
@@ -98,8 +97,6 @@ UniverseListObserver.prototype.notify = function() {
 			universeItem.insertAfter($("#universe-selection-label"));
 		}
 	}
-
-	// FIXME Only having a current universe should enable searches
 };
 
 /**
@@ -163,10 +160,22 @@ CurrentUniverseObserver.prototype.notify = function() {
 		selected = user.getCurrentUniverse();
 
 	if (selected !== null) {
+		// Enable query field and button
+		if ($("#global-search-query").prop("disabled")) {
+			$("#global-search-query").val("");
+		}
+
+		$("#global-search-query").prop("disabled", false);
+		$("#global-search-button").prop("disabled", false);
+
 		// Set the universe name in the GUI
 		$("#header-universe-name").text(selected.getName());
 		$("#current-universe-label").text('Configure "' + selected.getName() + '"');
 		$("#universe-name-setting").val(selected.getName());
+
+		$("#current-universe-label").parent().show();
+		$("#config-current-universe-label").show();
+		$("#remove-current-label").parent().show();
 
 		// Prepare the sources selection menus
 		// - Empty both lists
@@ -235,6 +244,16 @@ CurrentUniverseObserver.prototype.notify = function() {
 				}
 			}
 		}
+	} else {
+		$("#header-universe-name").text("<--- No universe, create one");
+
+		$("#current-universe-label").parent().hide();
+		$("#config-current-universe-label").hide();
+		$("#remove-current-label").parent().hide();
+
+		$("#global-search-query").val("Disabled");
+		$("#global-search-query").prop("disabled", true);
+		$("#global-search-button").prop("disabled", true);
 	}
 };
 

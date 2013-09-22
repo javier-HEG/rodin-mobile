@@ -24,8 +24,8 @@
 					<div class="ten columns">
 						<form id="global-search-form" onsubmit="return false;">
 							<div id="search-history">
-								<button id="history-back" />
-								<button id="history-forward" />
+								<button id="history-back" disabled="disabled" />
+								<button id="history-forward" disabled="disabled" />
 							</div>
 							<input id="global-search-query" type="text" />
 							<button id="global-search-button" />
@@ -61,11 +61,7 @@
 			
 			<!-- Where results show -->
 			<div class="full-width">
-				<div id="rodin-results" class="container">
-					<div class="sixteen columns">
-						<div class="rodin-result">Please launch a first search</div>
-					</div>
-				</div>
+				<div id="rodin-results" class="container"></div>
 			</div>
 		</div>
 	</body>
