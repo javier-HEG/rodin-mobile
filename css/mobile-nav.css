@@ -252,13 +252,14 @@ header[role="banner"] {
 	display: block;
 }
 
-header h1#rodin-title {
+h1#rodin-title {
 	height: 28px;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 2em;
 	font-weight: bold;
 	color: orange;
 	margin: 0px;
+	text-align: left;
 }
 
 .rodin-message {
@@ -352,7 +353,8 @@ button#global-search-button.refresh {
 	text-align: left;
     font-size: 16px;
 	cursor: pointer;
-	padding: 5px 0px;
+	padding: 5px 0px 6px;
+	margin-top: 1px;
 }
 
 #rodin-expansion-header span {

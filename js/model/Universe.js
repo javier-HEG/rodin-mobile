@@ -113,8 +113,8 @@ function Universe(data) {
 				documentSources.splice(i, 1);
 
 		for (var i = 0; i < thesaurusSources.length; i++)
-			if (documentSources[i].id === instanceId)
-				documentSources.splice(i, 1);
+			if (thesaurusSources[i].id === instanceId)
+				thesaurusSources.splice(i, 1);
 
 		for (var i = 0; i < lodSources.length; i++)
 			if (lodSources[i].id === instanceId)

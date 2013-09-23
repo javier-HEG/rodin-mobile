@@ -12,7 +12,9 @@ if ($rodinSession->isUserLoggedIn()) {
 
 	<header role="banner" class="clearfix">
 		<div class="container">
-			<h1 id="rodin-title" class="four column">RODIN</h1>
+			<div class="sixteen columns">
+				<h1 id="rodin-title">RODIN</h1>
+			</div>
 		</div>
 	</header>
 
@@ -218,7 +220,9 @@ if ($rodinSession->isUserLoggedIn()) {
 
 	<header role="banner" class="clearfix">
 		<div class="container">
-			<h1 id="rodin-title" class="four column">RODIN</h1>
+			<div class="sixteen columns">
+				<h1 id="rodin-title">RODIN</h1>
+			</div>
 		</div>
 	</header>
 

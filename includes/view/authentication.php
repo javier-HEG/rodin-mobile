@@ -16,7 +16,7 @@
 		?>
 
 		<div class="container">
-			<div class="four columns">
+			<div class="five columns">
 				<?php
 
 				if ($rodinSession->timeSinceLastAttempt() > 60)
@@ -33,15 +33,15 @@
 
 					?>
 					<h1>Login page</h1>
-					<form method = "post">
-						<label for = "username">Username</label>
-						<input type = "text" name = "username" />
-						<label for = "password">Password</label>
-						<input type = "password" name = "password" />
+					<form method="post">
+						<label for="username">Username</label>
+						<input type="text" name="username" style="text-align: center;" />
+						<label for="password">Password</label>
+						<input type="password" name="password" style="text-align: center;"/>
 
-						<input type = "hidden" name = "action" value = "login" />
+						<input type="hidden" name="action" value="login" />
 
-						<button type = "submit">Submit</button>
+						<button type="submit">Submit</button>
 					</form>
 					<?php
 
