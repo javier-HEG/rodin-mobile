@@ -23,10 +23,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
 
 	<!-- CSS -->
-	<!-- + Skeleton -->
-	<link rel="stylesheet" href="tools/skeleton/stylesheets/base.css"/>
-	<link rel="stylesheet" href="tools/skeleton/stylesheets/skeleton.css"/>
-	<link rel="stylesheet" href="tools/skeleton/stylesheets/layout.css"/>
 	<!-- + Mmenu -->
 	<link rel="stylesheet" href="css/mmenu.css"/>
 	<!-- + HTML5BP -->
@@ -35,8 +31,7 @@
 	<!-- + Responsive (ours) -->
 	<link rel="stylesheet" href="css/atmosphere.css">
 	<!--   - Media query dependent CSS -->
-	<!--   - More media queries (to add when design is stable) -->
-	<link  rel="stylesheet" href="css/mobile-nav.css" media="screen and (min-width: 320px) and (max-width: 1024px)">
+	<link  rel="stylesheet" href="css/mobile-nav.css" media="screen and (max-width: 1024px)">
 	<link  rel="stylesheet" href="css/smartphone.css" media="screen and (min-width:320px) and (max-width:480px)">
 	<link  rel="stylesheet" href="css/tablet.css" media="screen and (min-width: 481px) and (max-width: 767px)">
 	<link  rel="stylesheet" href="css/ipad.css" media="screen and (min-width: 768px) and (max-width: 1024px)">

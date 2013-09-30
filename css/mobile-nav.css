@@ -1,29 +1,43 @@
 /**
- * Styles applied when media="screen and (min-width: 320px) and (max-width: 1024px)"
+ * Media independent layout file
+ *
+ * Index
+ * =====
+ * A. Temporal
+ * 1. Basic styling for all around elements
+ * 2. Sliding option panels, enclosing Mmenu
+ * 3. Overriding Mmenu styles
+ * 4. Styles for Rodin specific content
+ * 5. Rodin subject expansion
+ * 6. Rodin results
+ *
+ * X. Query for HD medias
+ * Y. Base 960 Grid
+ * Z. Using the touch scrolling on capable devices
+ *    styles used by js/vendor/overthrow.js
  */
 
-#mediateller:after {
-	content: "Mobile Nav (320px - 1024px";
-}
-
+/**
+ * A. Temporal development rules
+ */
 #mediateller {
 	position: fixed;
 	bottom: 0px;
 	right: 0px;
 	padding: 2px 6px;
-	text-align: right;
-	font-size: 12px;
-	color: rgba(0, 0, 0, 0.1);
 }
 
-/*
- * Styles overiding Skeleton - tools/skeleton/stylesheets
+/**
+ * 1. Basic styling for all around elements
  */
-h1 {
-	font-size: 24px;
-	line-height: 24px;
+body {
+	max-width: 1300px;
+	margin: 0 auto;
+	position: relative;
+	overflow: auto;
 }
 
+/* Inputs and buttons (overriding Skeleton) */
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -32,7 +46,6 @@ select {
 	width: 100%;
 	padding-left: 0px;
 	padding-right: 0px;
-	/*margin-bottom: 0px;*/
 }
 
 .button,
@@ -44,23 +57,15 @@ input[type="button"] {
 	margin-bottom: 4px;
 }
 
-/*
- * Styles overriding the Mmenu styles - mmenu.css
- * (sliding lateral menus)
+/**
+ * 2. Sliding option panels, enclosing Mmenu
  */
-.mm-menu {
-	background-color: orange;
-}
 
-.mm-menu * {
-	text-shadow: none;
-}
-
+/*
+ * 3. Overriding Mmenu styles
+ */
 #header a,
 .header a {
-	background: center center no-repeat transparent;
-	background-image: url(../img/mimiGlyphs/19.png);
-
 	display: block;
 	width: 20px;
 	height: 20px;
@@ -73,40 +78,11 @@ input[type="button"] {
 .header a.user-settings {
 	left: auto;
 	right: 10px;
-	background-image: url(../img/mimiGlyphs/13-inverted.png);
 	top: -28px;
-}
-
-.mm-menu a {
-	color: #666666;
 }
 
 .mm-menu > ul {
 	padding: 0px;
-}
-
-.mm-menu li.mm-label {
-	background-color: #000000;
-	color: #FFA500;
-	font-size: 12px;
-	text-shadow: none;
-	font-size: 16px;
-	line-height: 40px;
-}
-
-.mm-menu li, .mm-menu li > a, .mm-menu li > span {
-	color: black;
-	text-indent: 0px;
-}
-
-.mm-menu a.mm-subopen:after, .mm-menu a.mm-subclose:before {
-	border-color: inherit;
-}
-
-.mm-menu a.mm-subclose {
-	text-transform: uppercase;
-	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
-	color: orange;
 }
 
 .mm-menu li > a {
@@ -125,49 +101,20 @@ input[type="button"] {
 	padding-left: 45px;
 }
 
-.mm-menu a.mm-subopen:hover + span {
-	background-color: rgba(0, 0, 0, 0.05);
-}
-
 .mm-menu li {
 	height: 40px;
-	border-bottom-width: 0px;
-	line-height: 40px;
 }
 
 .mm-menu li.mm-subtitle {
 	height: auto;
 }
 
-.mm-menu li.mm-subtitle:after {
-	border-bottom-width: 0px;
-}
-
-.mm-menu li.mm-selected {
-	background: rgba(0, 0, 0, 0.08) no-repeat 97% 50% url(../img/mimiGlyphs/54-full.png);
-	font-weight: bolder;
-	cursor: pointer;
-}
-
-.mm-menu li.mm-unselected {
-	background: transparent no-repeat 97% 50% url(../img/mimiGlyphs/54-empty.png);
-	cursor: pointer;
-}
-
-.mm-menu li.mm-selected > span {
-    background: none;
-}
-
 .mm-menu li.label {
 	height: auto;
-	background-color: rgba(1, 1, 1, 0.2);
-	line-height: 16px;
-    padding: 2px 0 4px;
+	padding: 2px 0 4px;
 }
 
 .mm-menu li.text {
-	white-space: normal;
-	line-height: 16px;
 	height: auto;
 }
 
@@ -182,177 +129,73 @@ input[type="button"] {
 
 .mm-menu li input[type="text"],
 .mm-menu li input[type="password"] {
-	background: orange no-repeat 100% 50% url(../img/mimiGlyphs/39.png);
-	color: black;
+	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
-	text-align: center;
-	width: 90%;
-	border: none;
-	font-size: 16px;
 	position: relative;
 	margin-bottom: 0px;
 }
 
-.mm-menu li input[type="text"]:focus {
-	color: black;
-	background: orange none;
-	border: none;
-	border-bottom: 1px solid rgba(0,0,0,0.1);
-	box-shadow: none;
-}
-
 .mm-menu li input[type="password"] {
-	background: rgba(255,220,255,0.25) no-repeat 98% 50% url(../img/mimiGlyphs/39.png);
-	border: 1px solid rgba(0,0,0,0.1);
 	margin-bottom: 3px;
 	margin-top: 4px;
 }
 
-.mm-menu li input[type="password"]:focus {
-	background: none;
-	box-shadow: none;
-}
-
 /* Buttons for language options */
 .mm-menu li input.language[type="button"] {
-	vertical-align: middle;
 	width: 30%;
-}
-
-.mm-menu li input.language[type="button"]:disabled {
-	background: rgba(0, 0, 0, 0.2);
-	color: rgba(0, 0, 0, 0.5);
-	border: none;
-	text-shadow: none;
 }
 
 /* Buttons for setting actions */
 .mm-menu li input.action[type="button"] {
-	vertical-align: middle;
 	width: 45%;
 }
 
 /*
- * Using the touch scrolling on capable devices,
- * styles used by js/vendor/overthrow.js
- */
-.overthrow-enabled .overthrow {
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-}
-
-/*
- * Styles for Rodin specific content
+ * 4. Styles for Rodin specific content
  */
 header[role="banner"] {
-	width: 100%;
-	background-color: black;
-	padding: 6px 0px;
 	display: block;
+	width: 100%;
+	padding: 6px 0px;
 }
 
 h1#rodin-title {
-	height: 28px;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 2em;
-	font-weight: bold;
-	color: orange;
 	margin: 0px;
-	text-align: left;
 }
 
+/* Rodin rolling message system */
 .rodin-message {
 	width: 100%;
 	padding: 3px 0px;
 }
 
-.rodin-message-error {
-	background-color: pink;
-}
-
-.rodin-message-info {
-	background-color: lightgreen;
-}
-
-.rodin-message-debug {
-	background-color: lightsteelblue;
-}
-
 /* Rodin search bar */
 #global-search-query {
-	border: none;
-	box-shadow: none;
-	border-radius: 8px 0px 0px 8px;
-	width: 75%;
 	display: inline;
+	padding: 4px 0;
 	margin: 1px -5px 3px 5px;
-	font-size: 16px;
-    padding: 4px 0;
-    text-align: center;
+	width: 75%;
 }
 
 #global-search-form {
 	margin-bottom: 0px;
-	line-height: 26px;
-    vertical-align: top;
 }
 
 #global-search-form button {
 	margin-bottom: 4px;
-    vertical-align: middle;
-	background-color: rgba(255,255,255,0.25);
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
-	border: 1px solid rgba(255,255,255,0.5);
 	height: 29px;
 	width: 7%;
-}
-
-button#global-search-button {
-	background-color: rgba(255,255,255,0.4);
-	background-image: url(../img/mimiGlyphs/7.png);
-	border-radius: 0 8px 8px 0;
-}
-
-button#global-search-button:disabled {
-	background-image: url(../img/mimiGlyphs/7-disabled.png);
-}
-
-button#global-search-button.refresh {
-	background-image: url(../img/mimiGlyphs/45.png);
 }
 
 #search-history {
 	display: inline;
 }
 
-#history-back {
-	background-color: rgba(255,255,0,0.4);
-	background-image: url(../img/mimiGlyphs/15.png);
-	border-radius: 8px 0px 0px 8px;
-}
-
-#history-back:disabled {
-	background-image: url(../img/mimiGlyphs/15-disabled.png);
-}
-
-#history-forward {
-	background-image: url(../img/mimiGlyphs/16.png);
-	border-radius: 0px 8px 8px 0px;
-}
-
-#history-forward:disabled {
-	background-image: url(../img/mimiGlyphs/16-disabled.png);
-}
-
-/* Rodin subject expansion */
+/**
+ * 5. Rodin subject expansion
+ */
 #rodin-expansion-header {
-    background: rgba(0, 0, 0, 0.16) no-repeat 98% 40% url(../img/mimiGlyphs/44.png);
-	border-radius: 8px 8px 0px 0px;
-	text-align: left;
-    font-size: 16px;
-	cursor: pointer;
 	padding: 5px 0px 6px;
 	margin-top: 1px;
 }
@@ -362,10 +205,7 @@ button#global-search-button.refresh {
 }
 
 #rodin-expansion-terms {
-	background-color: rgba(0, 0, 0, 0.08);
-	border-radius: 0px 0px 8px 8px;
 	margin-bottom: 2px;
-	font-size: 14px;
 }
 
 #rodin-expansion-terms ul {
@@ -373,24 +213,17 @@ button#global-search-button.refresh {
 }
 
 #rodin-expansion-terms ul li {
-	border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 6px 6px 6px 6px;
-    float: left;
-    line-height: 14px;
-    text-align: left;
-    margin: 3px 3px 1px 1px;
-    padding: 4px;
+	float: left;
+	margin: 3px 3px 1px 1px;
+	padding: 4px;
 }
 
 #rodin-expansion-terms li.selected {
-	border: 2px solid orange;
 	margin: 2px 2px 0px 0px;
 }
 
 /* - When Rodin subject expansion is closed */
 #rodin-expansion-header.closed {
-	background-image: url(../img/mimiGlyphs/43.png);
-	border-radius: 8px;
 	padding-bottom: 3px;
 	margin-bottom: 2px;
 }
@@ -401,13 +234,11 @@ button#global-search-button.refresh {
 
 /* - When Rodin suject expansion is unavailable */
 #rodin-expansion-header.unavailable {
-	background-image: none;
-	cursor: default;
 	display: none;
 }
 
 /**
- * Rodin results
+ * 6. Rodin results
  */
 
 .full-width {
@@ -416,24 +247,16 @@ button#global-search-button.refresh {
 }
 
 .rodin-result {
-	text-align: left;
-	border: 1px solid rgba(0, 0, 0, 0.1);
 	margin-bottom: 6px;
 	padding: 6px;
 }
 
 .rodin-result h1 {
-	font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-size: 18px;
-	line-height: 20px;
 	margin: 0px;
 	margin-bottom: 10px;
 }
 
 .rodin-result p {
-	font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-size: 14px;
-	line-height: 16px;
 	margin: 0px;
 	margin-bottom: 10px;
 }
@@ -441,43 +264,113 @@ button#global-search-button.refresh {
 .rodin-result p.summary,
 .rodin-result p.content {
 	padding: 0px 4px;
-	font-style: italic;
-}
-
-.rodin-result p.authors:before {
-    content: "By ";
-}
-
-.rodin-result p.publication .date:before {
-    content: "Publication date: ";
 }
 
 .rodin-result p.publication {
-    margin-bottom: 0px;
+	margin-bottom: 0px;
 }
 
 .rodin-result p.publication a {
-	background-repeat: no-repeat;
-	background-image: url(../img/mimiGlyphs/47.png);
 	float: right;
 	width: 16px;
 	height: 16px;
 }
 
 .rodin-result .sources {
-	text-align: right;
 	padding: 0px 2px;
 }
 
 .rodin-result .sources img {
-	border: 1px solid burlywood;
 	padding: 2px;
 }
 
 .no-margin-bottom {
 	margin-bottom: 0px;
 }
-.universe-options {
+
+.sliding-panels {
 	width: 100%;
 }
 
+/**
+ * X. Query for HD medias
+ */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (min-resolution: 144dpi) {
+	
+}
+
+/**
+ * Y. 960 Grid
+ * Code based on:
+ * Skeleton V1.2, Copyright 2011, Dave Gamache (www.getskeleton.com)
+ * Free to use under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ * 6/20/2012
+ */
+
+.container                        { position: relative; width: 960px; margin: 0 auto; padding: 0; }
+.container .column,
+.container .columns               { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
+.row                              { margin-bottom: 20px; }
+
+/* Nested Column Classes */
+.column.alpha, .columns.alpha     { margin-left: 0; }
+.column.omega, .columns.omega     { margin-right: 0; }
+
+/* Base Grid */
+.container .one.column,
+.container .one.columns           { width: 40px;  }
+.container .two.columns           { width: 100px; }
+.container .three.columns         { width: 160px; }
+.container .four.columns          { width: 220px; }
+.container .five.columns          { width: 280px; }
+.container .six.columns           { width: 340px; }
+.container .seven.columns         { width: 400px; }
+.container .eight.columns         { width: 460px; }
+.container .nine.columns          { width: 520px; }
+.container .ten.columns           { width: 580px; }
+.container .eleven.columns        { width: 640px; }
+.container .twelve.columns        { width: 700px; }
+.container .thirteen.columns      { width: 760px; }
+.container .fourteen.columns      { width: 820px; }
+.container .fifteen.columns       { width: 880px; }
+.container .sixteen.columns       { width: 940px; }
+
+.container .one-third.column      { width: 300px; }
+.container .two-thirds.column     { width: 620px; }
+
+/* Skeleton's column clearing */
+.container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+/* Use clearfix class on parent to clear nested columns,
+or wrap each row of columns in a <div class="row"> */
+.clearfix:before,
+.clearfix:after,
+.row:before,
+.row:after {
+	content: '\0020';
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.row:after,
+.clearfix:after {
+	clear: both;
+}
+
+.row,
+.clearfix {
+	zoom: 1;
+}
+
+/**
+ * Z. Using the touch scrolling on capable devices,
+ *    styles used by js/vendor/overthrow.js
+ */
+.overthrow-enabled .overthrow {
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}

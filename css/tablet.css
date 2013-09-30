@@ -1,15 +1,56 @@
 /**
- * Styles applied when media="screen and (min-width: 481px) and (max-width: 767px) 
+ * Styles applied when:
+ * - media="screen and (min-width: 481px) and (max-width: 767px) 
  */
 
+/**
+ * A. Temporal development rules
+ */
 #mediateller:after {
 	content: "Tablet (481px - 767px)";
 }
 
-#header a, .header a {
+/*
+ * 3. Overriding Mmenu styles
+ */
+#header a,
+.header a {
 	left: 0px;
 }
 
-#header a.user-settings, .header a.user-settings {
+#header a.user-settings,
+.header a.user-settings {
 	right: 0px;
 }
+
+/**
+ * Y. Base 960 Grid
+ * Code based on:
+ * Skeleton V1.2, Copyright 2011, Dave Gamache (www.getskeleton.com)
+ * Free to use under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ * 6/20/2012
+ */
+.container { width: 420px; }
+.container .columns,
+.container .column { margin: 0; }
+
+.container .one.column,
+.container .one.columns,
+.container .two.columns,
+.container .three.columns,
+.container .four.columns,
+.container .five.columns,
+.container .six.columns,
+.container .seven.columns,
+.container .eight.columns,
+.container .nine.columns,
+.container .ten.columns,
+.container .eleven.columns,
+.container .twelve.columns,
+.container .thirteen.columns,
+.container .fourteen.columns,
+.container .fifteen.columns,
+.container .sixteen.columns,
+.container .one-third.column,
+.container .two-thirds.column { width: 420px; }

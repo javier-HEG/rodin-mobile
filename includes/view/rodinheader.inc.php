@@ -18,7 +18,7 @@ if ($rodinSession->isUserLoggedIn()) {
 		</div>
 	</header>
 
-	<div class="universe-options">
+	<div class="sliding-panels">
 		<div class="container header">
 			<a href="#menu-left"></a>
 			<span id="header-universe-name">&nbsp;</span>
