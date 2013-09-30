@@ -1,6 +1,3 @@
 [submodule "tools/rodin-client"]
 	path = tools/rodin-client
 	url = git@bitbucket.org:belmontej_heg/rodin-client.git
-[submodule "tools/skeleton"]
-	path = tools/skeleton
-	url = https://github.com/dhgamache/Skeleton.git
