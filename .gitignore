@@ -3,3 +3,4 @@ nbproject
 js/vendor
 img/touch
 img/startup
+config/*.inc.php

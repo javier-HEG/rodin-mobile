@@ -65,6 +65,9 @@
 	if ($rodinSession->isUserLoggedIn()) {
 
 		?>
+		<script>
+			var rodinResources = "<?php echo $resourceBaseUrl; ?>";
+		</script>
 		<script src="js/vendor/jquery.mmenu.js"></script>
 		<script src="js/vendor/overthrow.js"></script>
 		<!-- Broker class -->

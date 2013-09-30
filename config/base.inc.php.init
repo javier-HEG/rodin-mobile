@@ -1,6 +1,10 @@
 <?php
 
 // Database passwords
+
 // Server API key
+
+// Server data
+$resourceBaseUrl = "";
 
 ?>

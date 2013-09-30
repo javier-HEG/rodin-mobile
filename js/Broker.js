@@ -2,8 +2,7 @@
  * Javascript broker
  */
 function Broker() {
-	var rodinResources = "http://localhost:8080/rodin_server/resources/";
-
+	
 	/**
 	 * Makes a REST call to the resources on the server
 	 * @param {type} method POST, GET, etc.
