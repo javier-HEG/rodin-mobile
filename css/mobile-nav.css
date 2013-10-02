@@ -233,7 +233,7 @@ h1#rodin-title {
 
 /* - When Rodin suject expansion is unavailable */
 #rodin-expansion-header.unavailable {
-	display: none;
+	display: block;
 }
 
 /**
