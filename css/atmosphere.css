@@ -17,7 +17,7 @@
  * 
  */
 
-/**
+ /**
  * A. Temporal development rules
  */
 #mediateller:after {
@@ -34,10 +34,15 @@
  * 1. Basic styling for all around elements
  */
 body {
+	vertical-align: baseline;
+	text-align: center;
 	background-color: cornsilk;
 	color: #444;
-	text-align: center;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    line-height: 1.4;
+	-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+	-webkit-text-size-adjust: 100%;
 }
 
 h1 {
@@ -210,12 +215,10 @@ header[role="banner"] {
 
 h1#rodin-title {
 	color: orange;
-	font-family: 'Open Sans', sans-serif;
 	font-size: 2em;
 	text-align: left;
 	font-weight: bold;
-	height: 28px;
-	margin: 0px;
+	line-height: 24px;
 }
 
 /* Rodin rolling message system */

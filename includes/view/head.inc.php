@@ -19,19 +19,16 @@
 	<meta name="msapplication-TileImage" content="img/icons/rodin-144.png">
 	<meta name="msapplication-TileColor" content="#000000">
 
-	<!-- Logo font -->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
-
 	<!-- CSS -->
 	<!-- + Mmenu -->
 	<link rel="stylesheet" href="css/mmenu.css"/>
 	<!-- + HTML5BP -->
 	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/main.css">
-	<!-- + Responsive (ours) -->
+	<!-- + Responsive, styling based on media geometry -->
+	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/atmosphere.css">
 	<!--   - Media query dependent CSS -->
-	<link  rel="stylesheet" href="css/mobile-nav.css" media="screen and (max-width: 1024px)">
+	<link  rel="stylesheet" href="css/mobile-nav.css" media="screen">
 	<link  rel="stylesheet" href="css/smartphone.css" media="screen and (min-width:320px) and (max-width:480px)">
 	<link  rel="stylesheet" href="css/tablet.css" media="screen and (min-width: 481px) and (max-width: 767px)">
 	<link  rel="stylesheet" href="css/ipad.css" media="screen and (min-width: 768px) and (max-width: 1024px)">

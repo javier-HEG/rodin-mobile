@@ -13,8 +13,6 @@
  *
  * X. Query for HD medias
  * Y. Base 960 Grid
- * Z. Using the touch scrolling on capable devices
- *    styles used by js/vendor/overthrow.js
  */
 
 /**
@@ -22,8 +20,8 @@
  */
 #mediateller {
 	position: fixed;
-	bottom: 0px;
-	right: 0px;
+	bottom: 0;
+	right: 0;
 	padding: 2px 6px;
 }
 
@@ -44,8 +42,8 @@ input[type="email"],
 textarea,
 select {
 	width: 100%;
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .button,
@@ -70,7 +68,7 @@ input[type="button"] {
 	width: 20px;
 	height: 20px;
 	position: absolute;
-	top: 0px;
+	top: 0;
 	left: 10px;
 }
 
@@ -82,7 +80,7 @@ input[type="button"] {
 }
 
 .mm-menu > ul {
-	padding: 0px;
+	padding: 0;
 }
 
 .mm-menu li > a {
@@ -120,11 +118,11 @@ input[type="button"] {
 
 .mm-menu li.text p {
 	padding: 4px;
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 .mm-menu form {
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 .mm-menu li input[type="text"],
@@ -133,7 +131,7 @@ input[type="button"] {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 .mm-menu li input[type="password"] {
@@ -157,17 +155,18 @@ input[type="button"] {
 header[role="banner"] {
 	display: block;
 	width: 100%;
-	padding: 6px 0px;
+	padding: 6px 0;
 }
 
 h1#rodin-title {
-	margin: 0px;
+	height: 28px;
+	margin: 0;
 }
 
 /* Rodin rolling message system */
 .rodin-message {
 	width: 100%;
-	padding: 3px 0px;
+	padding: 3px 0;
 }
 
 /* Rodin search bar */
@@ -179,7 +178,7 @@ h1#rodin-title {
 }
 
 #global-search-form {
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 #global-search-form button {
@@ -196,7 +195,7 @@ h1#rodin-title {
  * 5. Rodin subject expansion
  */
 #rodin-expansion-header {
-	padding: 5px 0px 6px;
+	padding: 5px 0 6px;
 	margin-top: 1px;
 }
 
@@ -219,7 +218,7 @@ h1#rodin-title {
 }
 
 #rodin-expansion-terms li.selected {
-	margin: 2px 2px 0px 0px;
+	margin: 2px 2px 0 0;
 }
 
 /* - When Rodin subject expansion is closed */
@@ -243,7 +242,7 @@ h1#rodin-title {
 
 .full-width {
 	width: 100%;
-	padding: 2px 0px;
+	padding: 2px 0;
 }
 
 .rodin-result {
@@ -252,22 +251,22 @@ h1#rodin-title {
 }
 
 .rodin-result h1 {
-	margin: 0px;
+	margin: 0;
 	margin-bottom: 10px;
 }
 
 .rodin-result p {
-	margin: 0px;
+	margin: 0;
 	margin-bottom: 10px;
 }
 
 .rodin-result p.summary,
 .rodin-result p.content {
-	padding: 0px 4px;
+	padding: 0 4px;
 }
 
 .rodin-result p.publication {
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 .rodin-result p.publication a {
@@ -277,7 +276,7 @@ h1#rodin-title {
 }
 
 .rodin-result .sources {
-	padding: 0px 2px;
+	padding: 0 2px;
 }
 
 .rodin-result .sources img {
@@ -285,7 +284,7 @@ h1#rodin-title {
 }
 
 .no-margin-bottom {
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 .sliding-panels {
@@ -296,8 +295,8 @@ h1#rodin-title {
  * X. Query for HD medias
  */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-	only screen and (min-resolution: 144dpi) {
-	
+only screen and (min-resolution: 144dpi) {
+
 }
 
 /**
@@ -310,6 +309,7 @@ h1#rodin-title {
  */
 
 .container                        { position: relative; width: 960px; margin: 0 auto; padding: 0; }
+.container:after                  { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
 .container .column,
 .container .columns               { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
 .row                              { margin-bottom: 20px; }
@@ -339,38 +339,3 @@ h1#rodin-title {
 
 .container .one-third.column      { width: 300px; }
 .container .two-thirds.column     { width: 620px; }
-
-/* Skeleton's column clearing */
-.container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
-/* Use clearfix class on parent to clear nested columns,
-or wrap each row of columns in a <div class="row"> */
-.clearfix:before,
-.clearfix:after,
-.row:before,
-.row:after {
-	content: '\0020';
-	display: block;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	height: 0;
-}
-
-.row:after,
-.clearfix:after {
-	clear: both;
-}
-
-.row,
-.clearfix {
-	zoom: 1;
-}
-
-/**
- * Z. Using the touch scrolling on capable devices,
- *    styles used by js/vendor/overthrow.js
- */
-.overthrow-enabled .overthrow {
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-}
