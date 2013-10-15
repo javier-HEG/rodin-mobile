@@ -42,7 +42,7 @@
 					</div>
 
 					<div id="rodin-expansion-header" class="six columns closed unavailable">
-						<span id="rodin-expansion-count">Search refinement space</span>
+						<span data-l10n-id="expansionSpace" id="rodin-expansion-count"></span>
 						<span id="rodin-expansion-selection"></span>
 					</div>
 					<div id="rodin-expansion-terms" class="sixteen columns closed">

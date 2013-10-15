@@ -91,4 +91,20 @@
 	}
 
 	?>
+
+	<!-- L20n setup -->
+	<link rel="localization" href="locales/manifest.json">
+	<script type="application/l10n-data+json">
+		{
+			"relatedTermsCount": 0
+		}
+	</script>
+	<!-- Include the dist version of L20n -->
+	<script src="js/vendor/l20n.js"></script>
+	<script>
+		// L20n and document.l10n are now available
+		document.l10n.ready(function() {
+			console.log("Document's context is ready");
+		});
+	</script> 
 </head>

@@ -287,13 +287,11 @@ function SubjectExpansionObserver() {
 				});
 				$("#rodin-expansion-terms ul:first").append(item);
 			}
-			;
 
-			if (terms.length > 1) {
-				$("#rodin-expansion-count").text(terms.length + " related terms");
-			} else {
-				$("#rodin-expansion-count").text("1 related term");
-			}
+			$("#rodin-expansion-count").attr("data-l10n-id", "expansionCount")
+
+			document.l10n.updateData( { "relatedTermsCount": terms.length } );
+			document.l10n.localizeNode($("#rodin-expansion-count").get(0))
 
 			$("#rodin-expansion-header").removeClass("unavailable");
 		}
