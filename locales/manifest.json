@@ -1,11 +1,11 @@
 {
   "locales": [
-    "en-US",
+    "en",
     "de",
     "fr",
     "it"
   ],
-  "default_locale": "en-US",
+  "default_locale": "en",
   "resources": [
     "./{{locale}}.lol"
   ]

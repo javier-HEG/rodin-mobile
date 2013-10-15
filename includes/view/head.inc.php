@@ -107,6 +107,7 @@
 
 		document.l10n.ready(function() {
 			if (!l10nLanguageSet && user != null) {
+				l10nLanguageSet = true;
 				user.notifyObservers();
 			}
 

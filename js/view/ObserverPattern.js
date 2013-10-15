@@ -42,13 +42,16 @@ function UserObserver() {
 
 UserObserver.prototype.updateLocale = function() {
 	document.l10n.requestLocales(user.getLanguage());
-	l10nLanguageSet = true;
+
+	$("input.language:button").prop("disabled", false);
+	$("#language-select-" + user.getLanguage()).prop("disabled", true);
 }
 
 UserObserver.prototype.notify = function() {
 	$("#user-name-input").val(user.getRealName());
 
-	if (l10nReady && !l10nLanguageSet) {
+	if (l10nReady) {
+		l10nLanguageSet = true;
 		this.updateLocale();
 	}
 };

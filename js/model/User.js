@@ -50,6 +50,18 @@ function User(username) {
 		return language;
 	}
 
+	this.setLanguage = function(lang) {
+		language = lang;
+
+		// Save change in server
+		if (jsonRepresentation.userlang !== language) {
+			jsonRepresentation.userlang = language;
+			saveUserInServer();
+		}
+
+		this.notifyObservers();
+	}
+
 	this.getUserName = function() {
 		return username;
 	};
@@ -161,8 +173,7 @@ function User(username) {
 	this.initUserDetailsCallback = function(data, status, xhr) {
 		jsonRepresentation = data;
 		realname = data.name;
-
-		language = 'fr';
+		language = data.userlang;
 
 		if (data.hasOwnProperty('universeid'))
 			currentUniverseId = data.universeid;

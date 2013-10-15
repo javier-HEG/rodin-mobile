@@ -175,9 +175,9 @@ if ($rodinSession->isUserLoggedIn()) {
 				<li class="label">Language</li>
 				<li>
 					<span style="height: 40px;">
-						<input class="language" type="button" value = "En" disabled="disabled" />
-						<input class="language" type="button" value = "Fr" />
-						<input class="language" type="button" value = "De" />
+						<input id="language-select-en" class="language" type="button" value = "En" />
+						<input id="language-select-fr" class="language" type="button" value = "Fr" />
+						<input id="language-select-de" class="language" type="button" value = "De" />
 					</span>
 				</li>
 				<li class="label">Session</li>
@@ -188,6 +188,10 @@ if ($rodinSession->isUserLoggedIn()) {
 		</nav>
 		<script>
 			$(function() {
+				$("input.language:button").click(function() {
+					user.setLanguage($(this).val().toLowerCase());
+				});
+
 				$("#user-name-setting").submit(function(event) {
 					event.preventDefault();
 
