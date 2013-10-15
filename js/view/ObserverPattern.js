@@ -40,8 +40,17 @@ UserObserver.prototype.constructor = UserObserver;
 function UserObserver() {
 }
 
+UserObserver.prototype.updateLocale = function() {
+	document.l10n.requestLocales(user.getLanguage());
+	l10nLanguageSet = true;
+}
+
 UserObserver.prototype.notify = function() {
 	$("#user-name-input").val(user.getRealName());
+
+	if (l10nReady && !l10nLanguageSet) {
+		this.updateLocale();
+	}
 };
 
 /**

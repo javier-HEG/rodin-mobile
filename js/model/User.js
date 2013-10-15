@@ -6,6 +6,7 @@ User.prototype.constructor = User;
 
 function User(username) {
 	var realname = '';
+	var language = '';
 
 	var universes = [];
 	var currentUniverseId = null;
@@ -43,6 +44,10 @@ function User(username) {
 		} else {
 			return globalSearches[globalSearches.length-1];
 		}
+	}
+
+	this.getLanguage = function() {
+		return language;
 	}
 
 	this.getUserName = function() {
@@ -156,6 +161,8 @@ function User(username) {
 	this.initUserDetailsCallback = function(data, status, xhr) {
 		jsonRepresentation = data;
 		realname = data.name;
+
+		language = 'fr';
 
 		if (data.hasOwnProperty('universeid'))
 			currentUniverseId = data.universeid;

@@ -102,9 +102,15 @@
 	<!-- Include the dist version of L20n -->
 	<script src="js/vendor/l20n.js"></script>
 	<script>
-		// L20n and document.l10n are now available
+		var l10nReady = false;
+		var l10nLanguageSet = false;
+
 		document.l10n.ready(function() {
-			console.log("Document's context is ready");
+			if (!l10nLanguageSet && user != null) {
+				user.notifyObservers();
+			}
+
+			l10nReady = true;
 		});
-	</script> 
+	</script>
 </head>
