@@ -29,17 +29,17 @@ if ($rodinSession->isUserLoggedIn()) {
 			<ul>
 				<li data-l10n-id="universeOptions" class="Label"></li>
 				<!-- Current universe options -->
-				<li id="config-current-universe-label" class="label">About current universe</li>
+				<li id="config-current-universe-label" class="label" data-l10n-id="universeOptionsAboutCurrent"></li>
 				<li>
-					<span id="current-universe-label">Current universe</span>
+					<span id="current-universe-label" data-l10n-id="universeOptionsCurrent">Current universe</span>
 					<ul id="settings-ul">
-						<li class="label">Name</li>
+						<li class="label" data-l10n-id="universeOptionsName"></li>
 						<li>
 							<form id="universe-settings">
 								<input id="universe-name-setting" type="text" value="Default" />
 							</form>
 						</li>
-						<li class="label">Sources</li>
+						<li class="label"  data-l10n-id="universeOptionsCurrentSources"></li>
 						<li>
 							<span>Datasources</span>
 							<ul id="doc-sources-ul"></ul>
@@ -55,37 +55,35 @@ if ($rodinSession->isUserLoggedIn()) {
 					</ul>
 				</li>
 				<li>
-					<span id="remove-current-label">Remove universe</span>
+					<span id="remove-current-label" data-l10n-id="universeOptionsRemoveUniverse">Remove universe</span>
 					<ul id="remove-current-ul">
-						<li class="label">Warning</li>
-						<li class="text">
-							<p>Are you sure you want to remove the current universe?</p>
-						</li>
-						<li class="label">Action</li>
+						<li class="label" data-l10n-id="universeOptionsRemoveWarning"></li>
+						<li class="text"><p data-l10n-id="universeOptionsRemoveWarningText" /></li>
+						<li class="label"></li>
 						<li>
 							<span style="height: 40px;">
-								<input class="action" type="button" value="Cancel" onclick="$('#remove-current-ul').trigger('close');" />
-								<input id="remove-current-button" class="action" type="button" value="Remove" />
+								<input data-l10n-id="cancelButton" class="action" type="button" onclick="$('#remove-current-ul').trigger('close');" />
+								<input data-l10n-id="removeButton" id="remove-current-button" class="action" type="button" />
 							</span>
 						</li>
 					</ul>
 				</li>
 				<!-- Universe selection options -->
-				<li id="universe-selection-label" class="label">Universe selection</li>
+				<li id="universe-selection-label" class="label" data-l10n-id="universeOptionsUniverseSelection"></li>
 				<li id="create-universe-option">
-					<span>Create universe</span>
+					<span data-l10n-id="universeOptionsCreateUniverse">Create universe</span>
 					<ul id="new-universe-ul">
-						<li class="label">Name</li>
+						<li class="label" data-l10n-id="universeOptionsName"></li>
 						<li>
 							<form id="new-universe-form">
-								<input id="new-universe-name" type="text" value="Default" />
+								<input data-l10n-id="defaultInput" id="new-universe-name" type="text" value="" />
 							</form>
 						</li>
-						<li class="label">Action</li>
+						<li class="label"></li>
 						<li>
 							<span style="height: 40px;">
-								<input class="action" type="button" value="Cancel" onclick="$('#new-universe-ul').trigger('close');" />
-								<input class="action" type="button" value="Save" onclick="$('#new-universe-form').submit();" />
+								<input data-l10n-id="cancelButton" class="action" type="button" value="Cancel" onclick="$('#new-universe-ul').trigger('close');" />
+								<input data-l10n-id="saveButton" class="action" type="button" value="Save" onclick="$('#new-universe-form').submit();" />
 							</span>
 						</li>
 					</ul>
@@ -94,6 +92,11 @@ if ($rodinSession->isUserLoggedIn()) {
 		</nav>
 		<script>
 			$(function() {
+				//Necessary to attach a language id to the elements created by mmenu
+				$("a.mm-subclose:contains(Current universe)").attr("data-l10n-id", "universeOptionsCurrent");
+				$("a.mm-subclose:contains(Remove universe)").attr("data-l10n-id", "universeOptionsRemoveUniverse");
+				$("a.mm-subclose:contains(Create universe)").attr("data-l10n-id", "universeOptionsCreateUniverse");
+
 				$("#remove-current-button").click(function(event) {
 					event.preventDefault();
 

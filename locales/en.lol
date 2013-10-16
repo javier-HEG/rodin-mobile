@@ -11,6 +11,8 @@ import('common.lol')
 
 <cancelButton "" value: "Cancel">
 <saveButton "" value: "Save">
+<removeButton "" value: "Remove">
+<defaultInput "" value: "Default">
 
 /* ------------------------------------------------------------------------- */
 <userOptions "User options">
@@ -25,3 +27,13 @@ import('common.lol')
 
 /* ------------------------------------------------------------------------- */
 <universeOptions "Universe options">
+<universeOptionsAboutCurrent "About current universe">
+<universeOptionsCurrent "Configure current universe">
+<universeOptionsName "Name">
+<universeOptionsCurrentSources "Sources">
+<universeOptionsRemoveUniverse "Remove this universe">
+<universeOptionsRemoveWarning "Warning">
+<universeOptionsRemoveWarningText "Are you sure you want to remove the current universe?">
+<universeOptionsUniverseSelection "Universe selection">
+<universeOptionsCreateUniverse "Create universe">
+
