@@ -16,7 +16,10 @@
 
 			?>
 
-			<div id="mediateller">Media: </div>
+			<div id="mediateller">
+				<span data-l10n-id="mediaName"></span>
+				[<span data-l10n-id="currentWidth"></span>]
+			</div>
 
 			<!-- The search bar -->
 			<div class="full-width" style="background-color: tan;">

@@ -20,10 +20,6 @@
  /**
  * A. Temporal development rules
  */
-#mediateller:after {
-	content: "atmosphere.css";
-}
-
 #mediateller {
 	text-align: right;
 	font-size: 12px;

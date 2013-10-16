@@ -27,7 +27,7 @@ if ($rodinSession->isUserLoggedIn()) {
 
 		<nav id="menu-left">
 			<ul>
-				<li class="Label">Universe options</li>
+				<li data-l10n-id="universeOptions" class="Label"></li>
 				<!-- Current universe options -->
 				<li id="config-current-universe-label" class="label">About current universe</li>
 				<li>
@@ -94,7 +94,6 @@ if ($rodinSession->isUserLoggedIn()) {
 		</nav>
 		<script>
 			$(function() {
-
 				$("#remove-current-button").click(function(event) {
 					event.preventDefault();
 
@@ -143,53 +142,56 @@ if ($rodinSession->isUserLoggedIn()) {
 
 		<nav id="menu-right">
 			<ul>
-				<li class="Label">User options</li>
-				<li class="label">Name</li>
+				<li data-l10n-id="userOptions" class="Label"></li>
+				<li data-l10n-id="userOptionsName" class="label"></li>
 				<li>
 					<form id="user-name-setting">
 						<input id="user-name-input" type="text" />
 					</form>
 				</li>
-				<li class="label">Password</li>
+				<li data-l10n-id="userOptionsPassword" class="label"></li>
 				<li>
-					<span>Change password</span>
+					<span data-l10n-id="userOptionsChangePassword" id="change-password-span">Change password</span>
 					<ul>
-						<li class="label">Old password</li>
+						<li data-l10n-id="userOptionsOldPassword" class="label"></li>
 						<li>
 							<input id="old-password-input" type="password" />
 						</li>
-						<li class="label">New password</li>
+						<li data-l10n-id="userOptionsNewPassword" class="label"></li>
 						<li style="height: auto; padding-bottom: 4px">
 							<input id="new-password1-input" type="password" />
 							<input id="new-password2-input" type="password" />
 						</li>
-						<li class="label">Action</li>
+						<li class="label"></li>
 						<li>
 							<span style="height: 40px;">
-								<input class="action" type="button" value="Cancel" />
-								<input class="action" type="button" value="Save" />
+								<input data-l10n-id="cancelButton" class="action" type="button" />
+								<input data-l10n-id="saveButton" class="action" type="button" />
 							</span>
 						</li>
 					</ul>
 				</li>
-				<li class="label">Language</li>
+				<li data-l10n-id="userOptionsLanguage" class="label"></li>
 				<li>
 					<span style="height: 40px;">
-						<input id="language-select-en" class="language" type="button" value = "En" />
-						<input id="language-select-fr" class="language" type="button" value = "Fr" />
-						<input id="language-select-de" class="language" type="button" value = "De" />
+						<input id="language-select-en" class="language" type="button" value = "English" />
+						<input id="language-select-fr" class="language" type="button" value = "Français" />
+						<input id="language-select-de" class="language" type="button" value = "Deutsch" />
 					</span>
 				</li>
-				<li class="label">Session</li>
+				<li data-l10n-id="userOptionsSession" class="label"></li>
 				<li>
-					<input class="action" style="width: 90%;" type="button" onclick="window.location.href = 'index.php?action=logout';" value="Logout" />
+					<input class="action" style="width: 90%;" type="button" onclick="window.location.href = 'index.php?action=logout';" data-l10n-id="userOptionsLogoutButton" />
 				</li>
 			</ul>
 		</nav>
 		<script>
 			$(function() {
+				//Necessary to attach a language id to the elements created by mmenu
+				$("a.mm-subclose:contains(Change password)").attr("data-l10n-id", "userOptionsChangePassword");
+
 				$("input.language:button").click(function() {
-					user.setLanguage($(this).val().toLowerCase());
+					user.setLanguage($(this).attr("id").split("-")[2].toLowerCase());
 				});
 
 				$("#user-name-setting").submit(function(event) {

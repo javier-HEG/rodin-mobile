@@ -3,13 +3,6 @@
  * - media="screen and (min-width: 481px) and (max-width: 767px) 
  */
 
-/**
- * A. Temporal development rules
- */
-#mediateller:after {
-	content: "Tablet (481px - 767px)";
-}
-
 /*
  * 3. Overriding Mmenu styles
  */

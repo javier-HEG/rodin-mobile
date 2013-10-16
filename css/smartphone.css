@@ -4,13 +4,6 @@
  */
 
 /**
- * A. Temporal development rules
- */
-#mediateller:after {
-	content: "Smartphone (?-480px)";
-}
-
-/**
  * 1. Basic styling for all around elements
  */
 body {
