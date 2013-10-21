@@ -203,22 +203,33 @@ h1#rodin-title {
 	padding: 6px;
 }
 
-#rodin-expansion-terms {
+ul.termlist {
 	margin-bottom: 2px;
+	padding: 2px 0px 2px 0px;
 }
 
-#rodin-expansion-terms ul {
-	margin: 2px;
-}
-
-#rodin-expansion-terms ul li {
+ul.termlist li {
 	float: left;
-	margin: 3px 3px 1px 1px;
+	margin: 1px 1px 1px 3px;
 	padding: 4px;
 }
 
-#rodin-expansion-terms li.selected {
-	margin: 2px 2px 0 0;
+#rodin-expansion-selection h1 {
+	text-align: left;
+	font-size: 12px;
+}
+
+#rodin-expansion-categories {
+	width: 100%;
+	display: table;
+}
+
+#rodin-expansion-categories span {
+	display: table-cell;
+}
+
+#rodin-expansion-terms {
+	margin-bottom: 2px;
 }
 
 /* - When Rodin subject expansion is closed */
@@ -227,7 +238,13 @@ h1#rodin-title {
 	margin-bottom: 2px;
 }
 
-#rodin-expansion-terms.closed {
+#rodin-expansion-header.closed.withselection {
+	padding: 5px 0 6px;
+	margin-top: 1px;
+	margin-bottom: 0px;
+}
+
+#rodin-expansion-content.closed {
 	display: none;
 }
 

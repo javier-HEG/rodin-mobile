@@ -46,19 +46,48 @@
 
 					<div id="rodin-expansion-header" class="six columns closed unavailable">
 						<span data-l10n-id="expansionSpace" id="rodin-expansion-count"></span>
-						<span id="rodin-expansion-selection"></span>
 					</div>
-					<div id="rodin-expansion-terms" class="sixteen columns closed">
-						<ul class="clearfix"></ul>
+					
+					<div id="rodin-expansion-selection" class="sixteen columns closed">
+						<ul class="termlist clearfix"></ul>
+					</div>
+
+					<div id="rodin-expansion-content" class="sixteen columns closed">
+						<div id="rodin-expansion-categories">
+							<span id="rodin-narrower-button">Narrower</span>
+							<span id="rodin-broader-button">Broader</span>
+							<span id="rodin-related-button">Related</span>
+						</div>
+						<div id="rodin-expansion-terms">
+							<ul id="rodin-narrower-terms" class="termlist clearfix"></ul>
+							<ul id="rodin-broader-terms" class="termlist clearfix"></ul>
+							<ul id="rodin-related-terms" class="termlist clearfix"></ul>
+						</div>
 					</div>
 					<script>
+						$("#rodin-expansion-categories span").click(function() {
+							if (!$(this).hasClass("selected")) {
+								$("#rodin-expansion-categories span").removeClass("selected");
+								$(this).addClass("selected");
+
+								$("#rodin-expansion-terms ul").hide();
+								$("#" + $(this).attr("id").replace("button", "terms")).show();
+							}
+						});
+
+						$(function() {
+							$("#rodin-narrower-button").click();
+						});
+
 						$("#rodin-expansion-header").click(function() {
 							if ($("#rodin-expansion-header").hasClass("unavailable")) {
 								$("#rodin-expansion-header").addClass("closed");	
-								$("#rodin-expansion-terms").addClass("closed");	
+								$("#rodin-expansion-selection").addClass("closed");
+								$("#rodin-expansion-content").addClass("closed");
 							} else {
 								$("#rodin-expansion-header").toggleClass("closed");
-								$("#rodin-expansion-terms").toggleClass("closed");
+								$("#rodin-expansion-selection").toggleClass("closed");
+								$("#rodin-expansion-content").toggleClass("closed");
 							}
 						});
 					</script>

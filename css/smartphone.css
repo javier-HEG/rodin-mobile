@@ -31,6 +31,19 @@ body {
 	display: none;
 }
 
+#rodin-expansion-selection.closed.withselection {
+	border-radius: 0px 0px 8px 8px;	
+	display: block;
+}
+
+#rodin-narrower-button {
+	border-radius: 0px;
+}
+
+#rodin-expansion-selection {
+	border-radius: 0px;
+}
+
 /**
  * Y. Base 960 Grid
  * Code based on:

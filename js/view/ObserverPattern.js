@@ -291,13 +291,65 @@ function SubjectExpansionObserver() {
 			}, 2000);
 		} else {
 			$("#rodin-expansion-terms ul li").remove();
+
 			for (var i = 0; i < terms.length; i++) {
 				var item = $("<li>" + terms[i] + "</li>");
 				item.bind("click", function() {
 					$(this).toggleClass("selected");
+
+					if ($(this).hasClass("selected")) {
+						var element = $(this).detach();
+						element.addClass("narrower");
+						element.appendTo($("#rodin-expansion-selection ul:first"));
+					} else {
+						var element = $(this).detach();
+						element.removeClass("narrower");
+						element.appendTo($("#rodin-narrower-terms"));
+					}
+					
 					self.notify();
 				});
-				$("#rodin-expansion-terms ul:first").append(item);
+				$("#rodin-narrower-terms").append(item);
+			}
+
+			for (var i = 0; i < terms.length; i++) {
+				var item = $("<li>" + terms[i] + "</li>");
+				item.bind("click", function() {
+					$(this).toggleClass("selected");
+
+					if ($(this).hasClass("selected")) {
+						var element = $(this).detach();
+						element.addClass("broader");
+						element.appendTo($("#rodin-expansion-selection ul:first"));
+					} else {
+						var element = $(this).detach();
+						element.removeClass("broader");
+						element.appendTo($("#rodin-broader-terms"));
+					}
+
+					self.notify();
+				});
+				$("#rodin-broader-terms").append(item);
+			}
+
+			for (var i = 0; i < terms.length; i++) {
+				var item = $("<li>" + terms[i] + "</li>");
+				item.bind("click", function() {
+					$(this).toggleClass("selected");
+
+					if ($(this).hasClass("selected")) {
+						var element = $(this).detach();
+						element.addClass("related");
+						element.appendTo($("#rodin-expansion-selection ul:first"));
+					} else {
+						var element = $(this).detach();
+						element.removeClass("related");
+						element.appendTo($("#rodin-related-terms"));
+					}
+
+					self.notify();
+				});
+				$("#rodin-related-terms").append(item);
 			}
 
 			$("#rodin-expansion-count").attr("data-l10n-id", "expansionCount")
@@ -324,13 +376,22 @@ SubjectExpansionObserver.prototype.notify = function() {
 			var lastSearchId = lastSearch.getSearchId();
 
 			if (this.currentSearchId === lastSearchId) {
-				if ($("#rodin-expansion-terms ul li.selected").length > 0) {
-					$("#rodin-expansion-selection").text("(" + $("#rodin-expansion-terms ul li.selected").length + " selected)");
+				var selectedTerms = $("#rodin-expansion-selection ul li").length;
+
+				if (selectedTerms > 0) {
 					$("#global-search-button").addClass("refresh");
+					$("#rodin-expansion-header").addClass("withselection");
+					$("#rodin-expansion-selection").addClass("withselection");
+					$("#rodin-narrower-button").addClass("withselection");
 				} else {
-					$("#rodin-expansion-selection").text("");
 					$("#global-search-button").removeClass("refresh");
+					$("#rodin-expansion-header").removeClass("withselection");
+					$("#rodin-expansion-selection").removeClass("withselection");
+					$("#rodin-narrower-button").removeClass("withselection");
 				}
+
+				//document.l10n.updateData( { "relatedTermsSelected": selectedTerms } );
+				//document.l10n.localizeNode($("#rodin-expansion-count").get(0))
 			} else {
 				this.currentSearchId = lastSearchId;
 				this.setNewTerms(lastSearch.getResults());

@@ -296,27 +296,63 @@ button#global-search-button.refresh {
 	cursor: pointer;
 }
 
-#rodin-expansion-terms {
-	background-color: rgba(0, 0, 0, 0.08);
-	border-radius: 0px 0px 8px 8px;
-	font-size: 14px;
-}
-
-#rodin-expansion-terms ul li {
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	border-radius: 6px 6px 6px 6px;
-	line-height: 14px;
+ul.termlist li {
 	text-align: left;
+	font-size: 14px;
+	line-height: 14px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 6px;
 }
 
-#rodin-expansion-terms li.selected {
-	border: 2px solid orange;
+ul.termlist li.narrower { background-color: rgba(255, 0, 0, 0.1); }
+ul.termlist li.broader { background-color: rgba(64, 200, 64, 0.1); }
+ul.termlist li.related { background-color: rgba(0, 0, 255, 0.1); }
+
+#rodin-expansion-selection {
+	display: none;
+	background-color: rgba(0, 0, 0, 0.16);
+	border-radius: 8px 0px 0px 0px;	
 }
+
+#rodin-expansion-categories span { background-color: rgba(0,0,0,0.08); }
+
+#rodin-narrower-button {
+	border-radius: 8px 0px 0px 0px;
+	border-bottom: 2px solid rgba(255, 0, 0, 0.25);
+}
+#rodin-broader-button { border-bottom: 2px solid rgba(64, 200, 64, 0.25); }
+#rodin-related-button { border-bottom: 2px solid rgba(0, 0, 255, 0.25); }
+
+#rodin-narrower-button.selected, #rodin-narrower-terms { background-color: rgba(255, 0, 0, 0.1); }
+#rodin-broader-button.selected, #rodin-broader-terms { background-color: rgba(64, 200, 64, 0.1); }
+#rodin-related-button.selected, #rodin-related-terms { background-color: rgba(0, 0, 255, 0.1); }
+
+#rodin-expansion-terms ul {
+	border-radius: 0px 0px 8px 8px;
+}
+
+/* - Things that change with term selection */
+#rodin-expansion-selection.withselection { display: block; }
+#rodin-narrower-button.withselection { border-radius: 0px 0px 0px 0px; }
 
 /* - When Rodin subject expansion is closed */
 #rodin-expansion-header.closed {
 	background-image: url(../img/mimiGlyphs/43.png);
 	border-radius: 8px;
+}
+
+#rodin-expansion-header.closed.withselection {
+	border-radius: 8px 8px 0px 0px;
+}
+
+#rodin-expansion-selection.closed {
+	display: none;
+	border-radius: 8px 0px 8px 8px;
+}
+
+#rodin-expansion-selection.closed.withselection {
+	border-radius: 8px 0px 8px 8px;	
+	display: block;
 }
 
 /* - When Rodin suject expansion is unavailable */

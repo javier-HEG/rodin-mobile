@@ -4,14 +4,6 @@
  */
 
 /**
- * 5. Rodin subject expansion
- */
-
-#rodin-expansion-terms {
-	border-radius: 8px 0px 8px 8px;
-}
-
-/**
  * Y. Base 960 Grid
  * - Special case, applies an intermediary grid
  *   (Otherwise the general grid applies)
