@@ -195,8 +195,9 @@ h1#rodin-title {
  * 5. Rodin subject expansion
  */
 #rodin-expansion-header {
-	padding: 5px 0 6px;
 	margin-top: 1px;
+	padding: 5px 0px 6px 0px;
+	border-radius: 8px 8px 0px 0px;
 }
 
 #rodin-expansion-header span {
@@ -212,11 +213,12 @@ ul.termlist li {
 	float: left;
 	margin: 1px 1px 1px 3px;
 	padding: 4px;
+	border-radius: 6px;
 }
 
-#rodin-expansion-selection h1 {
-	text-align: left;
-	font-size: 12px;
+#rodin-expansion-selection {
+	display: none;
+	border-radius: 8px 0px 0px 0px;	
 }
 
 #rodin-expansion-categories {
@@ -228,27 +230,56 @@ ul.termlist li {
 	display: table-cell;
 }
 
+#rodin-narrower-button {
+	border-radius: 8px 0px 0px 0px;
+}
+
 #rodin-expansion-terms {
 	margin-bottom: 2px;
 }
 
-/* - When Rodin subject expansion is closed */
+#rodin-expansion-terms ul {
+	border-radius: 0px 0px 8px 8px;
+}
+
+/* - Changes in layout when subject expansion is closed (closed),
+     unavailable (unavailable), or when some terms are selected
+     (withselection) */
+#rodin-expansion-selection.withselection {
+	display: block;
+}
+
+#rodin-narrower-button.withselection {
+	border-radius: 0px 0px 0px 0px;
+}
+
 #rodin-expansion-header.closed {
 	padding-bottom: 3px;
 	margin-bottom: 2px;
+	border-radius: 8px;
 }
 
 #rodin-expansion-header.closed.withselection {
 	padding: 5px 0 6px;
 	margin-top: 1px;
 	margin-bottom: 0px;
+	border-radius: 8px 8px 0px 0px;
+}
+
+#rodin-expansion-selection.closed {
+	display: none;
+	border-radius: 8px 0px 8px 8px;
+}
+
+#rodin-expansion-selection.closed.withselection {
+	border-radius: 8px 0px 8px 8px;	
+	display: block;
 }
 
 #rodin-expansion-content.closed {
 	display: none;
 }
 
-/* - When Rodin suject expansion is unavailable */
 #rodin-expansion-header.unavailable {
 	display: block;
 }
