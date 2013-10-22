@@ -45,7 +45,7 @@ UserObserver.prototype.updateLocale = function() {
 
 	$("input.language:button").prop("disabled", false);
 	$("#language-select-" + user.getLanguage()).prop("disabled", true);
-}
+};
 
 UserObserver.prototype.notify = function() {
 	$("#user-name-input").val(user.getRealName());
@@ -282,84 +282,52 @@ function SubjectExpansionObserver() {
 
 	var self = this;
 
-	this.setNewTerms = function(terms) {
-		if (terms.length === 0) {
-			$("#rodin-expansion-count").text("No related terms found");
-			
+	this.setNewTerms = function(results) {
+		$("#rodin-expansion-terms ul li").remove();
+		$("#rodin-expansion-selection ul li").remove();
+
+		document.l10n.updateData( { "selectedTermsCount": 0 } );
+		document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
+		$("#rodin-expansion-count").attr("data-l10n-id", "expansionCount");
+
+		var totalRelatedTermsCount = results.narrower.length + results.broader.length + results.related.length;
+		document.l10n.updateData( { "relatedTermsCount": totalRelatedTermsCount } );
+		document.l10n.localizeNode($("#rodin-expansion-count").get(0));
+
+		if (totalRelatedTermsCount === 0) {
 			setTimeout(function() {
-				$("#rodin-expansion-header").addClass("unavailable");
+				$("#rodin-expansion-header").addClass("unavailable");				
 			}, 2000);
 		} else {
-			$("#rodin-expansion-terms ul li").remove();
-
-			for (var i = 0; i < terms.length; i++) {
-				var item = $("<li>" + terms[i] + "</li>");
-				item.bind("click", function() {
-					$(this).toggleClass("selected");
-
-					if ($(this).hasClass("selected")) {
-						var element = $(this).detach();
-						element.addClass("narrower");
-						element.appendTo($("#rodin-expansion-selection ul:first"));
-					} else {
-						var element = $(this).detach();
-						element.removeClass("narrower");
-						element.appendTo($("#rodin-narrower-terms"));
-					}
-					
-					self.notify();
-				});
-				$("#rodin-narrower-terms").append(item);
-			}
-
-			for (var i = 0; i < terms.length; i++) {
-				var item = $("<li>" + terms[i] + "</li>");
-				item.bind("click", function() {
-					$(this).toggleClass("selected");
-
-					if ($(this).hasClass("selected")) {
-						var element = $(this).detach();
-						element.addClass("broader");
-						element.appendTo($("#rodin-expansion-selection ul:first"));
-					} else {
-						var element = $(this).detach();
-						element.removeClass("broader");
-						element.appendTo($("#rodin-broader-terms"));
-					}
-
-					self.notify();
-				});
-				$("#rodin-broader-terms").append(item);
-			}
-
-			for (var i = 0; i < terms.length; i++) {
-				var item = $("<li>" + terms[i] + "</li>");
-				item.bind("click", function() {
-					$(this).toggleClass("selected");
-
-					if ($(this).hasClass("selected")) {
-						var element = $(this).detach();
-						element.addClass("related");
-						element.appendTo($("#rodin-expansion-selection ul:first"));
-					} else {
-						var element = $(this).detach();
-						element.removeClass("related");
-						element.appendTo($("#rodin-related-terms"));
-					}
-
-					self.notify();
-				});
-				$("#rodin-related-terms").append(item);
-			}
-
-			$("#rodin-expansion-count").attr("data-l10n-id", "expansionCount")
-
-			document.l10n.updateData( { "relatedTermsCount": terms.length } );
-			document.l10n.localizeNode($("#rodin-expansion-count").get(0))
+			appendTermsTo(results.narrower, "narrower", $("#rodin-narrower-terms"));
+			appendTermsTo(results.broader, "broader", $("#rodin-broader-terms"));
+			appendTermsTo(results.related, "related", $("#rodin-related-terms"));
 
 			$("#rodin-expansion-header").removeClass("unavailable");
 		}
 	};
+
+	function appendTermsTo(terms, cssClass, list) {
+		for (var i = 0; i < terms.length; i++) {
+			var item = $("<li>" + terms[i] + "</li>");
+			item.bind("click", function() {
+				$(this).toggleClass("selected");
+
+				if ($(this).hasClass("selected")) {
+					var element = $(this).detach();
+					element.addClass(cssClass);
+					element.appendTo($("#rodin-expansion-selection ul:first"));
+				} else {
+					var element = $(this).detach();
+					element.removeClass("related");
+					element.appendTo(list);
+				}
+
+				self.notify();
+			});
+			list.append(item);
+		}
+	}
 }
 
 SubjectExpansionObserver.prototype.notify = function() {
@@ -371,7 +339,16 @@ SubjectExpansionObserver.prototype.notify = function() {
 		if (lastSearch.getSearchId() === null) {
 			$("#rodin-expansion-header").removeClass("unavailable");
 			$("#rodin-expansion-header").addClass("closed");
-			$("#rodin-expansion-count").text("Searching related terms ...");
+
+			$("#rodin-expansion-count").attr("data-l10n-id", "expansionSearching");
+			document.l10n.localizeNode($("#rodin-expansion-count").get(0));
+			
+			$("#global-search-button").removeClass("refresh");
+			$("#rodin-expansion-header").removeClass("withselection");
+			$("#rodin-expansion-selection").removeClass("withselection");
+			$("#rodin-narrower-button").removeClass("withselection");
+			document.l10n.updateData( { "selectedTermsCount": 0 } );
+			document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
 		} else {
 			var lastSearchId = lastSearch.getSearchId();
 
@@ -383,15 +360,18 @@ SubjectExpansionObserver.prototype.notify = function() {
 					$("#rodin-expansion-header").addClass("withselection");
 					$("#rodin-expansion-selection").addClass("withselection");
 					$("#rodin-narrower-button").addClass("withselection");
+
+					document.l10n.updateData( { "selectedTermsCount": selectedTerms } );
+					document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
 				} else {
 					$("#global-search-button").removeClass("refresh");
 					$("#rodin-expansion-header").removeClass("withselection");
 					$("#rodin-expansion-selection").removeClass("withselection");
 					$("#rodin-narrower-button").removeClass("withselection");
-				}
 
-				//document.l10n.updateData( { "relatedTermsSelected": selectedTerms } );
-				//document.l10n.localizeNode($("#rodin-expansion-count").get(0))
+					document.l10n.updateData( { "selectedTermsCount": 0 } );
+					document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
+				}
 			} else {
 				this.currentSearchId = lastSearchId;
 				this.setNewTerms(lastSearch.getResults());

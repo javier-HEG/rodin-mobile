@@ -13,6 +13,10 @@ function Search(query, type) {
 
 	var results = [];
 
+	if (type === Search.prototype.SUBJECT_EXPANSION_TYPE) {
+		results = { narrower: [], broader: [], related: [] };
+	}
+
 	var self = this;
 	var broker = new Broker();
 
@@ -35,7 +39,17 @@ function Search(query, type) {
 			case Search.prototype.SUBJECT_EXPANSION_TYPE:
 				if (query !== "empty") {
 					for (var i = 0; i < data.length; i++) {
-						results = results.concat(data[i].content.split(","));
+						switch (data[i].keywords[0]) {
+							case "NARROWER":
+								results.narrower = results.narrower.concat(data[i].content.split(","));
+								break;
+							case "BROADER":
+								results.broader = results.broader.concat(data[i].content.split(","));
+								break;
+							case "RELATED":
+								results.related = results.related.concat(data[i].content.split(","));
+								break;
+						}
 					}
 				}
 				break;

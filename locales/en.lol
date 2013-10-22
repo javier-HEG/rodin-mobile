@@ -2,11 +2,23 @@ import('common.lol')
 
 /* ------------------------------------------------------------------------- */
 <expansionSpace "Search refinement space">
+<expansionSearching "Searching related terms ...">
 
-<expansionCount[plural($relatedTermsCount)] {
+<expansionCount[plural($relatedTermsCount), formFactor(@screen)] {
 	zero: "No related terms found",
 	one: "One related term found",
-	*many: "{{ $relatedTermsCount }} related terms found"
+	*many: {
+		*desktop: "{{ $relatedTermsCount }} related terms found",
+		landscape: "{{ $relatedTermsCount }} terms found"
+	}
+}>
+
+<expansionSelection[plural($selectedTermsCount), formFactor(@screen)] {
+	zero: " ",
+	*many: {
+		*desktop: "({{ $selectedTermsCount }} selected)",
+		landscape: "({{ $selectedTermsCount }} sel.)"
+	}
 }>
 
 <cancelButton "" value: "Cancel">

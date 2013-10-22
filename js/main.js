@@ -16,6 +16,11 @@ var searchObserver = new SearchObserver();
  * @returns {void}
  */
 function startGlobalSearch() {
+	// - Close subject expansion
+	$("#rodin-expansion-header").addClass("closed");
+	$("#rodin-expansion-selection").addClass("closed");
+	$("#rodin-expansion-content").addClass("closed");
+
 	// - Create the JS search-objects
 	var subjectExpansionSearch = new Search($('#global-search-query').val(), Search.prototype.SUBJECT_EXPANSION_TYPE);
 	subjectExpansionSearch.registerObserver(subjectExpansionObserver);

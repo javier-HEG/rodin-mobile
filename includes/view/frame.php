@@ -46,6 +46,7 @@
 
 					<div id="rodin-expansion-header" class="six columns closed unavailable">
 						<span data-l10n-id="expansionSpace" id="rodin-expansion-count"></span>
+						<span data-l10n-id="expansionSelection" id="rodin-expansion-selection-count"></span>
 					</div>
 					
 					<div id="rodin-expansion-selection" class="sixteen columns closed">

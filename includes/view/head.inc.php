@@ -96,7 +96,8 @@
 	<link rel="localization" href="locales/manifest.json">
 	<script type="application/l10n-data+json">
 		{
-			"relatedTermsCount": 0
+			"relatedTermsCount": 0,
+			"selectedTermsCount": 0
 		}
 	</script>
 	<!-- Include the dist version of L20n -->
