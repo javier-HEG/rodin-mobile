@@ -21,6 +21,10 @@ import('common.lol')
 	}
 }>
 
+<narrowerCategory "Narrower">
+<broaderCategory "Broader">
+<relatedCategory "Related">
+
 <cancelButton "" value: "Cancel">
 <saveButton "" value: "Save">
 <removeButton "" value: "Remove">

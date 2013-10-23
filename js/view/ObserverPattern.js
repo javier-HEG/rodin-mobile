@@ -302,6 +302,10 @@ function SubjectExpansionObserver() {
 			appendTermsTo(results.broader, "broader", $("#rodin-broader-terms"));
 			appendTermsTo(results.related, "related", $("#rodin-related-terms"));
 
+			$("#narrower-count").text("(" + $("#rodin-narrower-terms li").length + ")");
+			$("#broader-count").text("(" + $("#rodin-broader-terms li").length + ")");
+			$("#related-count").text("(" + $("#rodin-related-terms li").length + ")");
+
 			$("#rodin-expansion-header").removeClass("unavailable");
 		}
 	};
@@ -338,9 +342,9 @@ SubjectExpansionObserver.prototype.notify = function() {
 		if (actualSearch.getSearchId() === null) {
 			// Nothing?
 		} else {
-			var lastSearchId = actualSearch.getSearchId();
+			var actualSearchId = actualSearch.getSearchId();
 
-			if (this.currentSearchId === lastSearchId) {
+			if (this.currentSearchId === actualSearchId) {
 				var selectedTerms = $("#rodin-expansion-selection ul li").length;
 
 				if (selectedTerms > 0) {
@@ -355,7 +359,7 @@ SubjectExpansionObserver.prototype.notify = function() {
 					document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
 				}
 			} else {
-				this.currentSearchId = lastSearchId;
+				this.currentSearchId = actualSearchId;
 				this.setNewTerms(actualSearch.getResults());
 			}
 		}

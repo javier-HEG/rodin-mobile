@@ -55,9 +55,18 @@
 
 					<div id="rodin-expansion-content" class="sixteen columns closed">
 						<div id="rodin-expansion-categories">
-							<span id="rodin-narrower-button">Narrower</span>
-							<span id="rodin-broader-button">Broader</span>
-							<span id="rodin-related-button">Related</span>
+							<div id="rodin-narrower-button">
+								<span data-l10n-id="narrowerCategory"></span>
+								<span id="narrower-count"></span>
+							</div>
+							<div id="rodin-broader-button">
+								<span data-l10n-id="broaderCategory"></span>
+								<span id="broader-count"></span>
+							</div>
+							<div id="rodin-related-button">
+								<span data-l10n-id="relatedCategory"></span>
+								<span id="related-count"></span>
+							</div>
 						</div>
 						<div id="rodin-expansion-terms">
 							<ul id="rodin-narrower-terms" class="termlist clearfix"></ul>
@@ -66,9 +75,9 @@
 						</div>
 					</div>
 					<script>
-						$("#rodin-expansion-categories span").click(function() {
+						$("#rodin-expansion-categories div").click(function() {
 							if (!$(this).hasClass("selected")) {
-								$("#rodin-expansion-categories span").removeClass("selected");
+								$("#rodin-expansion-categories div").removeClass("selected");
 								$(this).addClass("selected");
 
 								$("#rodin-expansion-terms ul").hide();

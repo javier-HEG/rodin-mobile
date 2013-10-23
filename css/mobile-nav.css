@@ -226,7 +226,7 @@ ul.termlist li {
 	display: table;
 }
 
-#rodin-expansion-categories span {
+#rodin-expansion-categories > div {
 	display: table-cell;
 }
 

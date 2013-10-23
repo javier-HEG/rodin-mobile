@@ -308,7 +308,7 @@ ul.termlist li.related { background-color: rgba(0, 0, 255, 0.1); }
 
 #rodin-expansion-selection { background-color: rgba(0, 0, 0, 0.16); }
 
-#rodin-expansion-categories span { background-color: rgba(0,0,0,0.08); }
+#rodin-expansion-categories > div { background-color: rgba(0,0,0,0.08); }
 
 #rodin-narrower-button { border-bottom: 2px solid rgba(255, 0, 0, 0.25); }
 #rodin-broader-button { border-bottom: 2px solid rgba(64, 200, 64, 0.25); }

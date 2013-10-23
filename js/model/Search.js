@@ -9,7 +9,8 @@ Search.prototype.constructor = Search;
 function Search(query, type) {
 	var searchId = null;
 	var resourceUrl = null;
-	var safe = 5;
+	
+	this.safe = 5;
 
 	var results = [];
 
@@ -23,14 +24,14 @@ function Search(query, type) {
 	this.checkIfDone = function(data, status, xhr) {
 		var shouldStop = data.status === 'DONE';
 
-		this.safe -= 1;
+		self.safe -= 1;
 
-		if (shouldStop || this.safe < 0) {
+		if (shouldStop || self.safe < 0) {
 			broker.makeRequest("GET", "result/query?searchId=" + searchId, null, this.saveResultsCallBack, this);
 		} else {
 			setTimeout(function() {
 				self.updateStatus();
-			}, 100);
+			}, 500);
 		}
 	}
 

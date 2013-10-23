@@ -18,7 +18,7 @@ var searchObserver = new SearchObserver();
 function startGlobalSearch() {
 	resetExpansion();
 
-	$("#rodin-expansion-header").addClass("unavailable");
+	$("#rodin-expansion-header").removeClass("unavailable");
 	$("#rodin-expansion-count").attr("data-l10n-id", "expansionSearching");
 	document.l10n.localizeNode($("#rodin-expansion-count").get(0));
 
