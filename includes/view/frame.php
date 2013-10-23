@@ -27,8 +27,8 @@
 					<div class="ten columns">
 						<form id="global-search-form">
 							<div id="search-history">
-								<button id="history-back" />
-								<button id="history-forward" />
+								<button id="history-back" type="button" />
+								<button id="history-forward" type="button" />
 							</div>
 							<input id="global-search-query" type="text" />
 							<button id="global-search-button" type="submit" />

@@ -329,7 +329,7 @@ function SubjectExpansionObserver() {
 SubjectExpansionObserver.prototype.notify = function() {
 	console.log("SubjectExpansionObserver was notified");
 
-	var lastSearch = user.getLastSubjectExpansionSearch();
+	var lastSearch = user.getActualSubjectExpansionSearch();
 
 	if (lastSearch !== null) {
 		if (lastSearch.getSearchId() === null) {
@@ -373,7 +373,7 @@ function SearchObserver() {
 SearchObserver.prototype.notify = function() {
 	console.log("SearchObserver was notified");
 
-	var lastSearch = user.getLastGlobalSearch();
+	var lastSearch = user.getActualGlobalSearch();
 
 	if (lastSearch !== null) {
 		if (lastSearch.getSearchId() === null) {

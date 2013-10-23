@@ -92,15 +92,6 @@ function Search(query, type) {
 	};
 
 	this.launch = function() {
-		switch (type) {
-			case Search.prototype.SUBJECT_EXPANSION_TYPE:
-				user.newSubjectExpansionSearch(this);
-				break;
-			case Search.prototype.GLOBAL_TYPE:
-				user.newGlobalSearch(this);
-				break;
-		}
-
 		this.notifyObservers();
 
 		var jsonData = JSON.stringify({query: query, type: type, universe: user.getCurrentUniverse().toMiniJson()});

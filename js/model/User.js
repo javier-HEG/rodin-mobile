@@ -21,28 +21,44 @@ function User(username) {
 
 	var globalSearches = [];
 	var subjectExpansionSearches = [];
+	var historyPosition = 0;
 
-	this.newSubjectExpansionSearch = function(searchObject) {
-		subjectExpansionSearches.push(searchObject);
+	this.goBackInHistory = function() {
+		alert("Would load: " + (historyPosition + 1));
+	};
+
+	this.goForwardInHistory = function() {
+		alert("Would load: " + (historyPosition - 1));	
+	};
+
+	this.launchNewSearch = function(query) {
+		var subjectExpansionSearch = new Search(query, Search.prototype.SUBJECT_EXPANSION_TYPE);
+		subjectExpansionSearch.registerObserver(subjectExpansionObserver);
+		subjectExpansionSearches.unshift(subjectExpansionSearch);
+		
+		var globalSearch = new Search(query, Search.prototype.GLOBAL_TYPE);
+		globalSearch.registerObserver(searchObserver);
+		globalSearches.unshift(globalSearch);
+
+		historyPosition = 0;
+
+		this.getActualGlobalSearch().launch();
+		this.getActualSubjectExpansionSearch().launch();
 	}
 
-	this.newGlobalSearch = function(searchObject) {
-		globalSearches.push(searchObject);
-	}
-
-	this.getLastSubjectExpansionSearch = function() {
+	this.getActualSubjectExpansionSearch = function() {
 		if (subjectExpansionSearches.length == 0) {
 			return null;
 		} else {
-			return subjectExpansionSearches[subjectExpansionSearches.length-1];
+			return subjectExpansionSearches[historyPosition];
 		}
 	}
 
-	this.getLastGlobalSearch = function() {
+	this.getActualGlobalSearch = function() {
 		if (globalSearches.length == 0) {
 			return null;
 		} else {
-			return globalSearches[globalSearches.length-1];
+			return globalSearches[historyPosition];
 		}
 	}
 
@@ -202,6 +218,17 @@ function User(username) {
 	}
 
 	this.init = function() {
+		// Prepare search history
+		// $("#history-back").prop("disabled", true);
+		$("#history-back").click(function() {
+			user.goBackInHistory();
+		});
+
+		// $("#history-forward").prop("disabled", true);
+		$("#history-forward").click(function() {
+			user.goForwardInHistory();
+		});
+
 		// Load user-data
 		var url = "user/" + this.getUserName();
 		broker.makeRequest("GET", url, null, this.initUserDetailsCallback, this);

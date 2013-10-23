@@ -22,14 +22,8 @@ function startGlobalSearch() {
 	$("#rodin-expansion-count").attr("data-l10n-id", "expansionSearching");
 	document.l10n.localizeNode($("#rodin-expansion-count").get(0));
 
-	// - Create the JS search-objects
-	var subjectExpansionSearch = new Search($('#global-search-query').val(), Search.prototype.SUBJECT_EXPANSION_TYPE);
-	subjectExpansionSearch.registerObserver(subjectExpansionObserver);
-	subjectExpansionSearch.launch();
-	
-	var globalSearch = new Search($('#global-search-query').val(), Search.prototype.GLOBAL_TYPE);
-	globalSearch.registerObserver(searchObserver);
-	globalSearch.launch();
+	// Launch search from user
+	user.launchNewSearch($('#global-search-query').val());
 }
 
 /**
