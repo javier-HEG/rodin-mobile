@@ -283,6 +283,9 @@ function SubjectExpansionObserver() {
 	var self = this;
 
 	this.setNewTerms = function(results) {
+		// Reset expansion if moving through history
+		resetExpansion();
+
 		// Set the text for the total expansion terms count
 		$("#rodin-expansion-count").attr("data-l10n-id", "expansionCount");
 
@@ -329,13 +332,13 @@ function SubjectExpansionObserver() {
 SubjectExpansionObserver.prototype.notify = function() {
 	console.log("SubjectExpansionObserver was notified");
 
-	var lastSearch = user.getActualSubjectExpansionSearch();
+	var actualSearch = user.getActualSubjectExpansionSearch();
 
-	if (lastSearch !== null) {
-		if (lastSearch.getSearchId() === null) {
+	if (actualSearch !== null) {
+		if (actualSearch.getSearchId() === null) {
 			// Nothing?
 		} else {
-			var lastSearchId = lastSearch.getSearchId();
+			var lastSearchId = actualSearch.getSearchId();
 
 			if (this.currentSearchId === lastSearchId) {
 				var selectedTerms = $("#rodin-expansion-selection ul li").length;
@@ -353,7 +356,7 @@ SubjectExpansionObserver.prototype.notify = function() {
 				}
 			} else {
 				this.currentSearchId = lastSearchId;
-				this.setNewTerms(lastSearch.getResults());
+				this.setNewTerms(actualSearch.getResults());
 			}
 		}
 	}
@@ -373,10 +376,10 @@ function SearchObserver() {
 SearchObserver.prototype.notify = function() {
 	console.log("SearchObserver was notified");
 
-	var lastSearch = user.getActualGlobalSearch();
+	var actualSearch = user.getActualGlobalSearch();
 
-	if (lastSearch !== null) {
-		if (lastSearch.getSearchId() === null) {
+	if (actualSearch !== null) {
+		if (actualSearch.getSearchId() === null) {
 			$("#rodin-results div").remove();
 
 			var messageItem = $('<div class="sixteen columns"></div>');
@@ -384,7 +387,7 @@ SearchObserver.prototype.notify = function() {
 
 			$("#rodin-results").append(messageItem);
 		} else {
-			var results = lastSearch.getResults();
+			var results = actualSearch.getResults();
 
 			$("#rodin-results div").remove();
 			if (results.length === 0) {

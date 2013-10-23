@@ -23,13 +23,32 @@ function User(username) {
 	var subjectExpansionSearches = [];
 	var historyPosition = 0;
 
+	this.getHistoryPosition = function() {
+		return historyPosition;
+	}
+
+	this.getHistoryLength = function() {
+		return Math.min(globalSearches.length, subjectExpansionSearches.length);
+	}
+
 	this.goBackInHistory = function() {
-		alert("Would load: " + (historyPosition + 1));
+		historyPosition = historyPosition + 1;
+		this.updateHistoryButtons();
+		this.loadActualSearch();
 	};
 
 	this.goForwardInHistory = function() {
-		alert("Would load: " + (historyPosition - 1));	
+		historyPosition = historyPosition - 1;
+		this.updateHistoryButtons();
+		this.loadActualSearch();
 	};
+
+	this.loadActualSearch = function() {
+		$('#global-search-query').val(this.getActualGlobalSearch().getQuery());
+
+		this.getActualGlobalSearch().notifyObservers();
+		this.getActualSubjectExpansionSearch().notifyObservers();
+	}
 
 	this.launchNewSearch = function(query) {
 		var subjectExpansionSearch = new Search(query, Search.prototype.SUBJECT_EXPANSION_TYPE);
@@ -41,9 +60,32 @@ function User(username) {
 		globalSearches.unshift(globalSearch);
 
 		historyPosition = 0;
+		this.updateHistoryButtons();
 
 		this.getActualGlobalSearch().launch();
 		this.getActualSubjectExpansionSearch().launch();
+	}
+
+	this.updateHistoryButtons = function() {
+		var historyLength = this.getHistoryLength();
+		
+		if (historyPosition > 0) {
+			$("#history-forward").prop("disabled", false);
+
+			if (historyPosition === historyLength - 1) {
+				$("#history-back").prop("disabled", true);
+			} else {
+				$("#history-back").prop("disabled", false);
+			}
+		} else {
+			$("#history-forward").prop("disabled", true);
+
+			if (historyLength > 1) {
+				$("#history-back").prop("disabled", false);
+			} else {
+				$("#history-back").prop("disabled", true);
+			}
+		}
 	}
 
 	this.getActualSubjectExpansionSearch = function() {
@@ -219,15 +261,15 @@ function User(username) {
 
 	this.init = function() {
 		// Prepare search history
-		// $("#history-back").prop("disabled", true);
 		$("#history-back").click(function() {
 			user.goBackInHistory();
 		});
 
-		// $("#history-forward").prop("disabled", true);
 		$("#history-forward").click(function() {
 			user.goForwardInHistory();
 		});
+
+		this.updateHistoryButtons();
 
 		// Load user-data
 		var url = "user/" + this.getUserName();

@@ -65,6 +65,10 @@ function Search(query, type) {
 		this.notifyObservers();
 	}
 
+	this.getQuery = function() {
+		return query;
+	}
+
 	this.getResults = function() {
 		return results;
 	}
