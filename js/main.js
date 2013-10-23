@@ -16,10 +16,11 @@ var searchObserver = new SearchObserver();
  * @returns {void}
  */
 function startGlobalSearch() {
-	// - Close subject expansion
-	$("#rodin-expansion-header").addClass("closed");
-	$("#rodin-expansion-selection").addClass("closed");
-	$("#rodin-expansion-content").addClass("closed");
+	resetExpansion();
+
+	$("#rodin-expansion-header").addClass("unavailable");
+	$("#rodin-expansion-count").attr("data-l10n-id", "expansionSearching");
+	document.l10n.localizeNode($("#rodin-expansion-count").get(0));
 
 	// - Create the JS search-objects
 	var subjectExpansionSearch = new Search($('#global-search-query').val(), Search.prototype.SUBJECT_EXPANSION_TYPE);
@@ -29,6 +30,42 @@ function startGlobalSearch() {
 	var globalSearch = new Search($('#global-search-query').val(), Search.prototype.GLOBAL_TYPE);
 	globalSearch.registerObserver(searchObserver);
 	globalSearch.launch();
+}
+
+/**
+ * Removes any expansion subject selection and closes the display
+ */
+function resetExpansion() {
+	$("#rodin-expansion-terms ul li").remove();
+	resetExpansionSelection();
+
+	// Ensure closed status
+	$("#rodin-expansion-header").addClass("closed");
+	$("#rodin-expansion-selection").addClass("closed");
+	$("#rodin-expansion-content").addClass("closed");
+}
+
+function styleExpansionSelection(selection) {
+	if (selection) {
+		$("#global-search-button").addClass("refresh");
+		$("#rodin-expansion-header").addClass("withselection");
+		$("#rodin-expansion-selection").addClass("withselection");
+		$("#rodin-narrower-button").addClass("withselection");
+	} else {
+		$("#global-search-button").removeClass("refresh");
+		$("#rodin-expansion-header").removeClass("withselection");
+		$("#rodin-expansion-selection").removeClass("withselection");
+		$("#rodin-narrower-button").removeClass("withselection");
+	}
+}
+
+function resetExpansionSelection() {
+	$("#rodin-expansion-selection ul li").remove();
+
+	styleExpansionSelection(false);
+
+	document.l10n.updateData( { "selectedTermsCount": 0 } );
+	document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
 }
 
 /*

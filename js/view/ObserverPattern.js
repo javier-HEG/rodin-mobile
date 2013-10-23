@@ -283,11 +283,7 @@ function SubjectExpansionObserver() {
 	var self = this;
 
 	this.setNewTerms = function(results) {
-		$("#rodin-expansion-terms ul li").remove();
-		$("#rodin-expansion-selection ul li").remove();
-
-		document.l10n.updateData( { "selectedTermsCount": 0 } );
-		document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
+		// Set the text for the total expansion terms count
 		$("#rodin-expansion-count").attr("data-l10n-id", "expansionCount");
 
 		var totalRelatedTermsCount = results.narrower.length + results.broader.length + results.related.length;
@@ -337,18 +333,7 @@ SubjectExpansionObserver.prototype.notify = function() {
 
 	if (lastSearch !== null) {
 		if (lastSearch.getSearchId() === null) {
-			$("#rodin-expansion-header").removeClass("unavailable");
-			$("#rodin-expansion-header").addClass("closed");
-
-			$("#rodin-expansion-count").attr("data-l10n-id", "expansionSearching");
-			document.l10n.localizeNode($("#rodin-expansion-count").get(0));
-			
-			$("#global-search-button").removeClass("refresh");
-			$("#rodin-expansion-header").removeClass("withselection");
-			$("#rodin-expansion-selection").removeClass("withselection");
-			$("#rodin-narrower-button").removeClass("withselection");
-			document.l10n.updateData( { "selectedTermsCount": 0 } );
-			document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
+			// Nothing?
 		} else {
 			var lastSearchId = lastSearch.getSearchId();
 
@@ -356,18 +341,12 @@ SubjectExpansionObserver.prototype.notify = function() {
 				var selectedTerms = $("#rodin-expansion-selection ul li").length;
 
 				if (selectedTerms > 0) {
-					$("#global-search-button").addClass("refresh");
-					$("#rodin-expansion-header").addClass("withselection");
-					$("#rodin-expansion-selection").addClass("withselection");
-					$("#rodin-narrower-button").addClass("withselection");
+					styleExpansionSelection(true);
 
 					document.l10n.updateData( { "selectedTermsCount": selectedTerms } );
 					document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
 				} else {
-					$("#global-search-button").removeClass("refresh");
-					$("#rodin-expansion-header").removeClass("withselection");
-					$("#rodin-expansion-selection").removeClass("withselection");
-					$("#rodin-narrower-button").removeClass("withselection");
+					styleExpansionSelection(false);
 
 					document.l10n.updateData( { "selectedTermsCount": 0 } );
 					document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
