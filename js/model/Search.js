@@ -57,7 +57,20 @@ function Search(query, type) {
 			case Search.prototype.GLOBAL_TYPE:
 				if (query !== "empty") {
 					for (var i = 0; i < data.length; i++) {
-						results.push(new BasicResult(data[i]));
+						switch (data[i].type) {
+							case "ARTICLE":
+								var article = new ArticleResult();
+								article.initWithData(data[i]);
+								
+								results.push(article);
+								break;
+							default:
+								var basic = new BasicResult();
+								basic.initWithData(data[i]);
+								
+								results.push(basic);
+								break;
+						}
 					}
 				}
 				break;
@@ -128,40 +141,112 @@ Search.prototype.DOCUMENT_EXPANSION_TYPE = 3;
 /**
  * The global search kind of results
  */
-function BasicResult(data) {
-	var title = data.title;
-	var authors = data.authors;
-	var summary = data.summary;
-	var content = data.content;
-	var date = new Date(data.pubDate);
-	var url = data.documents[0].sourceLinkURL;
+function BasicResult() {
+	var title = "";
+	var authors = [];
+	var summary = "";
+	var content = "";
+	var date = null;
+	var url = null;
 
-	/**
-	 * Prints itself into the jQuery div parameter
-	 */
-	this.displayInDiv = function(div) {
-		var resultDiv = $('<div class="rodin-result"></div>');
-		resultDiv.append($("<h1>" + title + "</h1>"));
-		resultDiv.append($('<p class="authors">' + authors.join(", ") + "</p>"));
+	this.setTitle = function(aTitle) {
+		title = aTitle;
+	}
 
-		var summaryP = $('<p class="summary">' + summary + "</p>");
+	this.getTitle = function() {
+		return title;
+	}
+
+	this.setAuthors = function(anAuthorList) {
+		authors = anAuthorList;
+	}
+
+	this.getAuthors = function() {
+		return authors;
+	}
+
+	this.setSummary = function(aSummary) {
+		summary = aSummary;
+	}
+
+	this.getSummary = function() {
+		return summary;
+	}
+
+	this.setContent = function(aContent) {
+		content = aContent;
+	}
+
+	this.getContent = function() {
+		return content;
+	}
+
+	this.setPubDate = function(aDate) {
+		date = aDate;
+	}
+	this.getPubDate = function() {
+		return date;
+	}
+
+	this.setUrl = function(aUrl) {
+		url = aUrl;
+	}
+
+	this.getUrl = function() {
+		return url;
+	}
+
+	this.getAuthorsString = function() {
+		return authors.join(", ");
+	}
+
+	this.getDateString = function() {
+		return date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear();
+	}
+
+	this.initWithData = function(data) {
+		this.setTitle(data.title);
+		this.setAuthors(data.authors);
+		this.setSummary(data.summary);
+		this.setContent(data.content);
+		this.setPubDate(new Date(data.pubDate));
+		this.setUrl(data.documents[0].sourceLinkURL);
+	}
+}
+
+/**
+ * Prints itself into the jQuery div parameter
+ */
+BasicResult.prototype.displayInDiv = function(div) {
+	var resultDiv = $('<div class="rodin-result"></div>');
+	resultDiv.append($("<h1>" + this.getTitle() + "</h1>"));
+
+	if (this.getAuthors().length > 0) {
+		resultDiv.append($('<p class="authors">' + this.getAuthorsString() + "</p>"));
+	}
+
+	if (this.getSummary() !== "") {
+		var summaryP = $('<p class="summary">' + this.getSummary() + "</p>");
 		summaryP.bind("click", function(){
 			$(this).hide();
 			$(this).siblings("p.content").show();
 		});
 		resultDiv.append(summaryP);
+	}
 
-		var contentP = $('<p class="content" style="display: none;">' + content + "</p>");
+	if (this.getContent() !== "") {
+		var contentP = $('<p class="content" style="display: none;">' + this.getContent() + "</p>");
 		contentP.bind("click", function(){
 			$(this).hide();
 			$(this).siblings("p.summary").show();
 		});
 		resultDiv.append(contentP);
+	}
 
-		var dateString = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear();
-		resultDiv.append($('<p class="publication"><span class="date">' + dateString + '</span> <a target="_blank" href="' + url + '"></a></p>'));
+	resultDiv.append($('<p class="publication"><span class="date">' + this.getDateString() + '</span> <a target="_blank" href="' + this.getUrl() + '"></a></p>'));
 
-		div.append(resultDiv);
-	};
-}
+	div.append(resultDiv);
+};
 
+ArticleResult.prototype = new BasicResult();
+function ArticleResult() {}
