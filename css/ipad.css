@@ -4,6 +4,15 @@
  */
 
 /**
+ * 7. Auto-complete
+ */
+#autocomplete-box {
+	left: 88px;
+	width: 344px;
+	max-height: 144px;
+}
+
+/**
  * Y. Base 960 Grid
  * - Special case, applies an intermediary grid
  *   (Otherwise the general grid applies)

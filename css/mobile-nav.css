@@ -243,8 +243,8 @@ ul.termlist li {
 }
 
 /* - Changes in layout when subject expansion is closed (closed),
-     unavailable (unavailable), or when some terms are selected
-     (withselection) */
+	 unavailable (unavailable), or when some terms are selected
+	 (withselection) */
 #rodin-expansion-selection.withselection {
 	display: block;
 }
@@ -338,6 +338,45 @@ ul.termlist li {
 .sliding-panels {
 	width: 100%;
 }
+
+/**
+ * 7. Auto-complete
+ */
+#autocomplete-box {
+	border-radius: 6px;
+	
+	left: 106px;
+	top: 32px;
+	position: absolute;
+	width: 436px;
+	overflow: scroll;
+	z-index: 5;
+
+	max-height: 260px;
+}
+
+#autocomplete-box ul {
+	margin: 0px;
+}
+
+#autocomplete-box ul li {
+	margin: 0px;
+	line-height: 26px;
+}
+
+#autocomplete-box span.launch {
+	float: left;
+	width: 90%;
+}
+
+#autocomplete-box button.add {
+	float: right;
+	margin: 0px;
+	width: 10%;
+	height: 26px;
+	border-radius: 0px;
+}
+
 
 /**
  * X. Query for HD medias

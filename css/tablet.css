@@ -38,6 +38,15 @@
 }
 
 /**
+ * 7. Auto-complete
+ */
+#autocomplete-box {
+	left: 72px;
+	width: 314px;
+	max-height: 144px;
+}
+
+/**
  * Y. Base 960 Grid
  * Code based on:
  * Skeleton V1.2, Copyright 2011, Dave Gamache (www.getskeleton.com)

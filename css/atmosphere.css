@@ -35,8 +35,8 @@ body {
 	background-color: cornsilk;
 	color: #444;
 	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1em;
-    line-height: 1.4;
+	font-size: 1em;
+	line-height: 1.4;
 	-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 	-webkit-text-size-adjust: 100%;
 }
@@ -319,8 +319,8 @@ ul.termlist li.related { background-color: rgba(0, 0, 255, 0.1); }
 #rodin-related-button.selected, #rodin-related-terms { background-color: rgba(0, 0, 255, 0.1); }
 
 /* - Changes in layout when subject expansion is closed (closed),
-     unavailable (unavailable), or when some terms are selected
-     (withselection) */
+	 unavailable (unavailable), or when some terms are selected
+	 (withselection) */
 #rodin-expansion-header.closed { background-image: url(../img/mimiGlyphs/43.png); }
 
 #rodin-expansion-header.unavailable {
@@ -375,58 +375,29 @@ ul.termlist li.related { background-color: rgba(0, 0, 255, 0.1); }
 }
 
 /**
+ * 7. Auto-complete
+ */
+#autocomplete-box {
+	background-color: lightgray;
+	border: 1px solid #FFFFFF;
+}
+
+#autocomplete-box button.add {
+	vertical-align: middle;
+
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-image: url(../img/mimiGlyphs/47-rotated.png);
+	background-color: transparent;
+	
+	border: none;
+}
+
+
+/**
  * X. Query for HD medias
  */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
 	only screen and (min-resolution: 144dpi) {
 	
-}
-
-/** EXTRA **/
-#autocomplete-box {
-    background-color: lightgray;
-    
-    border: 1px solid #FFFFFF;
-    border-radius: 6px;
-    
-    left: 52px;
-    top: 32px;
-    position: absolute;
-    width: 223px;
-    overflow: scroll;
-    z-index: 5;
-    
-    max-height: 88px;
-}
-
-#autocomplete-box ul {
-	margin: 0px;
-}
-
-#autocomplete-box ul li {
-	margin: 0px;
-	line-height: 22px;
-}
-
-#autocomplete-box span.launch {
-	float: left;
-    width: 90%;
-}
-
-#autocomplete-box button.add {
-    vertical-align: middle;
-	
-	float: left;
-	margin: 0px;
-	
-	width: 10%;
-	height: 22px;
-	
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-image: url(../img/mimiGlyphs/36.png);
-	background-color: transparent;
-    
-	border-radius: 0px;
-	border: none;
 }

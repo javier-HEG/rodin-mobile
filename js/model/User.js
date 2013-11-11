@@ -341,11 +341,13 @@ function AutoComplete() {
 				var button = $('<button class="add" type="button"></button>');
 				button.click(function() {
 					$("#global-search-query").val(this.parentNode.children[0].innerHTML);
+					$("#global-search-query").focus();
+					autoComplete.updateSuggestions();
 				});
 
 				var item = $('<li class="clearfix"></li>');
 				item.append(span);
-				item.append(button);
+				button.insertAfter(span);
 
 				$("#autocomplete-box ul").append(item);
 			};
