@@ -59,11 +59,11 @@ function Search(query, type) {
 					for (var i = 0; i < data.length; i++) {
 						switch (data[i].type) {
 							case "ARTICLE":
-								var article = new ArticleResult();
-								article.initWithData(data[i]);
+								// var article = new ArticleResult();
+								// article.initWithData(data[i]);
 								
-								results.push(article);
-								break;
+								// results.push(article);
+								// break;
 							default:
 								var basic = new BasicResult();
 								basic.initWithData(data[i]);
