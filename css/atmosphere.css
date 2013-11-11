@@ -382,3 +382,51 @@ ul.termlist li.related { background-color: rgba(0, 0, 255, 0.1); }
 	
 }
 
+/** EXTRA **/
+#autocomplete-box {
+    background-color: lightgray;
+    
+    border: 1px solid #FFFFFF;
+    border-radius: 6px;
+    
+    left: 52px;
+    top: 32px;
+    position: absolute;
+    width: 223px;
+    overflow: scroll;
+    z-index: 5;
+    
+    max-height: 88px;
+}
+
+#autocomplete-box ul {
+	margin: 0px;
+}
+
+#autocomplete-box ul li {
+	margin: 0px;
+	line-height: 22px;
+}
+
+#autocomplete-box span.launch {
+	float: left;
+    width: 90%;
+}
+
+#autocomplete-box button.add {
+    vertical-align: middle;
+	
+	float: left;
+	margin: 0px;
+	
+	width: 10%;
+	height: 22px;
+	
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-image: url(../img/mimiGlyphs/36.png);
+	background-color: transparent;
+    
+	border-radius: 0px;
+	border: none;
+}
