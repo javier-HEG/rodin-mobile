@@ -350,11 +350,15 @@ SubjectExpansionObserver.prototype.notify = function() {
 
 					document.l10n.updateData( { "selectedTermsCount": selectedTerms } );
 					document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
+
+					user.refreshDocumentSearch(actualSearch.getQuery(), $.makeArray($("#rodin-expansion-selection ul li")));
 				} else {
 					styleExpansionSelection(false);
 
 					document.l10n.updateData( { "selectedTermsCount": 0 } );
 					document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
+
+					user.refreshDocumentSearch(actualSearch.getQuery(), null);
 				}
 			} else {
 				this.currentSearchId = actualSearchId;
@@ -406,5 +410,7 @@ SearchObserver.prototype.notify = function() {
 			}
 		}
 	}
+
+	user.removeTemporalGlobalSearch();
 };
 

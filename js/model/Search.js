@@ -21,6 +21,10 @@ function Search(query, type) {
 	var self = this;
 	var broker = new Broker();
 
+	this.getQuery = function() {
+		return query;
+	}
+
 	this.checkIfDone = function(data, status, xhr) {
 		var shouldStop = data.status === 'DONE';
 
@@ -31,7 +35,7 @@ function Search(query, type) {
 		} else {
 			setTimeout(function() {
 				self.updateStatus();
-			}, 500);
+			}, 1000);
 		}
 	}
 

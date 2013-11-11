@@ -23,6 +23,8 @@ function User(username) {
 	var subjectExpansionSearches = [];
 	var historyPosition = 0;
 
+	var temporalGlobalSearch = null;
+
 	this.getHistoryPosition = function() {
 		return historyPosition;
 	}
@@ -66,6 +68,20 @@ function User(username) {
 		this.getActualSubjectExpansionSearch().launch();
 	}
 
+	this.refreshDocumentSearch = function(query, expansion) {
+		var expansionString = query;
+		
+		if (expansion !== null && expansion.length > 0) {
+			for (var i = 0; i < expansion.length; i++) {
+				expansionString += " " + expansion[i].innerHTML;
+			};
+		}
+
+		temporalGlobalSearch = new Search(expansionString, Search.prototype.GLOBAL_TYPE);
+		temporalGlobalSearch.registerObserver(searchObserver);
+		temporalGlobalSearch.launch();
+	}
+
 	this.updateHistoryButtons = function() {
 		var historyLength = this.getHistoryLength();
 		
@@ -96,12 +112,24 @@ function User(username) {
 		}
 	}
 
+	this.getTemporalSearch = function() {
+		return temporalGlobalSearch;
+	}
+
 	this.getActualGlobalSearch = function() {
-		if (globalSearches.length == 0) {
-			return null;
+		if (user.getTemporalSearch() !== null) {
+			return temporalGlobalSearch;
 		} else {
-			return globalSearches[historyPosition];
+			if (globalSearches.length == 0) {
+				return null;
+			} else {
+				return globalSearches[historyPosition];
+			}
 		}
+	}
+
+	this.removeTemporalGlobalSearch = function() {
+		temporalGlobalSearch = null;
 	}
 
 	this.getLanguage = function() {
