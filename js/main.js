@@ -7,9 +7,7 @@ var userObserver = new UserObserver();
 var subjectExpansionObserver = new SubjectExpansionObserver();
 var searchObserver = new SearchObserver();
 
-var autoCompleteObserver = new AutoCompleteObserver();
 var autoComplete = new AutoComplete();
-autoComplete.registerObserver();
 
 /*
  * Personalized scripts are to be copied and modified directly in this file
@@ -20,6 +18,8 @@ autoComplete.registerObserver();
  * @returns {void}
  */
 function startGlobalSearch() {
+	autoComplete.hideMenu();
+	
 	resetExpansion();
 
 	$("#rodin-expansion-header").removeClass("unavailable");

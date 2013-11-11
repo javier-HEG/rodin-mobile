@@ -292,32 +292,35 @@ function User(username) {
 /**
  * A class holding the autocomplete values
  */
-AutoComplete.prototype = new Observable();
-AutoComplete.prototype.constructor = AutoComplete;
-
 function AutoComplete() {
 	var suggestions = [];
+	var isActive = true;
 
 	this.updateSuggestions = function() {
-		var query = $("#global-search-query").val();
+		if (isActive) {
+			var query = $("#global-search-query").val();
 
-		if (query !== "") {
-			var requestInfo = {
-				type: "GET",
-				url: "autocomplete.php?query=" + query,
-				contentType: "application/json",
-				dataType: "json",
-				context: autoComplete,
-				success: this.displaySuggestions,
-				error: function() {
-					alert('Auto-complete error');
-				}
-			};
+			if (query !== "") {
+				var requestInfo = {
+					type: "GET",
+					url: "autocomplete.php?query=" + query,
+					contentType: "application/json",
+					dataType: "json",
+					context: autoComplete,
+					success: this.displaySuggestions,
+					error: function() {
+						alert('Auto-complete error');
+					}
+				};
 
-			$.ajax(requestInfo);
+				$.ajax(requestInfo);
+			} else {
+				$("#autocomplete-box").hide();
+				$("#autocomplete-box ul li").remove();	
+			}
 		} else {
 			$("#autocomplete-box").hide();
-			$("#autocomplete-box ul li").remove();	
+			$("#autocomplete-box ul li").remove();
 		}
 	};
 
@@ -327,12 +330,41 @@ function AutoComplete() {
 
 		if (data.length > 0) {
 			for (var i = 0; i < data.length; i++) {
-				var item = $('<li class="clearfix"><span class="launch">' + data[i] + '</span><button class="add" type="button"></button></li>');
+				var span = $('<span class="launch">' + data[i] + '</span>');
+				span.click(function() {
+					autoComplete.turnOff();
+					$("#global-search-query").val(this.innerHTML);
+					startGlobalSearch();
+					autoComplete.turnOn();
+				});
+
+				var button = $('<button class="add" type="button"></button>');
+				button.click(function() {
+					$("#global-search-query").val(this.parentNode.children[0].innerHTML);
+				});
+
+				var item = $('<li class="clearfix"></li>');
+				item.append(span);
+				item.append(button);
+
 				$("#autocomplete-box ul").append(item);
 			};
 
 			$("#autocomplete-box").show();
 		}
+	}
+
+	this.hideMenu = function() {
+		$("#autocomplete-box").hide();
+		$("#autocomplete-box ul li").remove();
+	}
+
+	this.turnOff = function() {
+		var isActive = false;
+	}
+
+	this.turnOn = function() {
+		var isActive = true;
 	}
 }
 

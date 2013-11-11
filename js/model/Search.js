@@ -10,7 +10,7 @@ function Search(query, type) {
 	var searchId = null;
 	var resourceUrl = null;
 	
-	this.safe = 5;
+	this.safe = 10;
 
 	var results = [];
 
