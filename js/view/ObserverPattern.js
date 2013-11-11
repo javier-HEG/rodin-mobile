@@ -365,6 +365,33 @@ SubjectExpansionObserver.prototype.notify = function() {
 };
 
 /**
+ * Tracks changes in the content of the query box and shows suggestions
+ */
+AutoCompleteObserver.prototype = new Observer();
+AutoCompleteObserver.prototype.constructor = AutoCompleteObserver;
+
+function AutoCompleteObserver() {
+}
+
+AutoCompleteObserver.prototype.notify = function() {
+	var query = $("#global-search-query").val();
+
+	var requestInfo = {
+		type: "GET",
+		url: "autocomplete.php?query=" + query,
+		contentType: "application/json",
+		dataType: "json",
+		context: window,
+		success: displaySuggestions,
+		error: function() {
+			alert('Auto-complete error');
+		}
+	};
+
+	$.ajax(requestInfo);
+}
+
+/**
  * Tracks the search article results, it is responsible of showing the results
  * when they are ready. Also, together with the subject expansion search, it is
  * responsible of enabling or disabling the search field.

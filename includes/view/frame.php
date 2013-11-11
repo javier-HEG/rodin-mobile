@@ -36,6 +36,9 @@
 						<script>
 							$(function(){
 								$("#global-search-query").attr("autocomplete", "off");
+								$("#global-search-query").bind("input", function() {
+									autoComplete.updateSuggestions();
+								});
 
 								$("#global-search-form").submit(function(event) {
 									event.preventDefault();
@@ -46,20 +49,8 @@
 						</script>
 					</div>
 
-					<div id="autocomplete-box">
-						<ul>
-							<li class="clearfix"><span class="launch">Bungalo</span><button class="add" type="button"></button></li>
-							<li class="clearfix"><span class="launch">Bungalo</span><button class="add" type="button"></button></li>
-							<li class="clearfix"><span class="launch">Bungalo</span><button class="add" type="button"></button></li>
-							<li class="clearfix"><span class="launch">Bungalo</span><button class="add" type="button"></button></li>
-							<li class="clearfix"><span class="launch">Bungalo</span><button class="add" type="button"></button></li>
-							<li class="clearfix"><span class="launch">Bungalo</span><button class="add" type="button"></button></li>
-							<li class="clearfix"><span class="launch">Bungalo</span><button class="add" type="button"></button></li>
-							<li class="clearfix"><span class="launch">Bungalo</span><button class="add" type="button"></button></li>
-							<li class="clearfix"><span class="launch">Bungalo</span><button class="add" type="button"></button></li>
-							<li class="clearfix"><span class="launch">Bahrein</span><button class="add" type="button"></button></li>
-							<li class="clearfix"><span class="launch">Bottle</span><button class="add" type="button"></button></li>
-						</ul>
+					<div id="autocomplete-box" style="display: none">
+						<ul></ul>
 					</div>
 
 					<div id="rodin-expansion-header" class="six columns closed unavailable">

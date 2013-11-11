@@ -288,3 +288,51 @@ function User(username) {
 	// Launch initialization
 	this.init();
 }
+
+/**
+ * A class holding the autocomplete values
+ */
+AutoComplete.prototype = new Observable();
+AutoComplete.prototype.constructor = AutoComplete;
+
+function AutoComplete() {
+	var suggestions = [];
+
+	this.updateSuggestions = function() {
+		var query = $("#global-search-query").val();
+
+		if (query !== "") {
+			var requestInfo = {
+				type: "GET",
+				url: "autocomplete.php?query=" + query,
+				contentType: "application/json",
+				dataType: "json",
+				context: autoComplete,
+				success: this.displaySuggestions,
+				error: function() {
+					alert('Auto-complete error');
+				}
+			};
+
+			$.ajax(requestInfo);
+		} else {
+			$("#autocomplete-box").hide();
+			$("#autocomplete-box ul li").remove();	
+		}
+	};
+
+	this.displaySuggestions = function(data, status, xhr) {
+		$("#autocomplete-box").hide();
+		$("#autocomplete-box ul li").remove();
+
+		if (data.length > 0) {
+			for (var i = 0; i < data.length; i++) {
+				var item = $('<li class="clearfix"><span class="launch">' + data[i] + '</span><button class="add" type="button"></button></li>');
+				$("#autocomplete-box ul").append(item);
+			};
+
+			$("#autocomplete-box").show();
+		}
+	}
+}
+
