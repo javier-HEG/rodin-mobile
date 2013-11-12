@@ -31,6 +31,10 @@ import('common.lol')
 <defaultInput "" value: "Default">
 
 /* ------------------------------------------------------------------------- */
+<globalSearching "Searching ...">
+<globalNoResults "No results">
+
+/* ------------------------------------------------------------------------- */
 <userOptions "User options">
 <userOptionsName "Name">
 <userOptionsPassword "Password">
@@ -52,4 +56,3 @@ import('common.lol')
 <universeOptionsRemoveWarningText "Are you sure you want to remove the current universe?">
 <universeOptionsUniverseSelection "Universe selection">
 <universeOptionsCreateUniverse "Create universe">
-

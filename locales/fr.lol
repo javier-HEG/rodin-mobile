@@ -6,16 +6,34 @@ import('common.lol')
 	landscape: "Refinement semantique"
 }>
 
+<expansionSearching "Recherche en cours ...">
+
 <expansionCount[plural($relatedTermsCount)] {
 	zero: "Pas de temes relationnés trouvés",
 	one: "{{ $relatedTermsCount }} terme relationné trouvé",
 	*many: "{{ $relatedTermsCount }} terme relationnés trouvés"
 }>
 
+<expansionSelection[plural($selectedTermsCount), formFactor(@screen)] {
+	zero: " ",
+	*many: {
+		*desktop: "({{ $selectedTermsCount }} selectionnés)",
+		landscape: "({{ $selectedTermsCount }} sel.)"
+	}
+}>
+
+<narrowerCategory "Specifique">
+<broaderCategory "Généraux">
+<relatedCategory "Relationnés">
+
 <cancelButton "" value: "Annuler">
 <saveButton "" value: "Enregistrer">
 <removeButton "" value: "Eliminer">
 <defaultInput "" value: "Par défaut">
+
+/* ------------------------------------------------------------------------- */
+<globalSearching "Recherche en cours ...">
+<globalNoResults "Aucun resultat">
 
 /* ------------------------------------------- */
 <userOptions "Options utilisateur">
