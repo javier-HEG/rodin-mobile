@@ -25,17 +25,23 @@ function Search(query, type) {
 		return query;
 	}
 
+	this.killSafe = function() {
+		this.safe = -1;
+	};
+
 	this.checkIfDone = function(data, status, xhr) {
 		var shouldStop = data.status === 'DONE';
-
+		
 		self.safe -= 1;
 
-		if (shouldStop || self.safe < 0) {
-			broker.makeRequest("GET", "result/query?searchId=" + searchId, null, this.saveResultsCallBack, this);
-		} else {
-			setTimeout(function() {
-				self.updateStatus();
-			}, 1000);
+		if (self.safe > 0) {
+			if (shouldStop) {
+				broker.makeRequest("GET", "result/query?searchId=" + searchId, null, this.saveResultsCallBack, this);
+			} else {
+				setTimeout(function() {
+					self.updateStatus();
+				}, 1000);
+			}
 		}
 	}
 

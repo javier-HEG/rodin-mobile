@@ -77,6 +77,9 @@ function User(username) {
 			};
 		}
 
+		// Kill current search
+		user.getActualGlobalSearch().killSafe();
+
 		temporalGlobalSearch = new Search(expansionString, Search.prototype.GLOBAL_TYPE);
 		temporalGlobalSearch.registerObserver(searchObserver);
 		temporalGlobalSearch.launch();
