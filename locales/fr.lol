@@ -8,16 +8,26 @@ import('common.lol')
 
 <expansionSearching "Recherche en cours ...">
 
-<expansionCount[plural($relatedTermsCount)] {
-	zero: "Pas de temes relationnés trouvés",
-	one: "{{ $relatedTermsCount }} terme relationné trouvé",
-	*many: "{{ $relatedTermsCount }} terme relationnés trouvés"
+<expansionCount[plural($relatedTermsCount), formFactor(@screen)] {
+	zero: {
+		*desktop: "Pas de termes relationnés trouvés",
+		smartphone: "Pas de termes rel. trouvés"
+	},
+	one: {
+		*desktop: "{{ $relatedTermsCount }} terme relationné trouvé",
+		smartphone: "{{ $relatedTermsCount }} terme rel. trouvé"
+	},
+	*many: {
+		*desktop: "{{ $relatedTermsCount }} termes relationnés trouvés",
+		smartphone: "{{ $relatedTermsCount }} termes rel. trouvés"
+	}
 }>
 
 <expansionSelection[plural($selectedTermsCount), formFactor(@screen)] {
 	zero: " ",
 	*many: {
 		*desktop: "({{ $selectedTermsCount }} selectionnés)",
+		smartphone: "({{ $selectedTermsCount }} sel.)",
 		landscape: "({{ $selectedTermsCount }} sel.)"
 	}
 }>
