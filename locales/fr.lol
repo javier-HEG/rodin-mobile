@@ -22,9 +22,18 @@ import('common.lol')
 	}
 }>
 
-<narrowerCategory "Specifique">
-<broaderCategory "Généraux">
-<relatedCategory "Relationnés">
+<narrowerCategory[formFactor(@screen)] {
+	*desktop: "Specifique",
+	smartphone: "Spec."	
+}>
+<broaderCategory[formFactor(@screen)] {
+	*desktop: "Généraux",
+	smartphone: "Gén."	
+}>
+<relatedCategory[formFactor(@screen)] {
+	*desktop: "Relationnés",
+	smartphone: "Rel."	
+}>
 
 <cancelButton "" value: "Annuler">
 <saveButton "" value: "Enregistrer">
