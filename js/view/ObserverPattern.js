@@ -348,7 +348,12 @@ function SubjectExpansionObserver() {
 				} else {
 					var element = $(this).detach();
 					element.removeClass("related");
-					element.appendTo(list);
+
+					if  ($("#" + list.attr("id") + " .more-expansion").length > 0) {
+						element.insertBefore($("#" + list.attr("id") + " .more-expansion"));
+					} else {
+						element.appendTo(list);
+					}
 				}
 
 				self.notify();
