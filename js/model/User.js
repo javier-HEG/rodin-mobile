@@ -112,10 +112,6 @@ function User(username) {
 		}
 	}
 
-	this.getTemporalSearch = function() {
-		return temporalGlobalSearch;
-	}
-
 	this.getActualGlobalSearch = function() {
 		if (user.getTemporalSearch() !== null) {
 			return temporalGlobalSearch;
@@ -128,7 +124,11 @@ function User(username) {
 		}
 	}
 
-	this.removeTemporalGlobalSearch = function() {
+	this.getTemporalSearch = function() {
+		return temporalGlobalSearch;
+	}
+
+	this.resetTemporalGlobalSearch = function() {
 		temporalGlobalSearch = null;
 	}
 

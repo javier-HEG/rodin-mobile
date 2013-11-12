@@ -282,14 +282,20 @@ function SubjectExpansionObserver() {
 
 	var self = this;
 
-	this.setNewTerms = function(results) {
+	this.setNewTerms = function() {
+		// Get the first 5 results only
+		var results = user.getActualSubjectExpansionSearch().getResults();
+		var narrower = results.narrower;
+		var broader = results.broader;
+		var related = results.related;
+
 		// Reset expansion if moving through history
 		resetExpansion();
 
 		// Set the text for the total expansion terms count
 		$("#rodin-expansion-count").attr("data-l10n-id", "expansionCount");
 
-		var totalRelatedTermsCount = results.narrower.length + results.broader.length + results.related.length;
+		var totalRelatedTermsCount = narrower.length + broader.length + related.length;
 		document.l10n.updateData( { "relatedTermsCount": totalRelatedTermsCount } );
 		document.l10n.localizeNode($("#rodin-expansion-count").get(0));
 
@@ -298,17 +304,36 @@ function SubjectExpansionObserver() {
 				$("#rodin-expansion-header").addClass("unavailable");				
 			}, 2000);
 		} else {
-			appendTermsTo(results.narrower, "narrower", $("#rodin-narrower-terms"));
-			appendTermsTo(results.broader, "broader", $("#rodin-broader-terms"));
-			appendTermsTo(results.related, "related", $("#rodin-related-terms"));
+			appendFirstTermsTo(narrower, "narrower", $("#rodin-narrower-terms"));
+			appendFirstTermsTo(broader, "broader", $("#rodin-broader-terms"));
+			appendFirstTermsTo(related, "related", $("#rodin-related-terms"));
 
-			$("#narrower-count").text("(" + $("#rodin-narrower-terms li").length + ")");
-			$("#broader-count").text("(" + $("#rodin-broader-terms li").length + ")");
-			$("#related-count").text("(" + $("#rodin-related-terms li").length + ")");
+			$("#narrower-count").text("(" + narrower.length + ")");
+			$("#broader-count").text("(" + broader.length + ")");
+			$("#related-count").text("(" + related.length + ")");
 
 			$("#rodin-expansion-header").removeClass("unavailable");
 		}
 	};
+
+	function appendFirstTermsTo(terms, cssClass, list) {
+		var first = terms.slice(0, 5);
+		var then = terms.slice(5);
+
+		appendTermsTo(first, cssClass, list);
+
+		if (then.length > 0) {
+			var buttonId = "more-" + cssClass;
+			var button = $('<li class="more-expansion">...</li>');
+			button.attr("id", buttonId);
+			button.click(function() {
+				this.remove();
+				appendTermsTo(then, cssClass, list);
+			});
+
+			button.appendTo(list);
+		}
+	}
 
 	function appendTermsTo(terms, cssClass, list) {
 		for (var i = 0; i < terms.length; i++) {
@@ -362,7 +387,7 @@ SubjectExpansionObserver.prototype.notify = function() {
 				}
 			} else {
 				this.currentSearchId = actualSearchId;
-				this.setNewTerms(actualSearch.getResults());
+				this.setNewTerms();
 			}
 		}
 	}
@@ -411,6 +436,6 @@ SearchObserver.prototype.notify = function() {
 		}
 	}
 
-	user.removeTemporalGlobalSearch();
+	user.resetTemporalGlobalSearch();
 };
 

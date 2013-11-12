@@ -302,6 +302,11 @@ ul.termlist li {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+ul.termlist li.more-expansion {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 ul.termlist li.narrower { background-color: rgba(255, 0, 0, 0.1); }
 ul.termlist li.broader { background-color: rgba(64, 200, 64, 0.1); }
 ul.termlist li.related { background-color: rgba(0, 0, 255, 0.1); }
