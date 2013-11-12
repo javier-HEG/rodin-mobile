@@ -84,7 +84,7 @@ a:active {
 #header a,
 .header a {
 	background: center center no-repeat transparent;
-	background-image: url(../img/mimiGlyphs/19.png);
+	background-image: url(../img/icons/config.png);
 }
 
 #header a.user-settings,
