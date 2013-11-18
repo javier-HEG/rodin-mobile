@@ -54,12 +54,12 @@ body {
 }
 
 #autocomplete-box span.launch {
-	float: right;
+	float: left;
 	width: 90%;
 }
 
 #autocomplete-box button.add {
-	float: left;
+	float: right;
 	margin: 0px;
 	width: 10%;
 	height: 22px;
