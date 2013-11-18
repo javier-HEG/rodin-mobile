@@ -10,7 +10,7 @@ function Search(query, type) {
 	var searchId = null;
 	var resourceUrl = null;
 	
-	this.safe = 10;
+	this.safe = 30;
 
 	var results = [];
 
@@ -42,6 +42,8 @@ function Search(query, type) {
 					self.updateStatus();
 				}, 1000);
 			}
+		} else {
+			this.saveResultsCallBack(array(), null, null);
 		}
 	}
 

@@ -330,7 +330,7 @@ function AutoComplete() {
 	this.updateSuggestions = function() {
 		if (isActive) {
 			var query = $("#global-search-query").val();
-
+			
 			if (query !== "") {
 				var requestInfo = {
 					type: "GET",
