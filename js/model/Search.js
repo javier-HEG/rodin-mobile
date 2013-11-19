@@ -10,7 +10,7 @@ function Search(query, type) {
 	var searchId = null;
 	var resourceUrl = null;
 	
-	this.safe = 30;
+	this.safe = 10;
 
 	var results = [];
 
@@ -40,7 +40,7 @@ function Search(query, type) {
 			} else {
 				setTimeout(function() {
 					self.updateStatus();
-				}, 1000);
+				}, 3000);
 			}
 		} else {
 			this.saveResultsCallBack(array(), null, null);
@@ -160,6 +160,7 @@ function BasicResult() {
 	var content = "";
 	var date = null;
 	var url = null;
+	var sourceName = null;
 
 	this.setTitle = function(aTitle) {
 		title = aTitle;
@@ -208,6 +209,14 @@ function BasicResult() {
 		return url;
 	}
 
+	this.setSourceName = function(aSourceName) {
+		sourceName = aSourceName;
+	}
+
+	this.getSourceName = function() {
+		return sourceName;
+	}
+
 	this.getAuthorsString = function() {
 		return authors.join(", ");
 	}
@@ -223,6 +232,10 @@ function BasicResult() {
 		this.setContent(data.content);
 		this.setPubDate(new Date(data.pubDate));
 		this.setUrl(data.documents[0].sourceLinkURL);
+
+		if (typeof data.documents[0].sourceName === "string") {
+			this.setSourceName(data.documents[0].sourceName);
+		}
 	}
 }
 
@@ -255,7 +268,19 @@ BasicResult.prototype.displayInDiv = function(div) {
 		resultDiv.append(contentP);
 	}
 
-	resultDiv.append($('<p class="publication"><span class="date">' + this.getDateString() + '</span> <a target="_blank" href="' + this.getUrl() + '"></a></p>'));
+	// TODO improve implementation of this
+	if (this.getSourceName() !== null) {
+		var publicationPar = $('<p class="publication"></p>');
+		publicationPar.append($('<span class="date">' + this.getDateString() + '</span>'));
+
+		var sourceLink = $('<a target="_blank" class="source-' + this.getSourceName() + '" href="' + this.getUrl() + '"></a>');
+		publicationPar.append(sourceLink);
+
+		resultDiv.append(publicationPar);
+	} else {
+		resultDiv.append($('<p class="publication"><span class="date">' + this.getDateString() + '</span> <a target="_blank" href="' + this.getUrl() + '"></a></p>'));
+	}
+
 
 	div.append(resultDiv);
 };

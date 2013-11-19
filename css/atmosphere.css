@@ -371,6 +371,20 @@ ul.termlist li.related { background-color: rgba(0, 0, 255, 0.1); }
 	background-image: url(../img/mimiGlyphs/47.png);
 }
 
+.rodin-result p.publication a.source-Alexandria { background-image: url(../img/icons/sources/alex.ico); }
+.rodin-result p.publication a.source-Arxiv { background-image: url(../img/icons/sources/arxiv.ico); }
+.rodin-result p.publication a.source-Bibsonomy { background-image: url(../img/icons/sources/bibsonomy.png); }
+.rodin-result p.publication a.source-DBPedia { background-image: url(../img/icons/sources/dbpedia.ico); }
+.rodin-result p.publication a.source-Delicious { background-image: url(../img/icons/sources/delicious.ico); }
+.rodin-result p.publication a.source-Econbiz { background-image: url(../img/icons/sources/econbiz.ico); }
+.rodin-result p.publication a.source-ELib { background-image: url(../img/icons/sources/elib.ico); }
+.rodin-result p.publication a.source-GND { background-image: url(../img/icons/sources/gnd.png); }
+.rodin-result p.publication a.source-LOCSH { background-image: url(../img/icons/sources/locsh.ico); }
+.rodin-result p.publication a.source-Rameau { background-image: url(../img/icons/sources/rameau.ico); }
+.rodin-result p.publication a.source-STW { background-image: url(../img/icons/sources/stw.ico); }
+.rodin-result p.publication a.source-SwissBib { background-image: url(../img/icons/sources/swissbib.ico); }
+.rodin-result p.publication a.source-TheSOZ { background-image: url(../img/icons/sources/thesoz.ico); }
+
 .rodin-result .sources {
 	text-align: right;
 }
