@@ -40,13 +40,15 @@
 	<!-- Can be used to improve the hovering in touch devices -->
 	<!-- <script src="js/vendor/jquery.hoverIntent.js"></script> -->
 	<script src="js/helper.js"></script>
-	<!-- Messages and MBP Fixes -->
+	<!-- MVC View -->
 	<script src="js/view/Messages.js"></script>
 	<script>
 		$(function() {
 			messageManager.rollMessages();
 		});
-
+	</script>
+	<!-- MBP Fixes -->
+	<script>
 		MBP.hideUrlBarOnLoad();
 		MBP.preventZoom();
 		MBP.scaleFix();		
@@ -64,9 +66,11 @@
 		<script src="js/vendor/overthrow.js"></script>
 		<!-- Broker class -->
 		<script src="js/Broker.js"></script>
-		<!-- View class -->
-		<script src="js/view/ObserverPattern.js"></script>
-		<!-- Model classes -->
+		<!-- MVC View class -->
+		<script src="js/view/Views.js"></script>
+		<!-- MVC Control class -->
+		<script src="js/control/ObserverPattern.js"></script>
+		<!-- MVC Model classes -->
 		<script src="js/model/User.js"></script>
 		<script src="js/model/Universe.js"></script>
 		<script src="js/model/Source.js"></script>
