@@ -1,22 +1,79 @@
-<login page "Login">
-<username "Benutzername">
-<password "Passwort">
-<submit "Sich einloggen">
-<welcome username "Willkommen {{ $username }}"> (???)
-<no universe, create one "Sie haben noch kein Universum erstellt. Hier können Sie eines erstellen.">
-<search refinement space "Suche einschränken">
-<universe options "Universumsoptionen"> 
-<universe selection "Auswahl">
-<create universe "Universum erstellen">
-<universe name "Name">
-<default "Standard">
-<cancel "Löschen">
-<save "Speichern">
-<question "Sind Sie sicher, dass Sie ein neues Universum erstellen möchten? Es wird als Standarduniversum ausgewählt.>
-<change password "Passwort ändern">
-<language "Sprache">
-<session "Sitzung">
-<logout "Ausloggen">
-<old password "Altes Passwort">
-<new password "Neues Passwort">
+import('common.lol')
+
+/* ------------------------------------------- */
+<expansionSpace[formFactor(@screen)] {
+        *desktop: "Espace pour le refinement semantique",
+        landscape: "Refinement semantique"
+}>
+
+<expansionSearching "Recherche en cours ...">
+
+<expansionCount[plural($relatedTermsCount), formFactor(@screen)] {
+        zero: {
+                *desktop: "Pas de termes relationnés trouvés",
+                smartphone: "Pas de termes rel. trouvés"
+        },
+        one: {
+                *desktop: "{{ $relatedTermsCount }} terme relationné trouvé",
+                smartphone: "{{ $relatedTermsCount }} terme rel. trouvé"
+        },
+        *many: {
+                *desktop: "{{ $relatedTermsCount }} termes relationnés trouvés",
+                smartphone: "{{ $relatedTermsCount }} termes rel. trouvés"
+        }
+}>
+
+<expansionSelection[plural($selectedTermsCount), formFactor(@screen)] {
+        zero: " ",
+        *many: {
+                *desktop: "({{ $selectedTermsCount }} selectionnés)",
+                smartphone: "({{ $selectedTermsCount }} sel.)",
+                landscape: "({{ $selectedTermsCount }} sel.)"
+        }
+}>
+
+<narrowerCategory[formFactor(@screen)] {
+        *desktop: "Specifique",
+        smartphone: "Spec."        
+}>
+<broaderCategory[formFactor(@screen)] {
+        *desktop: "Généraux",
+        smartphone: "Gén."        
+}>
+<relatedCategory[formFactor(@screen)] {
+        *desktop: "Relationnés",
+        smartphone: "Rel."        
+}>
+
+<cancelButton "" value: "Annuler">
+<saveButton "" value: "Enregistrer">
+<removeButton "" value: "Eliminer">
+<defaultInput "" value: "Par défaut">
+
+/* ------------------------------------------------------------------------- */
+<globalSearching "Recherche en cours ...">
+<globalNoResults "Aucun resultat">
+
+/* ------------------------------------------- */
+<userOptions "Options utilisateur">
+<userOptionsName "Nom d'utilisateur">
+<userOptionsPassword "Mot de passe">
+<userOptionsChangePassword "Changement de mot de passe">
+<userOptionsOldPassword "Altes Passwort">
+<userOptionsNewPassword "Neues Passwort">
+<userOptionsLanguage "Langue">
+<userOptionsSession "Session">
+<userOptionsLogoutButton "" value: "Sortir">
+
+/* ------------------------------------------- */
+<universeOptions "Options universe">
+<universeOptionsAboutCurrent "L'univers actuel">
+<universeOptionsCurrent "Modifier l'univers actuel">
+<universeOptionsName "Nom">
+<universeOptionsCurrentSources "Sources">
+<universeOptionsRemoveUniverse "Dieses Universum löschen">
+<universeOptionsRemoveWarning "Attention">
+<universeOptionsRemoveWarningText "Möchten Sie dieses Universum wirklich löschen?">
+<universeOptionsUniverseSelection "Choisir un autre univers">
+<universeOptionsCreateUniverse "Créer un univers">
 
