@@ -37,11 +37,11 @@ import('common.lol')
         smartphone: "Spez."        
 }>
 <broaderCategory[formFactor(@screen)] {
-        *desktop: "Generell",
-        smartphone: "Gen."        
+        *desktop: "Erweitert",
+        smartphone: "Erw."        
 }>
 <relatedCategory[formFactor(@screen)] {
-        *desktop: "Verwandte",
+        *desktop: "Verwandt",
         smartphone: "Verw."        
 }>
 
@@ -52,28 +52,28 @@ import('common.lol')
 
 /* ------------------------------------------------------------------------- */
 <globalSearching "Suche läuft ...">
-<globalNoResults "Aucun resultat">
+<globalNoResults "Keine Resultate">
 
 /* ------------------------------------------- */
-<userOptions "Options utilisateur">
-<userOptionsName "Nom d'utilisateur">
-<userOptionsPassword "Mot de passe">
-<userOptionsChangePassword "Changement de mot de passe">
+<userOptions "Benutzeroptionen">
+<userOptionsName "Benutzername">
+<userOptionsPassword "Passwort">
+<userOptionsChangePassword "Passwort ändern">
 <userOptionsOldPassword "Altes Passwort">
 <userOptionsNewPassword "Neues Passwort">
-<userOptionsLanguage "Langue">
-<userOptionsSession "Session">
-<userOptionsLogoutButton "" value: "Sortir">
+<userOptionsLanguage "Sprache">
+<userOptionsSession "Sitzung">
+<userOptionsLogoutButton "" value: "Verlassen">
 
 /* ------------------------------------------- */
-<universeOptions "Options universe">
-<universeOptionsAboutCurrent "L'univers actuel">
-<universeOptionsCurrent "Modifier l'univers actuel">
-<universeOptionsName "Nom">
-<universeOptionsCurrentSources "Sources">
+<universeOptions "Universumsoptionen">
+<universeOptionsAboutCurrent "Aktives Universum">
+<universeOptionsCurrent "Aktives Universum bearbeiten">
+<universeOptionsName "Name">
+<universeOptionsCurrentSources "Quellen">
 <universeOptionsRemoveUniverse "Dieses Universum löschen">
-<universeOptionsRemoveWarning "Attention">
+<universeOptionsRemoveWarning "Achtung">
 <universeOptionsRemoveWarningText "Möchten Sie dieses Universum wirklich löschen?">
-<universeOptionsUniverseSelection "Choisir un autre univers">
-<universeOptionsCreateUniverse "Créer un univers">
+<universeOptionsUniverseSelection "Ein anderes Universum auswählen">
+<universeOptionsCreateUniverse "Ein Universum erstellen">
 
