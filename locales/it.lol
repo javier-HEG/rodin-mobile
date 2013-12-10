@@ -2,68 +2,68 @@ import('common.lol')
 
 /* ------------------------------------------- */
 <expansionSpace[formFactor(@screen)] {
-	*desktop: "Espace pour le refinement semantique",
-	landscape: "Refinement semantique"
+	*desktop: "Filtri semantichi",
+	landscape: "Filtri semantichi"
 }>
 
-<expansionSearching "Recherche en cours ...">
+<expansionSearching "Ricerca sta effettuando ...">
 
 <expansionCount[plural($relatedTermsCount), formFactor(@screen)] {
 	zero: {
-		*desktop: "Pas de termes relationnés trouvés",
-		smartphone: "Pas de termes rel. trouvés"
+		*desktop: "Nessun termini parente trovato",
+		smartphone: "Nessun termini par. trovato"
 	},
 	one: {
-		*desktop: "{{ $relatedTermsCount }} terme relationné trouvé",
-		smartphone: "{{ $relatedTermsCount }} terme rel. trouvé"
+		*desktop: "{{ $relatedTermsCount }} termine parente trovato",
+		smartphone: "{{ $relatedTermsCount }} termine par. trovato"
 	},
 	*many: {
-		*desktop: "{{ $relatedTermsCount }} termes relationnés trouvés",
-		smartphone: "{{ $relatedTermsCount }} termes rel. trouvés"
+		*desktop: "{{ $relatedTermsCount }} termini parente trovato",
+		smartphone: "{{ $relatedTermsCount }} termini par. trovato"
 	}
 }>
 
 <expansionSelection[plural($selectedTermsCount), formFactor(@screen)] {
 	zero: " ",
 	*many: {
-		*desktop: "({{ $selectedTermsCount }} selectionnés)",
+		*desktop: "({{ $selectedTermsCount }} selezionato)",
 		smartphone: "({{ $selectedTermsCount }} sel.)",
 		landscape: "({{ $selectedTermsCount }} sel.)"
 	}
 }>
 
 <narrowerCategory[formFactor(@screen)] {
-	*desktop: "Specifique",
+	*desktop: "Specifico",
 	smartphone: "Spec."	
 }>
 <broaderCategory[formFactor(@screen)] {
-	*desktop: "Généraux",
-	smartphone: "Gén."	
+	*desktop: "Generale",
+	smartphone: "Gen."	
 }>
 <relatedCategory[formFactor(@screen)] {
-	*desktop: "Relationnés",
-	smartphone: "Rel."	
+	*desktop: "Parente",
+	smartphone: "Par"	
 }>
 
-<cancelButton "" value: "Annuler">
-<saveButton "" value: "Enregistrer">
-<removeButton "" value: "Eliminer">
-<defaultInput "" value: "Par défaut">
+<cancelButton "" value: "Interrompi">
+<saveButton "" value: "Salva">
+<removeButton "" value: "Cancellazione">
+<defaultInput "" value: "Standard">
 
 /* ------------------------------------------------------------------------- */
-<globalSearching "Recherche en cours ...">
-<globalNoResults "Aucun resultat">
+<globalSearching "Ricerca sta effettuando ...">
+<globalNoResults "Nessun resultato">
 
 /* ------------------------------------------- */
-<userOptions "Options utilisateur">
-<userOptionsName "Nom d'utilisateur">
-<userOptionsPassword "Mot de passe">
-<userOptionsChangePassword "Changement de mot de passe">
-<userOptionsOldPassword "Ancien mot de passe">
-<userOptionsNewPassword "Nouveau mot de passe">
-<userOptionsLanguage "Langue">
-<userOptionsSession "Session">
-<userOptionsLogoutButton "" value: "Sortir">
+<userOptions "Opzioni dei utenti">
+<userOptionsName "Nome">
+<userOptionsPassword "Password">
+<userOptionsChangePassword "Cambia password">
+<userOptionsOldPassword "Precedente password">
+<userOptionsNewPassword "Nuovo password">
+<userOptionsLanguage "Lingua">
+<userOptionsSession "Sessione">
+<userOptionsLogoutButton "" value: "Uscire">
 
 /* ------------------------------------------- */
 <universeOptions "Options universe">
