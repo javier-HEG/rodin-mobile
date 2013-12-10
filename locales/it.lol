@@ -66,13 +66,13 @@ import('common.lol')
 <userOptionsLogoutButton "" value: "Uscire">
 
 /* ------------------------------------------- */
-<universeOptions "Options universe">
-<universeOptionsAboutCurrent "L'univers actuel">
-<universeOptionsCurrent "Modifier l'univers actuel">
-<universeOptionsName "Nom">
-<universeOptionsCurrentSources "Sources">
-<universeOptionsRemoveUniverse "Eliminer cet univers">
-<universeOptionsRemoveWarning "Attention">
-<universeOptionsRemoveWarningText "Êtes-vous sûr de vouloir eliminer l'univers?">
-<universeOptionsUniverseSelection "Choisir un autre univers">
-<universeOptionsCreateUniverse "Créer un univers">
+<universeOptions "Opzioni dei universi">
+<universeOptionsAboutCurrent "Universo attivo">
+<universeOptionsCurrent "Modificare l'universo attivo">
+<universeOptionsName "Nome">
+<universeOptionsCurrentSources "Fonti">
+<universeOptionsRemoveUniverse "Eliminare l'universo">
+<universeOptionsRemoveWarning "Attenzione">
+<universeOptionsRemoveWarningText "Siete sicuro di voler eliminare questo universo?">
+<universeOptionsUniverseSelection "Scegliere un altro universo">
+<universeOptionsCreateUniverse "Creare un universo">
