@@ -2,56 +2,56 @@ import('common.lol')
 
 /* ------------------------------------------- */
 <expansionSpace[formFactor(@screen)] {
-        *desktop: "Espace pour le refinement semantique",
-        landscape: "Refinement semantique"
+        *desktop: "Semantische Filter",
+        landscape: "Semantische Filter"
 }>
 
-<expansionSearching "Recherche en cours ...">
+<expansionSearching "Suche läuft ...">
 
 <expansionCount[plural($relatedTermsCount), formFactor(@screen)] {
         zero: {
-                *desktop: "Pas de termes relationnés trouvés",
-                smartphone: "Pas de termes rel. trouvés"
+                *desktop: "Keine verwandten Begriffe gefunden",
+                smartphone: "Keine verw. Begriffe gefunden"
         },
         one: {
-                *desktop: "{{ $relatedTermsCount }} terme relationné trouvé",
-                smartphone: "{{ $relatedTermsCount }} terme rel. trouvé"
+                *desktop: "{{ $relatedTermsCount }} Verwandter Begriff gefunden",
+                smartphone: "{{ $relatedTermsCount }} Verw. Begriff gefunden"
         },
         *many: {
-                *desktop: "{{ $relatedTermsCount }} termes relationnés trouvés",
-                smartphone: "{{ $relatedTermsCount }} termes rel. trouvés"
+                *desktop: "{{ $relatedTermsCount }} Verwandte Begriffe gefunden",
+                smartphone: "{{ $relatedTermsCount }} Verw. Begriffe gefunden"
         }
 }>
 
 <expansionSelection[plural($selectedTermsCount), formFactor(@screen)] {
         zero: " ",
         *many: {
-                *desktop: "({{ $selectedTermsCount }} selectionnés)",
-                smartphone: "({{ $selectedTermsCount }} sel.)",
-                landscape: "({{ $selectedTermsCount }} sel.)"
+                *desktop: "({{ $selectedTermsCount }} ausgewählt)",
+                smartphone: "({{ $selectedTermsCount }} ausg.)",
+                landscape: "({{ $selectedTermsCount }} ausg.)"
         }
 }>
 
 <narrowerCategory[formFactor(@screen)] {
-        *desktop: "Specifique",
-        smartphone: "Spec."        
+        *desktop: "Spezifisch",
+        smartphone: "Spez."        
 }>
 <broaderCategory[formFactor(@screen)] {
-        *desktop: "Généraux",
-        smartphone: "Gén."        
+        *desktop: "Generell",
+        smartphone: "Gen."        
 }>
 <relatedCategory[formFactor(@screen)] {
-        *desktop: "Relationnés",
-        smartphone: "Rel."        
+        *desktop: "Verwandte",
+        smartphone: "Verw."        
 }>
 
-<cancelButton "" value: "Annuler">
-<saveButton "" value: "Enregistrer">
-<removeButton "" value: "Eliminer">
-<defaultInput "" value: "Par défaut">
+<cancelButton "" value: "Abbrechen">
+<saveButton "" value: "Speichern">
+<removeButton "" value: "Löschen">
+<defaultInput "" value: "Standard">
 
 /* ------------------------------------------------------------------------- */
-<globalSearching "Recherche en cours ...">
+<globalSearching "Suche läuft ...">
 <globalNoResults "Aucun resultat">
 
 /* ------------------------------------------- */
