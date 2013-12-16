@@ -7,4 +7,8 @@
 // Server data
 $resourceBaseUrl = "";
 
+// Proxy configuration
+$useProxy = false;
+$proxyConfig = array('host' => '', 'port' => '', 'user' => '', 'password' => '');
+
 ?>
