@@ -5,10 +5,12 @@
 
 Search.prototype = new Observable();
 Search.prototype.constructor = Search;
+Search.prototype.pageSize = 10;
 
 function Search(query, type) {
 	var searchId = null;
 	var resourceUrl = null;
+	var resultCount = 0;
 	
 	this.safe = 10;
 
@@ -20,6 +22,10 @@ function Search(query, type) {
 
 	var self = this;
 	var broker = new Broker();
+
+	this.getResultCount = function() {
+		return resultCount;
+	}
 
 	this.getQuery = function() {
 		return query;
@@ -36,59 +42,92 @@ function Search(query, type) {
 
 		if (self.safe > 0) {
 			if (shouldStop) {
-				broker.makeRequest("GET", "result/query?searchId=" + searchId, null, this.saveResultsCallBack, this);
+				switch (type) {
+					case Search.prototype.SUBJECT_EXPANSION_TYPE:
+						broker.makeRequest("GET", "result/query?searchId=" + searchId,
+							null, this.saveSubjectExpansionResultsCallBack, this);	
+						break;
+					case Search.prototype.GLOBAL_TYPE:
+						resultCount = data.resultCount;
+						// Ask only for the first page of results
+						broker.makeRequest("GET", "result/query?searchId=" + searchId + "&from=0&count=" + Search.prototype.pageSize,
+							null, this.savePartialGlobalResultsCallBack, this);
+						break;
+				}
 			} else {
 				setTimeout(function() {
 					self.updateStatus();
 				}, 3000);
 			}
 		} else {
-			this.saveResultsCallBack(array(), null, null);
+			switch (type) {
+				case Search.prototype.SUBJECT_EXPANSION_TYPE:
+					this.saveSubjectExpansionResultsCallBack(array(), null, null);
+					break;
+				case Search.prototype.GLOBAL_TYPE:
+					resultCount = 0;
+					// Ask only for the first page of results
+					this.savePartialGlobalResultsCallBack(array(), null, null);
+					break;
+			}
 		}
 	}
 
-	this.saveResultsCallBack = function(data, status, xhr) {
-		switch (type) {
-			case Search.prototype.SUBJECT_EXPANSION_TYPE:
-				if (query !== "empty") {
-					for (var i = 0; i < data.length; i++) {
-						switch (data[i].keywords[0]) {
-							case "NARROWER":
-								results.narrower = results.narrower.concat(data[i].content.split(","));
-								break;
-							case "BROADER":
-								results.broader = results.broader.concat(data[i].content.split(","));
-								break;
-							case "RELATED":
-								results.related = results.related.concat(data[i].content.split(","));
-								break;
-						}
+	this.saveSubjectExpansionResultsCallBack = function(data, status, xhr) {
+		if (type === Search.prototype.SUBJECT_EXPANSION_TYPE) {
+			if (query !== "empty") {
+				for (var i = 0; i < data.length; i++) {
+					switch (data[i].keywords[0]) {
+						case "NARROWER":
+							results.narrower = results.narrower.concat(data[i].content.split(","));
+							break;
+						case "BROADER":
+							results.broader = results.broader.concat(data[i].content.split(","));
+							break;
+						case "RELATED":
+							results.related = results.related.concat(data[i].content.split(","));
+							break;
 					}
 				}
-				break;
-			case Search.prototype.GLOBAL_TYPE:
-				if (query !== "empty") {
-					for (var i = 0; i < data.length; i++) {
-						switch (data[i].type) {
-							case "ARTICLE":
-								// var article = new ArticleResult();
-								// article.initWithData(data[i]);
-								
-								// results.push(article);
-								// break;
-							default:
-								var basic = new BasicResult();
-								basic.initWithData(data[i]);
-								
-								results.push(basic);
-								break;
-						}
-					}
-				}
-				break;
+			}
 		}
 
 		this.notifyObservers();
+	}
+
+	this.savePartialGlobalResultsCallBack = function(data, status, xhr) {
+		if (type === Search.prototype.GLOBAL_TYPE) {
+			if (query !== "empty") {
+				for (var i = 0; i < data.length; i++) {
+					switch (data[i].type) {
+						case "ARTICLE":
+							// var article = new ArticleResult();
+							// article.initWithData(data[i]);
+							
+							// results.push(article);
+							// break;
+						default:
+							var basic = new BasicResult();
+							basic.initWithData(data[i]);
+							
+							results.push(basic);
+							break;
+					}
+				}
+			}
+		}
+
+		this.notifyObservers();
+	}
+
+	this.getMoreResults = function() {
+		// Only makes sense if global
+		if (type === Search.prototype.GLOBAL_TYPE) {
+			// Ask for another page of results (or at most a page size count)
+			var countMin = Math.min(Search.prototype.pageSize, resultCount - results.length);
+			broker.makeRequest("GET", "result/query?searchId=" + searchId + "&from=" + results.length + "&count=" + countMin,
+				null, this.savePartialGlobalResultsCallBack, this);
+		}
 	}
 
 	this.getQuery = function() {

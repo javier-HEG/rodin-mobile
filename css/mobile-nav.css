@@ -339,6 +339,10 @@ ul.termlist li {
 	width: 100%;
 }
 
+#more-results-button {
+	margin-bottom: 12px;
+}
+
 /**
  * 7. Auto-complete
  */

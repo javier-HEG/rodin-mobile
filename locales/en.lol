@@ -33,6 +33,7 @@ import('common.lol')
 /* ------------------------------------------------------------------------- */
 <globalSearching "Searching ...">
 <globalNoResults "No results">
+<globalMoreResults "10 more results">
 
 /* ------------------------------------------------------------------------- */
 <userOptions "User options">

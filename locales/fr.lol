@@ -53,6 +53,7 @@ import('common.lol')
 /* ------------------------------------------------------------------------- */
 <globalSearching "Recherche en cours ...">
 <globalNoResults "Aucun resultat">
+<globalMoreResults "Encore 10 résultats">
 
 /* ------------------------------------------- */
 <userOptions "Options utilisateur">
