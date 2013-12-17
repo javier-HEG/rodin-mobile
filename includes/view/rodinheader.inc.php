@@ -177,9 +177,10 @@ if ($rodinSession->isUserLoggedIn()) {
 				<li data-l10n-id="userOptionsLanguage" class="label"></li>
 				<li>
 					<span style="height: 40px;">
-						<input id="language-select-en" class="language" type="button" value = "English" />
-						<input id="language-select-fr" class="language" type="button" value = "Français" />
-						<input id="language-select-de" class="language" type="button" value = "Deutsch" />
+						<input id="language-select-fr" class="language" type="button" value="Français" />
+						<input id="language-select-de" class="language" type="button" value="Deutsch" />
+						<input id="language-select-it" class="language" type="button" value="Italiano" />
+						<input id="language-select-en" class="language" type="button" value="English" />
 					</span>
 				</li>
 				<li data-l10n-id="userOptionsSession" class="label"></li>

@@ -141,7 +141,7 @@ input[type="button"] {
 
 /* Buttons for language options */
 .mm-menu li input.language[type="button"] {
-	width: 30%;
+	width: 22%;
 }
 
 /* Buttons for setting actions */
