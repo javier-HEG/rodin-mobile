@@ -1,5 +1,8 @@
 import('common.lol')
 
+/* ------------------------------------------------------------------------- */
+<helpAddAUniverse "No universo, crearne uno per iniziare a utilizzare RODIN."> /* NEW */
+
 /* ------------------------------------------- */
 <expansionSpace[formFactor(@screen)] {
 	*desktop: "Filtri semantichi",
@@ -53,6 +56,7 @@ import('common.lol')
 /* ------------------------------------------------------------------------- */
 <globalSearching "Ricerca sta effettuando ...">
 <globalNoResults "Nessun resultato">
+<globalMoreResults "10 altri risultati"> /* NEW */
 
 /* ------------------------------------------- */
 <userOptions "Opzioni dei utenti">

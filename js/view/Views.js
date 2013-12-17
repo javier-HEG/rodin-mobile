@@ -1,3 +1,18 @@
+function HelpView() {
+	this.addAUniverseHelp = function(show) {
+		if (show) {
+			if ($('#addAUniverseHelp').length === 0) {
+				var helpDiv = $('<div id="addAUniverseHelp" class="help-left" data-l10n-id="helpAddAUniverse" />');
+				$('#header-universe-name').parent().append(helpDiv);
+
+				document.l10n.localizeNode($('#addAUniverseHelp').get(0));
+			}
+		} else {
+			$('#addAUniverseHelp').remove();
+		}
+	}
+}
+
 /**
  * The view responsible for displaying and updating the list of results
  * in the interface.
@@ -85,7 +100,7 @@ function GlobalSearchView() {
 		});
 
 		here.append(moreResultsButton);
-		
+
 		document.l10n.localizeNode($('[data-l10n-id="globalMoreResults"]').get(0));
 	}
 }

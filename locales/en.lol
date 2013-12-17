@@ -1,6 +1,9 @@
 import('common.lol')
 
 /* ------------------------------------------------------------------------- */
+<helpAddAUniverse "No universe, create one to start using RODIN."> /* NEW */
+
+/* ------------------------------------------------------------------------- */
 <expansionSpace "Search refinement space">
 <expansionSearching "Searching related terms ...">
 
@@ -33,7 +36,7 @@ import('common.lol')
 /* ------------------------------------------------------------------------- */
 <globalSearching "Searching ...">
 <globalNoResults "No results">
-<globalMoreResults "10 more results">
+<globalMoreResults "10 more results"> /* NEW */
 
 /* ------------------------------------------------------------------------- */
 <userOptions "User options">

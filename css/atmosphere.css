@@ -12,6 +12,8 @@
  * 4. Styles for Rodin specific content
  * 5. Rodin subject expansion
  * 6. Rodin results
+ * 7. Auto-complete
+ * 8. Help tooltips
  *
  * X. Query for HD medias
  * 
@@ -412,6 +414,35 @@ ul.termlist li.related { background-color: rgba(0, 0, 255, 0.1); }
 	border: none;
 }
 
+/**
+ * 8. Help tooltips
+ */
+.help-left {
+	background-color: mintcream;
+    border: 2px solid grey;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.help-left:after, .help-left:before {
+	border: medium solid transparent;
+	content: " ";
+}
+
+.help-left:after {
+	border-color: transparent;
+	border-right-color: mintcream;
+	border-width: 12px;
+	margin-top: -12px;
+}
+
+.help-left:before {
+	border-color: transparent;
+	border-right-color: grey;
+	border-width: 15px;
+	margin-top: -15px;
+}
 
 /**
  * X. Query for HD medias

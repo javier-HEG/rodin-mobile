@@ -10,6 +10,8 @@
  * 4. Styles for Rodin specific content
  * 5. Rodin subject expansion
  * 6. Rodin results
+ * 7. Auto-complete
+ * 8. Help tooltips
  *
  * X. Query for HD medias
  * Y. Base 960 Grid
@@ -381,6 +383,26 @@ ul.termlist li {
 	border-radius: 0px;
 }
 
+/**
+ * 8. Help tooltips
+ */
+.help-left {
+	left: 40px;
+    padding: 8px;
+    position: absolute;
+    top: -12px;
+    width: 50%;
+    z-index: 99;
+}
+
+.help-left:after, .help-left:before {
+	right: 100%;
+	top: 20px;
+	pointer-events: none;
+	position: absolute;
+	height: 0;
+	width: 0;
+}
 
 /**
  * X. Query for HD medias

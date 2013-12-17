@@ -53,6 +53,8 @@ UserObserver.prototype.notify = function() {
 	if (l10nReady) {
 		l10nLanguageSet = true;
 		this.updateLocale();
+	} else {
+		setTimeout("userObserver.notify();", 100);
 	}
 };
 
@@ -119,6 +121,8 @@ CurrentUniverseObserver.prototype = new Observer();
 CurrentUniverseObserver.prototype.constructor = CurrentUniverseObserver;
 
 function CurrentUniverseObserver() {
+	this.helpView = new HelpView();
+
 	var self = this;
 
 	this.formatAsSelected = function(element, instanceId) {
@@ -172,6 +176,9 @@ CurrentUniverseObserver.prototype.notify = function() {
 		selected = user.getCurrentUniverse();
 
 	if (selected !== null) {
+		// Ensure no add first universe help is shown
+		this.helpView.addAUniverseHelp(false);
+
 		// Enable query field and button
 		if ($("#global-search-query").prop("disabled")) {
 			$("#global-search-query").val("");
@@ -257,7 +264,9 @@ CurrentUniverseObserver.prototype.notify = function() {
 			}
 		}
 	} else {
-		$("#header-universe-name").text("<--- No universe, create one");
+		this.helpView.addAUniverseHelp(true);
+
+		$("#header-universe-name").text("&nbsp;");
 
 		$("#current-universe-label").parent().hide();
 		$("#config-current-universe-label").hide();
