@@ -2,9 +2,13 @@
 // VIEW CLASSES
 
 function HelpView() {
+	this.isAddUniverseHelpShowing = function() {
+		return ($('#addAUniverseHelp').length > 0);
+	}
+
 	this.addAUniverseHelp = function(show) {
 		if (show) {
-			if ($('#addAUniverseHelp').length === 0) {
+			if (!this.isAddUniverseHelpShowing()) {
 				var helpDiv = $('<div id="addAUniverseHelp" class="help-left" data-l10n-id="helpAddAUniverse" />');
 				$('#header-universe-name').parent().append(helpDiv);
 
@@ -33,7 +37,7 @@ function HelpView() {
 	}
 
 	this.addDataSourceHelp = function(show) {
-		if (show) {
+		if (show && !this.isAddUniverseHelpShowing()) {
 			if ($('#addDataSourceHelp').length === 0) {
 				var messageItem = $('<div id="addDataSourceHelp" class="rodin-result"></div>');
 				messageItem.append($('<p style="margin-right: 20px; margin-bottom: 0px;" data-l10n-id="helpAddDataSource"/>'));				
