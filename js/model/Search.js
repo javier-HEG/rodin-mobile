@@ -62,12 +62,12 @@ function Search(query, type) {
 		} else {
 			switch (type) {
 				case Search.prototype.SUBJECT_EXPANSION_TYPE:
-					this.saveSubjectExpansionResultsCallBack(array(), null, null);
+					this.saveSubjectExpansionResultsCallBack(Array(), null, null);
 					break;
 				case Search.prototype.GLOBAL_TYPE:
 					resultCount = 0;
 					// Ask only for the first page of results
-					this.savePartialGlobalResultsCallBack(array(), null, null);
+					this.savePartialGlobalResultsCallBack(Array(), null, null);
 					break;
 			}
 		}

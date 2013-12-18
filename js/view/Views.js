@@ -1,3 +1,6 @@
+////////////////////////
+// VIEW CLASSES
+
 function HelpView() {
 	this.addAUniverseHelp = function(show) {
 		if (show) {
@@ -9,6 +12,48 @@ function HelpView() {
 			}
 		} else {
 			$('#addAUniverseHelp').remove();
+		}
+	}
+
+	this.isUniversePointerShowing = function() {
+		return ($('#addDataSourcePointer').length > 0);
+	}
+
+	this.showUniversePointer = function(show) {
+		if (show) {
+			if (!this.isUniversePointerShowing()) {
+				var pointerDiv = $('<div id="addDataSourcePointer" class="pointer-left" data-l10n-id="helpHerePointer"/>');
+				$('#header-universe-name').parent().append(pointerDiv);
+
+				document.l10n.localizeNode($('#addDataSourcePointer').get(0));
+			}
+		} else {
+			$('#addDataSourcePointer').remove();
+		}
+	}
+
+	this.addDataSourceHelp = function(show) {
+		if (show) {
+			if ($('#addDataSourceHelp').length === 0) {
+				var messageItem = $('<div id="addDataSourceHelp" class="rodin-result"></div>');
+				messageItem.append($('<p style="margin-right: 20px; margin-bottom: 0px;" data-l10n-id="helpAddDataSource"/>'));				
+				messageItem.append($('<img style="position: absolute; bottom: 12px; right: 4px;" src="img/mimiGlyphs/61.png"/>'));				
+				messageItem.bind('click', function() {
+					if (helpView.isUniversePointerShowing())
+						helpView.showUniversePointer(false);
+					else
+						helpView.showUniversePointer(true);
+				});
+				
+				var messageItemContainer = $('<div class="sixteen columns"></div>');
+				messageItemContainer.append(messageItem);
+
+				$("#rodin-results").append(messageItemContainer);
+
+				document.l10n.localizeNode($('[data-l10n-id="helpAddDataSource"]').get(0));
+			}
+		} else {
+			$('#addDataSourceHelp').remove();
 		}
 	}
 }
@@ -167,6 +212,8 @@ function CurrentUniverseView() {
 				var theSourcesList = $("#the-sources-ul");
 				var lodSourcesList = $("#lod-sources-ul");
 
+				var atLeastOneDocSource = false;
+
 				for (var i = 0; i < allSources.length; i++) {
 					var sourceName = allSources[i].name;
 
@@ -180,6 +227,7 @@ function CurrentUniverseView() {
 						var sourceInstanceId = selected.getSourceInstanceId(sourceName, sourceType);
 						if (sourceInstanceId !== -1) {
 							this.formatAsSelected(element, sourceInstanceId);
+							atLeastOneDocSource = true;
 						} else {
 							this.formatAsUnselected(element);
 						}
@@ -221,6 +269,11 @@ function CurrentUniverseView() {
 						lodSourcesList.append(element);
 					}
 				}
+
+				if (atLeastOneDocSource)
+					helpView.addDataSourceHelp(false);
+				else
+					helpView.addDataSourceHelp(true);
 			}
 		} else {
 			$("#current-universe-label").parent().hide();

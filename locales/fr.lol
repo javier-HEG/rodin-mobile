@@ -82,3 +82,5 @@ import('common.lol')
 
 /* ------------------------------------------------------------------------- */
 <helpAddAUniverse "Aucun universe, veuillez en créer un pour commencer à utiliser RODIN."> /* NEW */
+<helpAddDataSource "Aucune Datasource, ajoutez-en une pour obtenir des résultats."> /* NEW */
+<helpHerePointer "Ici!">
