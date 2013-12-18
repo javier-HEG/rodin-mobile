@@ -391,7 +391,7 @@ ul.termlist li {
     padding: 8px;
     position: absolute;
     top: -12px;
-    width: 50%;
+    width: 210px;
     z-index: 99;
 }
 

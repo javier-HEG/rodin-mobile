@@ -1,8 +1,5 @@
 import('common.lol')
 
-/* ------------------------------------------------------------------------- */
-<helpAddAUniverse "Aucun universe, veuillez en créer un pour commencer à utiliser RODIN."> /* NEW */
-
 /* ------------------------------------------- */
 <expansionSpace[formFactor(@screen)] {
 	*desktop: "Espace pour le refinement semantique",
@@ -82,3 +79,6 @@ import('common.lol')
 <universeOptionsUniverseSelection "Choisir un autre univers">
 <universeOptionsCreateUniverse "Créer un univers">
 <universeOptionsCreateUniverseConfirm "Êtes-vous sûr de vouloir créer un nouvel univers? (Il sera choisi par défaut)"> /* NEW */
+
+/* ------------------------------------------------------------------------- */
+<helpAddAUniverse "Aucun universe, veuillez en créer un pour commencer à utiliser RODIN."> /* NEW */

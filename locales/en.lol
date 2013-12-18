@@ -1,9 +1,6 @@
 import('common.lol')
 
 /* ------------------------------------------------------------------------- */
-<helpAddAUniverse "No universe, create one to start using RODIN."> /* NEW */
-
-/* ------------------------------------------------------------------------- */
 <expansionSpace "Search refinement space">
 <expansionSearching "Searching related terms ...">
 
@@ -62,3 +59,6 @@ import('common.lol')
 <universeOptionsUniverseSelection "Universe selection">
 <universeOptionsCreateUniverse "Create universe">
 <universeOptionsCreateUniverseConfirm "Are you sure you want to create a new universe? (It will be selected by default)"> /* NEW */
+
+/* ------------------------------------------------------------------------- */
+<helpAddAUniverse "No universe, create one to start using RODIN."> /* NEW */

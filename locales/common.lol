@@ -13,10 +13,8 @@
 <currentWidth "{{ @screen.width.px }}px">
 
 <mediaName[formFactor(@screen)] {
-		*desktop: "Desktop",
-		ipad: "iPad (960px-1024px)",
-		landscape: "Landscape (768px-959px)",
-		tablet: "Table (481px-767px)",
-		smartphone: "Smatphone (?-480px)"
-	}
->
+	*desktop: "Desktop",
+	ipad: "iPad (960px-1024px)",
+	landscape: "Landscape (768px-959px)",
+	tablet: "Table (481px-767px)",
+	smartphone: "Smatphone (?-480px)" }>

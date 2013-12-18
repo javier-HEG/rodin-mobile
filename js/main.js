@@ -7,6 +7,8 @@ var userObserver = new UserObserver();
 var subjectExpansionObserver = new SubjectExpansionObserver();
 var searchObserver = new SearchObserver();
 
+var helpView = new HelpView();
+
 var autoComplete = new AutoComplete();
 
 /*

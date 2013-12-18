@@ -13,6 +13,180 @@ function HelpView() {
 	}
 }
 
+function UniverseListView() {
+	var self = this;
+
+	this.formatUniverseAsSelected = function(element) {
+		element.removeClass("mm-unselected");
+		element.addClass("mm-selected");
+
+		element.unbind('click');
+		element.css('cursor', 'default');
+	};
+
+	this.formatUniverseAsUnselected = function(element) {
+		element.removeClass("mm-selected");
+		element.addClass("mm-unselected");
+
+		element.unbind('click');
+		element.click(function() {
+			user.setCurrentUniverseId($.data(element, "universeId"));
+			self.formatUniverseAsSelected(element);
+		});
+
+		element.css('cursor', 'pointer');
+	};
+
+	this.displayUserUniverses = function() {
+		var universes = user.getUniverses();
+		var selected = user.getCurrentUniverse();
+
+		$("#universe-selection-label").nextUntil("#create-universe-option").remove();
+		if (universes.length > 0 && selected !== null) {
+			helpView.addAUniverseHelp(false);
+
+			$("#header-universe-name").text(selected.getName());
+
+			for (var i = 0; i < universes.length; i++) {
+				var universeItem = $('<li>' + universes[i].getName() + "</li>");
+				$.data(universeItem, 'universeId', universes[i].getId());
+
+				if (selected.getId() === universes[i].getId()) {
+					this.formatUniverseAsSelected(universeItem);
+				} else {
+					this.formatUniverseAsUnselected(universeItem);
+				}
+
+				universeItem.insertAfter($("#universe-selection-label"));
+			}
+		} else {
+			helpView.addAUniverseHelp(true);
+			$("#header-universe-name").html("&nbsp;");
+		}
+	}
+}
+
+function SubjectExpansionView() {
+	this.currentSearchId = null;
+
+	var self = this;
+
+	this.setNewTerms = function() {
+		// Get the first 5 results only
+		var results = user.getActualSubjectExpansionSearch().getResults();
+		var narrower = results.narrower;
+		var broader = results.broader;
+		var related = results.related;
+
+		// Reset expansion if moving through history
+		resetExpansion();
+
+		// Set the text for the total expansion terms count
+		$("#rodin-expansion-count").attr("data-l10n-id", "expansionCount");
+
+		var totalRelatedTermsCount = narrower.length + broader.length + related.length;
+		document.l10n.updateData( { "relatedTermsCount": totalRelatedTermsCount } );
+		document.l10n.localizeNode($("#rodin-expansion-count").get(0));
+
+		if (totalRelatedTermsCount === 0) {
+			setTimeout(function() {
+				$("#rodin-expansion-header").addClass("unavailable");				
+			}, 2000);
+		} else {
+			appendFirstTermsTo(narrower, "narrower", $("#rodin-narrower-terms"));
+			appendFirstTermsTo(broader, "broader", $("#rodin-broader-terms"));
+			appendFirstTermsTo(related, "related", $("#rodin-related-terms"));
+
+			$("#narrower-count").text("(" + narrower.length + ")");
+			$("#broader-count").text("(" + broader.length + ")");
+			$("#related-count").text("(" + related.length + ")");
+
+			$("#rodin-expansion-header").removeClass("unavailable");
+		}
+	};
+
+	function appendFirstTermsTo(terms, cssClass, list) {
+		var first = terms.slice(0, 5);
+		var then = terms.slice(5);
+
+		appendTermsTo(first, cssClass, list);
+
+		if (then.length > 0) {
+			var buttonId = "more-" + cssClass;
+			var button = $('<li class="more-expansion">...</li>');
+			button.attr("id", buttonId);
+			button.click(function() {
+				this.remove();
+				appendTermsTo(then, cssClass, list);
+			});
+
+			button.appendTo(list);
+		}
+	}
+
+	function appendTermsTo(terms, cssClass, list) {
+		for (var i = 0; i < terms.length; i++) {
+			var item = $("<li>" + terms[i] + "</li>");
+			item.bind("click", function() {
+				$(this).toggleClass("selected");
+
+				if ($(this).hasClass("selected")) {
+					var element = $(this).detach();
+					element.addClass(cssClass);
+					element.appendTo($("#rodin-expansion-selection ul:first"));
+				} else {
+					var element = $(this).detach();
+					element.removeClass("related");
+
+					if  ($("#" + list.attr("id") + " .more-expansion").length > 0) {
+						element.insertBefore($("#" + list.attr("id") + " .more-expansion"));
+					} else {
+						element.appendTo(list);
+					}
+				}
+
+				self.notify();
+			});
+			list.append(item);
+		}
+	}
+
+	this.processResults = function() {
+		var actualSearch = user.getActualSubjectExpansionSearch();
+
+		if (actualSearch !== null) {
+			if (actualSearch.getSearchId() === null) {
+				// Nothing?
+			} else {
+				var actualSearchId = actualSearch.getSearchId();
+
+				if (this.currentSearchId === actualSearchId) {
+					var selectedTerms = $("#rodin-expansion-selection ul li").length;
+
+					if (selectedTerms > 0) {
+						styleExpansionSelection(true);
+
+						document.l10n.updateData( { "selectedTermsCount": selectedTerms } );
+						document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
+
+						user.refreshDocumentSearch(actualSearch.getQuery(), $.makeArray($("#rodin-expansion-selection ul li")));
+					} else {
+						styleExpansionSelection(false);
+
+						document.l10n.updateData( { "selectedTermsCount": 0 } );
+						document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
+
+						user.refreshDocumentSearch(actualSearch.getQuery(), null);
+					}
+				} else {
+					this.currentSearchId = actualSearchId;
+					this.setNewTerms();
+				}
+			}
+		}
+	}
+}
+
 /**
  * The view responsible for displaying and updating the list of results
  * in the interface.

@@ -1,8 +1,5 @@
 import('common.lol')
 
-/* ------------------------------------------------------------------------- */
-<helpAddAUniverse "Kein Universum, erstellen Sie starten mit RODIN."> /* NEW */
-
 /* ------------------------------------------- */
 <expansionSpace[formFactor(@screen)] {
         *desktop: "Semantische Filter",
@@ -81,3 +78,5 @@ import('common.lol')
 <universeOptionsUniverseSelection "Ein anderes Universum auswählen">
 <universeOptionsCreateUniverse "Ein Universum erstellen">
 
+/* ------------------------------------------------------------------------- */
+<helpAddAUniverse "Kein Universum, erstellen Sie starten mit RODIN."> /* NEW */

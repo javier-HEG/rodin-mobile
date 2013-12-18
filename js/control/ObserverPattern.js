@@ -68,49 +68,11 @@ UniverseListObserver.prototype = new Observer();
 UniverseListObserver.prototype.constructor = UniverseListObserver;
 
 function UniverseListObserver() {
-	var self = this;
-
-	this.formatUniverseAsSelected = function(element) {
-		element.removeClass("mm-unselected");
-		element.addClass("mm-selected");
-
-		element.unbind('click');
-		element.css('cursor', 'default');
-	};
-
-	this.formatUniverseAsUnselected = function(element) {
-		element.removeClass("mm-selected");
-		element.addClass("mm-unselected");
-
-		element.unbind('click');
-		element.click(function() {
-			user.setCurrentUniverseId($.data(element, "universeId"));
-			self.formatUniverseAsSelected(element);
-		});
-
-		element.css('cursor', 'pointer');
-	};
+	this.view = new UniverseListView();
 }
 
 UniverseListObserver.prototype.notify = function() {
-	var universes = user.getUniverses();
-	var selected = user.getCurrentUniverse();
-
-	$("#universe-selection-label").nextUntil("#create-universe-option").remove();
-	if (universes.length > 0 && selected !== null) {
-		for (var i = 0; i < universes.length; i++) {
-			var universeItem = $('<li>' + universes[i].getName() + "</li>");
-			$.data(universeItem, 'universeId', universes[i].getId());
-
-			if (selected.getId() === universes[i].getId()) {
-				this.formatUniverseAsSelected(universeItem);
-			} else {
-				this.formatUniverseAsUnselected(universeItem);
-			}
-
-			universeItem.insertAfter($("#universe-selection-label"));
-		}
-	}
+	this.view.displayUserUniverses();
 };
 
 /**
@@ -121,8 +83,6 @@ CurrentUniverseObserver.prototype = new Observer();
 CurrentUniverseObserver.prototype.constructor = CurrentUniverseObserver;
 
 function CurrentUniverseObserver() {
-	this.helpView = new HelpView();
-
 	var self = this;
 
 	this.formatAsSelected = function(element, instanceId) {
@@ -176,9 +136,6 @@ CurrentUniverseObserver.prototype.notify = function() {
 		selected = user.getCurrentUniverse();
 
 	if (selected !== null) {
-		// Ensure no add first universe help is shown
-		this.helpView.addAUniverseHelp(false);
-
 		// Enable query field and button
 		if ($("#global-search-query").prop("disabled")) {
 			$("#global-search-query").val("");
@@ -188,7 +145,6 @@ CurrentUniverseObserver.prototype.notify = function() {
 		$("#global-search-button").prop("disabled", false);
 
 		// Set the universe name in the GUI
-		$("#header-universe-name").text(selected.getName());
 		$("#current-universe-label").text('Configure "' + selected.getName() + '"');
 		$("#universe-name-setting").val(selected.getName());
 
@@ -264,10 +220,6 @@ CurrentUniverseObserver.prototype.notify = function() {
 			}
 		}
 	} else {
-		this.helpView.addAUniverseHelp(true);
-
-		$("#header-universe-name").text("&nbsp;");
-
 		$("#current-universe-label").parent().hide();
 		$("#config-current-universe-label").hide();
 		$("#remove-current-label").parent().hide();
@@ -287,124 +239,11 @@ SubjectExpansionObserver.prototype = new Observer();
 SubjectExpansionObserver.prototype.constructor = SubjectExpansionObserver;
 
 function SubjectExpansionObserver() {
-	this.currentSearchId = null;
-
-	var self = this;
-
-	this.setNewTerms = function() {
-		// Get the first 5 results only
-		var results = user.getActualSubjectExpansionSearch().getResults();
-		var narrower = results.narrower;
-		var broader = results.broader;
-		var related = results.related;
-
-		// Reset expansion if moving through history
-		resetExpansion();
-
-		// Set the text for the total expansion terms count
-		$("#rodin-expansion-count").attr("data-l10n-id", "expansionCount");
-
-		var totalRelatedTermsCount = narrower.length + broader.length + related.length;
-		document.l10n.updateData( { "relatedTermsCount": totalRelatedTermsCount } );
-		document.l10n.localizeNode($("#rodin-expansion-count").get(0));
-
-		if (totalRelatedTermsCount === 0) {
-			setTimeout(function() {
-				$("#rodin-expansion-header").addClass("unavailable");				
-			}, 2000);
-		} else {
-			appendFirstTermsTo(narrower, "narrower", $("#rodin-narrower-terms"));
-			appendFirstTermsTo(broader, "broader", $("#rodin-broader-terms"));
-			appendFirstTermsTo(related, "related", $("#rodin-related-terms"));
-
-			$("#narrower-count").text("(" + narrower.length + ")");
-			$("#broader-count").text("(" + broader.length + ")");
-			$("#related-count").text("(" + related.length + ")");
-
-			$("#rodin-expansion-header").removeClass("unavailable");
-		}
-	};
-
-	function appendFirstTermsTo(terms, cssClass, list) {
-		var first = terms.slice(0, 5);
-		var then = terms.slice(5);
-
-		appendTermsTo(first, cssClass, list);
-
-		if (then.length > 0) {
-			var buttonId = "more-" + cssClass;
-			var button = $('<li class="more-expansion">...</li>');
-			button.attr("id", buttonId);
-			button.click(function() {
-				this.remove();
-				appendTermsTo(then, cssClass, list);
-			});
-
-			button.appendTo(list);
-		}
-	}
-
-	function appendTermsTo(terms, cssClass, list) {
-		for (var i = 0; i < terms.length; i++) {
-			var item = $("<li>" + terms[i] + "</li>");
-			item.bind("click", function() {
-				$(this).toggleClass("selected");
-
-				if ($(this).hasClass("selected")) {
-					var element = $(this).detach();
-					element.addClass(cssClass);
-					element.appendTo($("#rodin-expansion-selection ul:first"));
-				} else {
-					var element = $(this).detach();
-					element.removeClass("related");
-
-					if  ($("#" + list.attr("id") + " .more-expansion").length > 0) {
-						element.insertBefore($("#" + list.attr("id") + " .more-expansion"));
-					} else {
-						element.appendTo(list);
-					}
-				}
-
-				self.notify();
-			});
-			list.append(item);
-		}
-	}
+	this.view = new SubjectExpansionView();
 }
 
 SubjectExpansionObserver.prototype.notify = function() {
-	var actualSearch = user.getActualSubjectExpansionSearch();
-
-	if (actualSearch !== null) {
-		if (actualSearch.getSearchId() === null) {
-			// Nothing?
-		} else {
-			var actualSearchId = actualSearch.getSearchId();
-
-			if (this.currentSearchId === actualSearchId) {
-				var selectedTerms = $("#rodin-expansion-selection ul li").length;
-
-				if (selectedTerms > 0) {
-					styleExpansionSelection(true);
-
-					document.l10n.updateData( { "selectedTermsCount": selectedTerms } );
-					document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
-
-					user.refreshDocumentSearch(actualSearch.getQuery(), $.makeArray($("#rodin-expansion-selection ul li")));
-				} else {
-					styleExpansionSelection(false);
-
-					document.l10n.updateData( { "selectedTermsCount": 0 } );
-					document.l10n.localizeNode($("#rodin-expansion-selection-count").get(0));
-
-					user.refreshDocumentSearch(actualSearch.getQuery(), null);
-				}
-			} else {
-				this.currentSearchId = actualSearchId;
-				this.setNewTerms();
-			}
-		}
-	}
+	this.view.processResults();
 };
 
 
@@ -421,10 +260,7 @@ function SearchObserver() {
 }
 
 SearchObserver.prototype.notify = function() {
-	var actualSearch = user.getActualGlobalSearch();
-
 	this.view.processResults();
-
 	user.resetTemporalGlobalSearch();
 };
 
