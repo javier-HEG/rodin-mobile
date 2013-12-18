@@ -58,5 +58,7 @@ import('common.lol')
 <universeOptionsRemoveUniverse "Remove this universe">
 <universeOptionsRemoveWarning "Warning">
 <universeOptionsRemoveWarningText "Are you sure you want to remove the current universe?">
+<universeOptionsRemoveConfirm "This action cannot be reverted!"> /* NEW */
 <universeOptionsUniverseSelection "Universe selection">
 <universeOptionsCreateUniverse "Create universe">
+<universeOptionsCreateUniverseConfirm "Are you sure you want to create a new universe? (It will be selected by default)"> /* NEW */

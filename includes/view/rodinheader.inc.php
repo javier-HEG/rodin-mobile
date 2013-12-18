@@ -100,7 +100,7 @@ if ($rodinSession->isUserLoggedIn()) {
 				$("#remove-current-button").click(function(event) {
 					event.preventDefault();
 
-					if (confirm("This action cannot be reverted!")) {
+					if (confirm(document.l10n.get("universeOptionsRemoveConfirm"))) {
 						user.removeCurrentUniverse()
 						$("#remove-current-ul").trigger("close");
 					}
@@ -111,7 +111,7 @@ if ($rodinSession->isUserLoggedIn()) {
 				$("#new-universe-form").submit(function(event) {
 					event.preventDefault();
 
-					if (confirm("Are you sure you want to create a new universe?\n(It will be selected by default)")) {
+					if (confirm(document.l10n.get("universeOptionsCreateUniverseConfirm"))) {
 						user.createNewUniverse($("#new-universe-name").val());
 						$("#new-universe-ul").trigger("close");
 					}
