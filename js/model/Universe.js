@@ -101,7 +101,7 @@ function Universe(data) {
 				break;
 		}
 
-		currentUniverseObserver.formatAsSelected($('#' + type + '-' + source.name), source.id);
+		currentUniverseObserver.notify();
 	};
 
 	this.unselectSource = function(instanceId) {
