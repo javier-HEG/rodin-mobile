@@ -75,7 +75,6 @@
 		<script src="js/model/Universe.js"></script>
 		<script src="js/model/Source.js"></script>
 		<script src="js/model/Search.js"></script>
-		<script src="js/model/Publisher.js"></script>
 		<!-- Our script and the observers' instantiation -->
 		<script src="js/main.js"></script>
 		<!-- And our model instantiation -->
