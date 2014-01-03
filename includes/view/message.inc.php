@@ -1,25 +1,24 @@
 <?php
 
-if (isInterfaceMessageSet()) {
-	list($messageType, $message) = consumeInterfaceMessage();
+/*
+ * This script is used to include messages from the PHP implementation
+ * to the interface, where there are managed by the Messages.js files
+ */
 
-	?>
-	<div id="interface-messages" class="rodin-message <?php echo messageTypeCssClass($messageType); ?>">
-		<div class="container">
-			<div class="column">
-				<?php echo $message; ?>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-		function hideInterfaceMessage() {
-			$('#interface-messages').hide()
-		}
+if (isInterfaceMessageInitialized()) {
+	echo '<script>';
 
-		setTimeout("hideInterfaceMessage()", <?php echo messageTypeTimer($messageType); ?>);
-	</script>
-	<?php
+	while (list($messageType, $message) = consumeInterfaceMessage()) {
 
+		?>
+
+		messageManager.addMessage('<?php echo $message; ?>', '<?php echo $messageType; ?>');
+
+		<?php
+
+	}
+
+	echo '</script>';
 }
 
 ?>

@@ -7,30 +7,115 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="cleartype" content="on">
 
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png">
-	<link rel="shortcut icon" href="img/touch/apple-touch-icon.png">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
 
-	<link rel="apple-touch-icon" href="<?php echo SKELETON; ?>images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo SKELETON; ?>images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo SKELETON; ?>images/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/icons/rodin-144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/icons/rodin-114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/icons/rodin-72.png" />
+	<link rel="apple-touch-icon-precomposed" href="img/icons/rodin-57.png" />
+	<link rel="shortcut icon" type="image/png" href="img/icons/rodin-16.png" />
 
 	<!-- Tile icon for Win8 (144x144 + tile color) -->
-	<meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
-	<meta name="msapplication-TileColor" content="#222222">
+	<meta name="msapplication-TileImage" content="img/icons/rodin-144.png">
+	<meta name="msapplication-TileColor" content="#000000">
 
+	<!-- CSS -->
+	<!-- + Mmenu -->
+	<link rel="stylesheet" href="css/mmenu.css"/>
+	<!-- + HTML5BP -->
 	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/main.css">
+	<!-- + Responsive, styling based on media geometry -->
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/atmosphere.css">
+	<!--   - Media query dependent CSS -->
+	<link  rel="stylesheet" href="css/mobile-nav.css" media="screen">
+	<link  rel="stylesheet" href="css/smartphone.css" media="screen and (min-width:320px) and (max-width:480px)">
+	<link  rel="stylesheet" href="css/tablet.css" media="screen and (min-width: 481px) and (max-width: 767px)">
+	<link  rel="stylesheet" href="css/ipad.css" media="screen and (min-width: 768px) and (max-width: 1024px)">
+	<!-- <link  rel="stylesheet" href="css/desktop.css" media="screen and (min-width: 1025px)"> -->
 
-	<!-- Skeleton -->
-	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/base.css"/>
-	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/skeleton.css"/>
-	<link rel="stylesheet" href="<?php echo SKELETON; ?>stylesheets/layout.css"/>
-
-	<link rel="stylesheet" href="css/rodin.css"/>
-
+	<!-- Libraries -->
+	<script src="js/vendor/jquery-1.7.2.min.js"></script>
 	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+	<!-- Can be used to improve the hovering in touch devices -->
+	<!-- <script src="js/vendor/jquery.hoverIntent.js"></script> -->
+	<script src="js/helper.js"></script>
+	<!-- MVC View -->
+	<script src="js/view/Messages.js"></script>
+	<script>
+		$(function() {
+			messageManager.rollMessages();
+		});
+	</script>
+	<!-- MBP Fixes -->
+	<script>
+		MBP.hideUrlBarOnLoad();
+		MBP.preventZoom();
+		MBP.scaleFix();		
+	</script>
 
+	<?php
+
+	if ($rodinSession->isUserLoggedIn()) {
+
+		?>
+		<script>
+			var rodinResources = "<?php echo $resourceBaseUrl; ?>";
+		</script>
+		<script src="js/vendor/jquery.mmenu.js"></script>
+		<script src="js/vendor/overthrow.js"></script>
+		<!-- Broker class -->
+		<script src="js/Broker.js"></script>
+		<!-- MVC View class -->
+		<script src="js/view/Views.js"></script>
+		<!-- MVC Control class -->
+		<script src="js/control/ObserverPattern.js"></script>
+		<!-- MVC Model classes -->
+		<script src="js/model/User.js"></script>
+		<script src="js/model/Universe.js"></script>
+		<script src="js/model/Source.js"></script>
+		<script src="js/model/Search.js"></script>
+		<!-- Our script and the observers' instantiation -->
+		<script src="js/main.js"></script>
+		<!-- And our model instantiation -->
+		<script>
+			$(function() {
+				user = new User("<?php echo $rodinSession->getUserName(); ?>");
+				
+				// Add universe observer to user
+				user.registerObserver(userObserver);
+				user.registerObserver(universeListObserver);
+				user.registerObserver(currentUniverseObserver);
+			});
+		</script>
+		
+		<?php
+
+	}
+
+	?>
+
+	<!-- L20n setup -->
+	<link rel="localization" href="locales/manifest.json">
+	<script type="application/l10n-data+json">
+		{
+			"relatedTermsCount": 0,
+			"selectedTermsCount": 0
+		}
+	</script>
+	<!-- Include the dist version of L20n -->
+	<script src="js/vendor/l20n.js"></script>
+	<script>
+		var l10nReady = false;
+		var l10nLanguageSet = false;
+
+		document.l10n.ready(function() {
+			if (!l10nLanguageSet && user != null) {
+				l10nLanguageSet = true;
+				user.notifyObservers();
+			}
+
+			l10nReady = true;
+		});
+	</script>
 </head>

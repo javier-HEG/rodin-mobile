@@ -1,0 +1,12 @@
+{
+  "locales": [
+    "en",
+    "de",
+    "fr",
+    "it"
+  ],
+  "default_locale": "en",
+  "resources": [
+    "./{{locale}}.lol"
+  ]
+}

@@ -7,9 +7,8 @@
  */
 
 if ($_POST['action'] == 'login') {
-	if ($rodinSession->userLoginAttempt($_POST['username'], sha1($_POST['password']))) {
+	if ($rodinSession->userLoginAttempt($_POST['username'], $_POST['password'])) {
 		setInterfaceMessage(MESSAGE_KIND_INFO, 'Welcome ' . $rodinSession->getUserRealName());
-		header('Location: index.php');
 	} else {
 		setInterfaceMessage(MESSAGE_KIND_ERROR, 'Wrong username/password pair, this is your ' . $rodinSession->getUserLoginAttempts() . ' attempt');
 	}

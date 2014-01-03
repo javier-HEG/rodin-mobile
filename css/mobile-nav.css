@@ -1,0 +1,473 @@
+/**
+ * Media independent layout file
+ *
+ * Index
+ * =====
+ * A. Temporal
+ * 1. Basic styling for all around elements
+ * 2. Sliding option panels, enclosing Mmenu
+ * 3. Overriding Mmenu styles
+ * 4. Styles for Rodin specific content
+ * 5. Rodin subject expansion
+ * 6. Rodin results
+ * 7. Auto-complete
+ * 8. Help tooltips
+ *
+ * X. Query for HD medias
+ * Y. Base 960 Grid
+ */
+
+/**
+ * A. Temporal development rules
+ */
+#mediateller {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	padding: 2px 6px;
+	display: none;
+}
+
+/**
+ * 1. Basic styling for all around elements
+ */
+body {
+	max-width: 1300px;
+	margin: 0 auto;
+	position: relative;
+	overflow: auto;
+}
+
+/* Inputs and buttons (overriding Skeleton) */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+	width: 100%;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+	width: 100%;
+	margin-bottom: 4px;
+}
+
+/**
+ * 2. Sliding option panels, enclosing Mmenu
+ */
+
+/*
+ * 3. Overriding Mmenu styles
+ */
+#header a,
+.header a {
+	display: block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 0;
+	left: 10px;
+}
+
+#header a.user-settings,
+.header a.user-settings {
+	left: auto;
+	right: 10px;
+	top: -28px;
+}
+
+.mm-menu > ul {
+	padding: 0;
+}
+
+.mm-menu li > a {
+	padding-right: 32px;
+}
+
+.mm-menu li span {
+	height: 40px;
+}
+
+.mm-menu li.hasChildren span {
+	padding-left: 32px;
+}
+
+.mm-menu a.mm-subopen + span {
+	padding-left: 45px;
+}
+
+.mm-menu li {
+	height: 40px;
+}
+
+.mm-menu li.mm-subtitle {
+	height: auto;
+}
+
+.mm-menu li.label {
+	height: auto;
+	padding: 2px 0 4px;
+}
+
+.mm-menu li.text {
+	height: auto;
+}
+
+.mm-menu li.text p {
+	padding: 4px;
+	margin-bottom: 0;
+}
+
+.mm-menu form {
+	margin-bottom: 0;
+}
+
+.mm-menu li input[type="text"],
+.mm-menu li input[type="password"] {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	margin-bottom: 0;
+}
+
+.mm-menu li input[type="password"] {
+	margin-bottom: 3px;
+	margin-top: 4px;
+}
+
+/* Buttons for language options */
+.mm-menu li input.language[type="button"] {
+	width: 22%;
+}
+
+/* Buttons for setting actions */
+.mm-menu li input.action[type="button"] {
+	width: 45%;
+}
+
+/*
+ * 4. Styles for Rodin specific content
+ */
+header[role="banner"] {
+	display: block;
+	width: 100%;
+	padding: 6px 0;
+}
+
+h1#rodin-title {
+	height: 28px;
+	margin: 0;
+}
+
+/* Rodin rolling message system */
+.rodin-message {
+	width: 100%;
+	padding: 3px 0;
+}
+
+/* Rodin search bar */
+#global-search-query {
+	display: inline;
+	padding: 4px 0;
+	margin: 1px -5px 3px 5px;
+	width: 75%;
+}
+
+#global-search-form {
+	margin-bottom: 0;
+}
+
+#global-search-form button {
+	margin-bottom: 4px;
+	height: 29px;
+	width: 7%;
+}
+
+#search-history {
+	display: inline;
+}
+
+/**
+ * 5. Rodin subject expansion
+ */
+#rodin-expansion-header {
+	margin-top: 1px;
+	padding: 5px 0px 6px 0px;
+	border-radius: 8px 8px 0px 0px;
+}
+
+#rodin-expansion-count {
+	padding-left: 6px;
+}
+
+ul.termlist {
+	margin-bottom: 2px;
+	padding: 2px 0px 2px 0px;
+}
+
+ul.termlist li {
+	float: left;
+	margin: 1px 1px 1px 3px;
+	padding: 4px;
+	border-radius: 6px;
+}
+
+#rodin-expansion-selection {
+	display: none;
+	border-radius: 8px 0px 0px 0px;	
+}
+
+#rodin-expansion-categories {
+	width: 100%;
+	display: table;
+}
+
+#rodin-expansion-categories > div {
+	display: table-cell;
+}
+
+#rodin-narrower-button {
+	border-radius: 8px 0px 0px 0px;
+}
+
+#rodin-expansion-terms {
+	margin-bottom: 2px;
+}
+
+#rodin-expansion-terms ul {
+	border-radius: 0px 0px 8px 8px;
+}
+
+/* - Changes in layout when subject expansion is closed (closed),
+	 unavailable (unavailable), or when some terms are selected
+	 (withselection) */
+#rodin-expansion-selection.withselection {
+	display: block;
+}
+
+#rodin-narrower-button.withselection {
+	border-radius: 0px 0px 0px 0px;
+}
+
+#rodin-expansion-header.closed {
+	padding-bottom: 3px;
+	margin-bottom: 2px;
+	border-radius: 8px;
+}
+
+#rodin-expansion-header.closed.withselection {
+	padding: 5px 0 6px;
+	margin-top: 1px;
+	margin-bottom: 0px;
+	border-radius: 8px 8px 0px 0px;
+}
+
+#rodin-expansion-selection.closed {
+	display: none;
+	border-radius: 8px 0px 8px 8px;
+}
+
+#rodin-expansion-selection.closed.withselection {
+	border-radius: 8px 0px 8px 8px;	
+	display: block;
+}
+
+#rodin-expansion-content.closed {
+	display: none;
+}
+
+#rodin-expansion-header.unavailable {
+	display: block;
+}
+
+/**
+ * 6. Rodin results
+ */
+
+.full-width {
+	width: 100%;
+	padding: 2px 0;
+}
+
+.rodin-result {
+	margin-bottom: 6px;
+	padding: 6px;
+}
+
+.rodin-result h1 {
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+.rodin-result p {
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+.rodin-result p.summary,
+.rodin-result p.content {
+	padding: 0 4px;
+}
+
+.rodin-result p.publication {
+	margin-bottom: 0;
+}
+
+.rodin-result p.publication a {
+	float: right;
+	width: 16px;
+	height: 16px;
+}
+
+.rodin-result .sources {
+	padding: 0 2px;
+}
+
+.rodin-result .sources img {
+	padding: 2px;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0;
+}
+
+.sliding-panels {
+	width: 100%;
+}
+
+#more-results-button {
+	margin-bottom: 12px;
+}
+
+/**
+ * 7. Auto-complete
+ */
+#autocomplete-box {
+	border-radius: 6px;
+	
+	left: 106px;
+	top: 32px;
+	position: absolute;
+	width: 436px;
+	overflow: scroll;
+	z-index: 5;
+
+	max-height: 260px;
+}
+
+#autocomplete-box ul {
+	margin: 0px;
+}
+
+#autocomplete-box ul li {
+	margin: 0px;
+	line-height: 26px;
+}
+
+#autocomplete-box span.launch {
+	float: left;
+	width: 90%;
+}
+
+#autocomplete-box button.add {
+	float: right;
+	margin: 0px;
+	width: 10%;
+	height: 26px;
+	border-radius: 0px;
+}
+
+/**
+ * 8. Help tooltips
+ */
+.help-left {
+	left: 40px;
+    padding: 8px;
+    position: absolute;
+    top: -12px;
+    width: 210px;
+    z-index: 99;
+}
+
+.help-left:after, .help-left:before {
+	right: 100%;
+	top: 20px;
+	pointer-events: none;
+	position: absolute;
+	height: 0;
+	width: 0;
+}
+
+.pointer-left {
+	left: 40px;
+    padding: 8px;
+    position: absolute;
+    top: -12px;
+    width: 40px;
+    z-index: 99;
+}
+
+.pointer-left:after, .pointer-left:before {
+	right: 100%;
+	top: 20px;
+	pointer-events: none;
+	position: absolute;
+	height: 0;
+	width: 0;
+}
+
+/**
+ * X. Query for HD medias
+ */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 144dpi) {
+
+}
+
+/**
+ * Y. 960 Grid
+ * Code based on:
+ * Skeleton V1.2, Copyright 2011, Dave Gamache (www.getskeleton.com)
+ * Free to use under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ * 6/20/2012
+ */
+
+.container                        { position: relative; width: 960px; margin: 0 auto; padding: 0; }
+.container:after                  { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+.container .column,
+.container .columns               { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
+.row                              { margin-bottom: 20px; }
+
+/* Nested Column Classes */
+.column.alpha, .columns.alpha     { margin-left: 0; }
+.column.omega, .columns.omega     { margin-right: 0; }
+
+/* Base Grid */
+.container .one.column,
+.container .one.columns           { width: 40px;  }
+.container .two.columns           { width: 100px; }
+.container .three.columns         { width: 160px; }
+.container .four.columns          { width: 220px; }
+.container .five.columns          { width: 280px; }
+.container .six.columns           { width: 340px; }
+.container .seven.columns         { width: 400px; }
+.container .eight.columns         { width: 460px; }
+.container .nine.columns          { width: 520px; }
+.container .ten.columns           { width: 580px; }
+.container .eleven.columns        { width: 640px; }
+.container .twelve.columns        { width: 700px; }
+.container .thirteen.columns      { width: 760px; }
+.container .fourteen.columns      { width: 820px; }
+.container .fifteen.columns       { width: 880px; }
+.container .sixteen.columns       { width: 940px; }
+
+.container .one-third.column      { width: 300px; }
+.container .two-thirds.column     { width: 620px; }

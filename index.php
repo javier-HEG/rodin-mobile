@@ -9,9 +9,7 @@ define('VIEW', INCLUDES . 'view' . DIRECTORY_SEPARATOR);
 define('CONTROL', INCLUDES . 'control' . DIRECTORY_SEPARATOR);
 
 define('TOOLS', 'tools' . DIRECTORY_SEPARATOR);
-define('APPFRAMEWORK', TOOLS . 'appframework' . DIRECTORY_SEPARATOR);
 define('RODINCLIENT', TOOLS . 'rodin-client' . DIRECTORY_SEPARATOR);
-define('SKELETON', TOOLS . 'skeleton' . DIRECTORY_SEPARATOR);
 
 define('STATUS', 'development');
 
@@ -28,8 +26,9 @@ include_once(CONFIG . 'base.inc.php');
 
 // Application logic
 // - Start the client
-include_once(RODINCLIENT . 'bootstrap.php');
+include_once(TOOLS . 'rodin-client/RodinSession.php');
 $rodinSession = new RodinSession();
+$rodinSession->setBaseUrl($localResourceBaseUrl);
 
 // - Include interface messaging methods
 include_once(CONTROL . 'message.php');

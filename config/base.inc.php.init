@@ -1,0 +1,15 @@
+<?php
+
+// Database passwords
+
+// Server API key
+
+// Server data
+$resourceBaseUrl = "";
+$localResourceBaseUrl = "";
+
+// Proxy configuration
+$useProxy = false;
+$proxyConfig = array('host' => '', 'port' => '', 'user' => '', 'password' => '');
+
+?>

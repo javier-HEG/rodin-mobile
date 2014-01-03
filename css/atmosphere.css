@@ -1,0 +1,480 @@
+/**
+ * "The atmosphere.css is the colour, texture and typography separated
+ * from the layout and media-specific code."
+ * (via http://azadcreative.com/2012/07/responsive-mobile-first-navigation-menu/)
+ *
+ * Index
+ * =====
+ * A. Temporal 
+ * 1. Basic styling for all around elements
+ * 2. Sliding option panels, enclosing Mmenu
+ * 3. Overriding Mmenu styles
+ * 4. Styles for Rodin specific content
+ * 5. Rodin subject expansion
+ * 6. Rodin results
+ * 7. Auto-complete
+ * 8. Help tooltips
+ *
+ * X. Query for HD medias
+ * 
+ */
+
+ /**
+ * A. Temporal development rules
+ */
+#mediateller {
+	text-align: right;
+	font-size: 12px;
+	color: rgba(0, 0, 0, 1);
+}
+
+/**
+ * 1. Basic styling for all around elements
+ */
+body {
+	vertical-align: baseline;
+	text-align: center;
+	background-color: cornsilk;
+	color: #444;
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	line-height: 1.4;
+	-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+	-webkit-text-size-adjust: 100%;
+}
+
+h1 {
+	font-size: 24px;
+	line-height: 24px;
+}
+
+a:link,
+a:visited {
+	color: #666;
+	text-decoration: underline;
+}
+a:hover,
+a:active {
+	color: #a67b45;
+	text-decoration: none;
+	outline: none;
+}
+a:active {
+	color: #ff6000;
+}
+
+/**
+ * 2. Sliding option panels, enclosing Mmenu
+ */
+
+.sliding-panels {
+	background-color: orange;
+	color: black;
+}
+
+/*
+ * 3. Overriding Mmenu styles
+ */
+.mm-menu {
+	background-color: orange;
+}
+
+.mm-menu * {
+	text-shadow: none;
+}
+
+#header a,
+.header a {
+	background: center center no-repeat transparent;
+	background-image: url(../img/icons/config.png);
+}
+
+#header a.user-settings,
+.header a.user-settings {
+	background-image: url(../img/mimiGlyphs/13-inverted.png);
+}
+
+.mm-menu a {
+	color: #666666;
+}
+
+.mm-menu li.mm-label {
+	background-color: #000000;
+	color: #FFA500;
+	font-size: 12px;
+	text-shadow: none;
+	font-size: 16px;
+	line-height: 40px;
+}
+
+.mm-menu li, .mm-menu li > a, .mm-menu li > span {
+	color: black;
+	text-indent: 0px;
+}
+
+.mm-menu a.mm-subopen:after, .mm-menu a.mm-subclose:before {
+	border-color: inherit;
+}
+
+.mm-menu a.mm-subclose {
+	text-transform: uppercase;
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
+	color: orange;
+}
+
+.mm-menu a.mm-subopen:hover + span {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mm-menu li {
+	border-bottom-width: 0px;
+	line-height: 40px;
+}
+
+.mm-menu li.mm-subtitle:after {
+	border-bottom-width: 0px;
+}
+
+.mm-menu li.mm-selected {
+	background: rgba(0, 0, 0, 0.08) no-repeat 97% 50% url(../img/mimiGlyphs/54-full.png);
+	font-weight: bolder;
+	cursor: pointer;
+}
+
+.mm-menu li.mm-unselected {
+	background: transparent no-repeat 97% 50% url(../img/mimiGlyphs/54-empty.png);
+	cursor: pointer;
+}
+
+.mm-menu li.mm-selected > span {
+	background: none;
+}
+
+.mm-menu li.label {
+	background-color: rgba(1, 1, 1, 0.2);
+	line-height: 16px;
+}
+
+.mm-menu li.text {
+	white-space: normal;
+	line-height: 16px;
+}
+
+.mm-menu li input[type="text"],
+.mm-menu li input[type="password"] {
+	background: orange no-repeat 100% 50% url(../img/mimiGlyphs/39.png);
+	color: black;
+	border: none;
+	font-size: 16px;
+	text-align: center;
+}
+
+.mm-menu li input[type="text"]:focus {
+	color: black;
+	background: orange none;
+	border: none;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	box-shadow: none;
+}
+
+.mm-menu li input[type="password"] {
+	background: rgba(255,220,255,0.25) no-repeat 98% 50% url(../img/mimiGlyphs/39.png);
+	border: 1px solid rgba(0,0,0,0.1);
+}
+
+.mm-menu li input[type="password"]:focus {
+	background: none;
+	box-shadow: none;
+}
+
+/* Buttons for language options */
+.mm-menu li input.language[type="button"] {
+	vertical-align: middle;
+}
+
+.mm-menu li input.language[type="button"]:disabled {
+	background: rgba(0, 0, 0, 0.2);
+	color: rgba(0, 0, 0, 0.5);
+	border: none;
+	text-shadow: none;
+}
+
+/* Buttons for setting actions */
+.mm-menu li input.action[type="button"] {
+	vertical-align: middle;
+}
+
+/*
+ * 4. Styles for Rodin specific content
+ */
+header[role="banner"] {
+	background-color: black;
+}
+
+h1#rodin-title {
+	color: orange;
+	font-size: 2em;
+	text-align: left;
+	font-weight: bold;
+	line-height: 24px;
+}
+
+/* Rodin rolling message system */
+.rodin-message-error {
+	background-color: pink;
+}
+
+.rodin-message-info {
+	background-color: lightgreen;
+}
+
+.rodin-message-debug {
+	background-color: lightsteelblue;
+}
+
+/* Rodin search bar */
+#global-search-query {
+	text-align: center;
+	font-size: 16px;
+	box-shadow: none;
+	border-radius: 8px 0px 0px 8px;
+	border: none;
+}
+
+#global-search-form {
+	line-height: 26px;
+	vertical-align: top;
+}
+
+#global-search-form button {
+	vertical-align: middle;
+	background-color: rgba(255,255,255,0.25);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	border: 1px solid rgba(255,255,255,0.5);
+}
+
+button#global-search-button {
+	background-color: rgba(255,255,255,0.4);
+	background-image: url(../img/mimiGlyphs/7.png);
+	border-radius: 0 8px 8px 0;
+}
+
+button#global-search-button:disabled {
+	background-image: url(../img/mimiGlyphs/7-disabled.png);
+}
+
+button#global-search-button.refresh {
+	background-image: url(../img/mimiGlyphs/45.png);
+}
+
+#history-back {
+	background-color: rgba(255,255,0,0.4);
+	background-image: url(../img/mimiGlyphs/15.png);
+	border-radius: 8px 0px 0px 8px;
+}
+
+#history-back:disabled {
+	background-image: url(../img/mimiGlyphs/15-disabled.png);
+}
+
+#history-forward {
+	background-image: url(../img/mimiGlyphs/16.png);
+	border-radius: 0px 8px 8px 0px;
+}
+
+#history-forward:disabled {
+	background-image: url(../img/mimiGlyphs/16-disabled.png);
+}
+
+/**
+ * 5. Rodin subject expansion
+ */
+#rodin-expansion-header {
+	background: rgba(0, 0, 0, 0.16) no-repeat 98% 40% url(../img/mimiGlyphs/44.png);
+	text-align: left;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+ul.termlist li {
+	text-align: left;
+	font-size: 14px;
+	line-height: 14px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+ul.termlist li.more-expansion {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+ul.termlist li.narrower { background-color: rgba(255, 0, 0, 0.1); }
+ul.termlist li.broader { background-color: rgba(64, 200, 64, 0.1); }
+ul.termlist li.related { background-color: rgba(0, 0, 255, 0.1); }
+
+#rodin-expansion-selection { background-color: rgba(0, 0, 0, 0.16); }
+
+#rodin-expansion-categories > div { background-color: rgba(0,0,0,0.08); }
+
+#rodin-narrower-button { border-bottom: 2px solid rgba(255, 0, 0, 0.25); }
+#rodin-broader-button { border-bottom: 2px solid rgba(64, 200, 64, 0.25); }
+#rodin-related-button { border-bottom: 2px solid rgba(0, 0, 255, 0.25); }
+
+#rodin-narrower-button.selected, #rodin-narrower-terms { background-color: rgba(255, 0, 0, 0.1); }
+#rodin-broader-button.selected, #rodin-broader-terms { background-color: rgba(64, 200, 64, 0.1); }
+#rodin-related-button.selected, #rodin-related-terms { background-color: rgba(0, 0, 255, 0.1); }
+
+/* - Changes in layout when subject expansion is closed (closed),
+	 unavailable (unavailable), or when some terms are selected
+	 (withselection) */
+#rodin-expansion-header.closed { background-image: url(../img/mimiGlyphs/43.png); }
+
+#rodin-expansion-header.unavailable {
+	background-image: none;
+	cursor: default;
+}
+
+/**
+ * 6. Rodin results
+ */
+.rodin-result {
+	text-align: left;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.rodin-result h1 {
+	font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 18px;
+	line-height: 20px;
+}
+
+.rodin-result p {
+	font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.rodin-result p.summary,
+.rodin-result p.content {
+	font-style: italic;
+}
+
+.rodin-result p.authors:before {
+	content: "By ";
+}
+
+.rodin-result p.publication .date:before {
+	content: "Publication date: ";
+}
+
+.rodin-result p.publication a {
+	background-repeat: no-repeat;
+	background-image: url(../img/mimiGlyphs/47.png);
+}
+
+.rodin-result p.publication a.source-Alexandria { background-image: url(../img/icons/sources/alex.ico); }
+.rodin-result p.publication a.source-Arxiv { background-image: url(../img/icons/sources/arxiv.ico); }
+.rodin-result p.publication a.source-Bibsonomy { background-image: url(../img/icons/sources/bibsonomy.png); }
+.rodin-result p.publication a.source-DBPedia { background-image: url(../img/icons/sources/dbpedia.ico); }
+.rodin-result p.publication a.source-Delicious { background-image: url(../img/icons/sources/delicious.ico); }
+.rodin-result p.publication a.source-Econbiz { background-image: url(../img/icons/sources/econbiz.ico); }
+.rodin-result p.publication a.source-ELib { background-image: url(../img/icons/sources/elib.ico); }
+.rodin-result p.publication a.source-GND { background-image: url(../img/icons/sources/gnd.png); }
+.rodin-result p.publication a.source-LOCSH { background-image: url(../img/icons/sources/locsh.ico); }
+.rodin-result p.publication a.source-Rameau { background-image: url(../img/icons/sources/rameau.ico); }
+.rodin-result p.publication a.source-STW { background-image: url(../img/icons/sources/stw.ico); }
+.rodin-result p.publication a.source-SwissBib { background-image: url(../img/icons/sources/swissbib.ico); }
+.rodin-result p.publication a.source-TheSOZ { background-image: url(../img/icons/sources/thesoz.ico); }
+
+.rodin-result .sources {
+	text-align: right;
+}
+
+.rodin-result .sources img {
+	padding: 2px;
+}
+
+/**
+ * 7. Auto-complete
+ */
+#autocomplete-box {
+	background-color: lightgray;
+	border: 1px solid #FFFFFF;
+}
+
+#autocomplete-box button.add {
+	vertical-align: middle;
+
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-image: url(../img/mimiGlyphs/47-rotated.png);
+	background-color: transparent;
+	
+	border: none;
+}
+
+/**
+ * 8. Help tooltips
+ */
+.help-left {
+	background-color: mintcream;
+    border: 2px solid grey;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.help-left:after, .help-left:before {
+	border: medium solid transparent;
+	content: " ";
+}
+
+.help-left:after {
+	border-color: transparent;
+	border-right-color: mintcream;
+	border-width: 12px;
+	margin-top: -12px;
+}
+
+.help-left:before {
+	border-color: transparent;
+	border-right-color: grey;
+	border-width: 15px;
+	margin-top: -15px;
+}
+
+.pointer-left {
+	background-color: mistyrose;
+    border: 2px solid grey;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.pointer-left:after, .pointer-left:before {
+	border: medium solid transparent;
+	content: " ";
+}
+
+.pointer-left:after {
+	border-color: transparent;
+	border-right-color: mistyrose;
+	border-width: 12px;
+	margin-top: -12px;
+}
+
+.pointer-left:before {
+	border-color: transparent;
+	border-right-color: grey;
+	border-width: 15px;
+	margin-top: -15px;
+}
+
+/**
+ * X. Query for HD medias
+ */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (min-resolution: 144dpi) {
+	
+}
