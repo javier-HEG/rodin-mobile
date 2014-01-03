@@ -28,7 +28,7 @@ include_once(CONFIG . 'base.inc.php');
 // - Start the client
 include_once(TOOLS . 'rodin-client/RodinSession.php');
 $rodinSession = new RodinSession();
-$rodinSession->setBaseUrl($resourceBaseUrl);
+$rodinSession->setBaseUrl($localResourceBaseUrl);
 
 // - Include interface messaging methods
 include_once(CONTROL . 'message.php');

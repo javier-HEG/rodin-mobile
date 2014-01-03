@@ -59,7 +59,10 @@ import('common.lol')
 <userOptions "Options utilisateur">
 <userOptionsName "Nom d'utilisateur">
 <userOptionsPassword "Mot de passe">
-<userOptionsChangePassword "Changement de mot de passe">
+<userOptionsChangePassword[formFactor(@screen)] {
+	*desktop: "Changement de mot de passe",
+	smartphone: "Changer"
+	}>
 <userOptionsOldPassword "Ancien mot de passe">
 <userOptionsNewPassword "Nouveau mot de passe">
 <userOptionsLanguage "Langue">

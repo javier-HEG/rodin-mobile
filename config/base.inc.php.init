@@ -6,6 +6,7 @@
 
 // Server data
 $resourceBaseUrl = "";
+$localResourceBaseUrl = "";
 
 // Proxy configuration
 $useProxy = false;
