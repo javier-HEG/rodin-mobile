@@ -18,3 +18,24 @@
 	landscape: "Landscape (768px-959px)",
 	tablet: "Table (481px-767px)",
 	smartphone: "Smatphone (?-480px)" }>
+
+<frenchTag[formFactor(@screen)] {
+	*desktop: "Français",
+	smartphone: "Fr" }>
+
+<germanTag[formFactor(@screen)] {
+	*desktop: "Deutsch",
+	smartphone: "De" }>
+
+<italianTag[formFactor(@screen)] {
+	*desktop: "Italiano",
+	smartphone: "It" }>
+
+<englishTag[formFactor(@screen)] {
+	*desktop: "English",
+	smartphone: "En" }>
+
+<userOptionsLanguageFrench "" value: "{{ frenchTag }}">
+<userOptionsLanguageGerman "" value: "{{ germanTag }}">
+<userOptionsLanguageItalian "" value: "{{ italianTag }}">
+<userOptionsLanguageEnglish "" value: "{{ englishTag }}">
